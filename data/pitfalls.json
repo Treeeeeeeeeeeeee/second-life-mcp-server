@@ -10,5 +10,17 @@
     "portable_only": 1,
     "ai_source": "claude-code",
     "created_at": "2026-05-17T18:03:54Z"
+  },
+  {
+    "id": "state_001",
+    "category": "state_behavior",
+    "title": "Cached owner key not updated after ownership transfer",
+    "bad_example": "key owner;\ndefault {\n    state_entry() { owner = llGetOwner(); }\n    // CHANGED_OWNER never handled \u2014 owner is stale after transfer\n}",
+    "good_example": "key owner;\ndefault {\n    state_entry() { owner = llGetOwner(); }\n    changed(integer change) {\n        if (change & CHANGED_OWNER) llResetScript();\n    }\n}",
+    "notes": "When an object is transferred to a new resident, any cached key owner variable retains the previous owner UUID. The standard fix is to call llResetScript() when CHANGED_OWNER is detected in the changed event; state_entry then runs fresh and assigns the correct new owner via llGetOwner(). Scripts that skip this pattern will use a stale owner key for permission checks, data lookups, or any owner-gated logic.",
+    "ai_specific": 1,
+    "portable_only": 1,
+    "ai_source": "claude-code",
+    "created_at": "2026-05-17T18:13:52Z"
   }
 ]
