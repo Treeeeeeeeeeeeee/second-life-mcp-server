@@ -22,5 +22,53 @@
     "portable_only": 1,
     "ai_source": "claude-code",
     "created_at": "2026-05-17T18:13:52Z"
+  },
+  {
+    "id": "lang_001",
+    "category": "reserved_words",
+    "title": "key used as variable name",
+    "bad_example": "key key = llDetectedKey(0);",
+    "good_example": "key agent_key = llDetectedKey(0);",
+    "notes": "key is a reserved type name in LSL. Using it as a variable identifier causes a compile error. Rename the variable to something like agent_key, target_key, or id.",
+    "ai_specific": 1,
+    "portable_only": 1,
+    "ai_source": "kiro",
+    "created_at": "2026-05-17T18:49:58Z"
+  },
+  {
+    "id": "func_001",
+    "category": "nonexistent_functions",
+    "title": "llStringReplace does not exist in LSL",
+    "bad_example": "llStringReplace(src, old, new)",
+    "good_example": "llReplaceSubString(src, pattern, replacement, count)",
+    "notes": "llStringReplace is a plausible-sounding hallucination, likely confused with string replace conventions in other languages. The correct function is llReplaceSubString.",
+    "ai_specific": 1,
+    "portable_only": 1,
+    "ai_source": "kiro",
+    "created_at": "2026-05-17T18:49:58Z"
+  },
+  {
+    "id": "syn_001",
+    "category": "unsupported_syntax",
+    "title": "Ternary operator not supported",
+    "bad_example": "integer x = (a > b) ? a : b;",
+    "good_example": "integer x; if (a > b) x = a; else x = b;",
+    "notes": "LSL has no ternary operator (? :). Using it causes a compile error. Rewrite using if/else.",
+    "ai_specific": 1,
+    "portable_only": 1,
+    "ai_source": "both",
+    "created_at": "2026-05-17T18:49:58Z"
+  },
+  {
+    "id": "syn_002",
+    "category": "unsupported_syntax",
+    "title": "Switch statements not supported",
+    "bad_example": "switch (x) { case 1: ...; break; default: ...; }",
+    "good_example": "if (x == 1) { ... } else if (...) { ... }",
+    "notes": "LSL has no switch statement. Rewrite using if/else if chains.",
+    "ai_specific": 1,
+    "portable_only": 1,
+    "ai_source": "both",
+    "created_at": "2026-05-17T18:49:58Z"
   }
 ]
