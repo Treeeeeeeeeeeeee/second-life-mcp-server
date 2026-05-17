@@ -1,0 +1,14 @@
+[
+  {
+    "id": "type_001",
+    "category": "type_coercion",
+    "title": "Boolean NOT operator ! does not work on strings",
+    "bad_example": "if (!my_string) { ... }",
+    "good_example": "if (my_string == \"\") { ... }",
+    "notes": "In LSL, the ! operator is integer-only. Applying it to a string causes a type mismatch compile error. To test for an empty string, compare explicitly with \"\". Likewise, testing a key for NULL_KEY requires (my_key == NULL_KEY), not !my_key.",
+    "ai_specific": 1,
+    "portable_only": 1,
+    "ai_source": "claude-code",
+    "created_at": "2026-05-17T18:03:54Z"
+  }
+]
