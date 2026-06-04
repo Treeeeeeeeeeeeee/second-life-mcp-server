@@ -1,0 +1,22 @@
+{
+  "name": "llGetRegionFlags",
+  "signature": "integer llGetRegionFlags(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nif\n(\nllGetRegionFlags\n()\n&\nREGION_FLAG_SANDBOX\n)\n{\nllOwnerSay\n(\n\"Region is a sandbox.\"\n);\n}\nelse\n{\nllOwnerSay\n(\n\"Region is not a sandbox.\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetEnv",
+    "llGetParcelFlags",
+    "llRequestSimulatorData"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

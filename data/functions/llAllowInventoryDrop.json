@@ -1,0 +1,34 @@
+{
+  "name": "llAllowInventoryDrop",
+  "signature": "void llAllowInventoryDrop( integer add )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "In a link set llAllowInventoryDrop must be executed from a script within the root prim or it fails silently.",
+    "Scripts are an exception to what is allowed to be dropped in. If a user without modify permissions to a prim attempts to drop a script into it, the inventory addition is rejected and the prim shouts (sic -- shouts, not says) \"Not permitted to edit this!\" This is for obvious security reasons. If you own the prim and have mod rights to it, you can drop a script in. Friends who have mod rights to your stuff can also drop scripts in.",
+    "Will not work if, under the Object tab on the prim, \"Locked\" is ticked.",
+    "Bear in mind when dropping a texture into a prim to be sure (a) that you see a red box framing the target prim, and (b) not to release the Ctrl button until you are sure that the texture is actually inside the box. If you see a white frame instead, or release Ctrl too soon, the texture will instead be applied to the prim face that you were on.",
+    "There is no way to tell who dropped the item in. If you really need to know, consider making the user touch the prim first to turn the llAllowInventoryDrop on, and then grab the user's information from the touch event, and then set it back to FALSE through a timer.",
+    "Nor is there any way based on just llAllowInventoryDrop to tell *what* the user dropped in. See WhoAddedWhat script to handle that.",
+    "Ordinary end-users may face challenges when confronted with actually performing the drag and drop. See the section below.",
+    "People with modify rights to your (modifiable) stuff can do this anyway, as can you, even without the presence of llAllowInventoryDrop.",
+    "Even if you own the prim, but don't have modify rights to it, you cannot drop anything at all into it, ever, unless the creator put in it an llAllowInventoryDrop(TRUE) first before passing it to you.",
+    "If you have a prim that you don't have mod rights to, but that the creator did set an llAllowInventoryDrop(TRUE) in, that even though you can drop stuff in, you will never be able to delete it! You can however move it to your inventory.",
+    "If you want someone to drag and drop notecards into a suggestion box, say, or whatever, you have to both invite them to do so, and explain how to do it (the holding down of the Ctrl key being essential to communicate.)",
+    "A fair bit of fine motor skill is required to do this. Someone who doesn't have this, either because of failing or unsteady hands, or using a trackpad on a laptop in an awkward seated position, may not be able to perform this operation accurately.",
+    "If you sell a user something such as, say, a gift box, which you instruct them to fill via inventory drag and drop, bear in mind that there is often many a slip betwixt inventory and prim, and the user may by mistake (in this example) drag the gifts in question into a piece of the bow instead, and then panic when s/he doesn't see them in the main part of the giftbox. (Remember: if they have mod rights to the prim, they can drag and drop stuff into any part of the prim, regardless of whether there is an llAllowInventoryDrop in it or not.) You may wish to suggest instead that the user right-click the prim, choose open, and drag and drop stuff onto the \"Open\" Object Contents window -- a much larger, safer target."
+  ],
+  "examples": [
+    "changed\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_ALLOWED_DROP\n)\nllSay\n(\n0\n,\n\"Your contribution is appreciated, o ye non-permitted modifier!\"\n);\n}",
+    "changed\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_INVENTORY\n)\nllSay\n(\n0\n,\n\"Your contribution is appreciated, o ye permitted modifier!\"\n);\n}",
+    "changed\n(\ninteger\nchange\n)\n{\n//PUBLIC_CHANNEL has the integer value 0\nif\n(\nchange\n&\n(\nCHANGED_ALLOWED_DROP\n|\nCHANGED_INVENTORY\n))\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"yeppers, inventory changed somehow.\"\n);\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

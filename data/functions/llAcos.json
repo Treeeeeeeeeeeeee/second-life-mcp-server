@@ -1,0 +1,27 @@
+{
+  "name": "llAcos",
+  "signature": "float llAcos( float val )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Triggers a Math Error for complex results if not compiled in Mono."
+  ],
+  "examples": [
+    "//  This example exercises the full valid range of argument from -1.0 to +1.0\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nfloat\nrandom\n=\nllFrand\n(\n2.0\n)\n-\n1.0\n;\nllOwnerSay\n(\n\"The arccosine of \"\n+\n(\nstring\n)\nrandom\n+\n\" is \"\n+\n(\nstring\n)\nllAcos\n(\nrandom\n));\n}\n}",
+    "//An example for the Law of Cosines to calculate any angle of a triangle from 3 known side lengths.\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nvector\nt\n=<\nllFrand\n(\n9.0\n)\n+\n1.0\n,\nllFrand\n(\n9.0\n)\n+\n1.0\n,\nllFrand\n(\n9.0\n)\n+\n1.0\n>\n;\n//the 3 values of this vector are used to set the lengths of 3 sides of a triangle.\nfloat\nanglexy\n=\nllAcos\n(\n(\nt\n.\nx\n*\nt\n.\nx\n+\nt\n.\ny\n*\nt\n.\ny\n-\n(\nt\n.\nz\n*\nt\n.\nz\n))\n/\n(\n2\n*\nt\n.\nx\n*\nt\n.\ny\n)\n)\n//Law Of Cosines\nllOwnerSay\n(\n\"Using the Law Of Cosines, the angle of a triangle between side a=\"\n+\n(\nstring\n)\nt\n.\nx\n+\n\"and side b=\"\n+\n(\nstring\n)\nt\n.\ny\n+\n\"is = \"\n+\n(\nstring\n)\nanglexy\n+\n\" radians=\"\n+\n(\nstring\n)(\nanglexy\n*\nRAD_TO_DEG\n)\n+\n\"\u00b0 and that angle is not on side c=\"\n+\n(\nstring\n)\nt\n.\nz\n);\n}\n}"
+  ],
+  "related": [
+    "llSin",
+    "llAsin",
+    "llCos",
+    "llTan",
+    "llAtan2"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

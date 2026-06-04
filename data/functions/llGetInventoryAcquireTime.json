@@ -1,0 +1,31 @@
+{
+  "name": "llGetInventoryAcquireTime",
+  "signature": "string llGetInventoryAcquireTime( string item )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If item is missing from the prim's inventory then an error is shouted on DEBUG_CHANNEL .",
+    "This function currently returns an ISO timestamp that is missing milliseconds. It is recommended that you code your applications in preparation of millisecond support being added at a later date.",
+    "Using llListSort to sort a list of timestamps that both include and exclude milliseconds will have undesired results. \".000000\" will first have to be inserted into timestamps missing milliseconds.",
+    "Changing the contents of a script or notecard (or recompiling a script) does not change its acquire time."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllSay\n(\n0\n,\n\"Hello, Avatar!\"\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nstring\nitem\n=\nllGetInventoryName\n(\nINVENTORY_ALL\n,\n0\n);\n// 0 means the first item in prim's inventory.\nstring\ntimestamp\n=\nllGetInventoryAcquireTime\n(\nitem\n);\nllSay\n(\n0\n,\n\"Timestamp for: \"\n+\nitem\n+\n\" - \"\n+\ntimestamp\n);\n// output\n}\n}"
+  ],
+  "related": [
+    "llGetTimestamp",
+    "llGetInventoryCreator",
+    "llGetInventoryName",
+    "llGetInventoryType",
+    "llGetInventoryNumber",
+    "llGetInventoryPermMask",
+    "llGetInventoryKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

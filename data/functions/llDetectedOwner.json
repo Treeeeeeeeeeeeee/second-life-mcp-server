@@ -1,0 +1,26 @@
+{
+  "name": "llDetectedOwner",
+  "signature": "key llDetectedOwner( integer number )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If number is out of bounds the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "default\n{\ncollision_start\n(\ninteger\nnum_detected\n)\n{\nstring\noutput\n=\n\"\n\\n\nkey of colliding object's owner ... or the colliding avatar: \"\n+\n(\nstring\n)\nllDetectedOwner\n(\n0\n)\n+\n\"\n\\n\nkey of this object's owner: \"\n+\n(\nstring\n)\nllGetOwner\n()\n+\n\"\n\\n\nname of colliding object/avatar: \"\n+\nllDetectedName\n(\n0\n)\n+\n\"\n\\n\nkey of colliding object/avatar: \"\n+\n(\nstring\n)\nllDetectedKey\n(\n0\n)\n+\n\"\n\\n\nkey of the prim containing this script: \"\n+\n(\nstring\n)\nllGetKey\n()\n+\n\"\n\\n\nkey of this object's root prim: \"\n+\n(\nstring\n)\nllGetLinkKey\n(\nLINK_ROOT\n);\nllSay\n(\n0\n,\noutput\n);\n}\n}"
+  ],
+  "related": [
+    "llGetOwnerKey",
+    "llGetOwner"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

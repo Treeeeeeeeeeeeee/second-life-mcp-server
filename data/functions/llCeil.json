@@ -1,0 +1,23 @@
+{
+  "name": "llCeil",
+  "signature": "integer llCeil( float val )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The returned value is -2147483648 (0x80000000) if the arithmetic result is outside of the range of valid integers (-2147483648 to 2147483647)"
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllSay\n(\n0\n,\n\"The ceil value of -4.5 is: \"\n+\n(\nstring\n)\nllCeil\n(\n-\n4.5\n));\n//              \"The ceil value of -4.5 is: -4\"\nllSay\n(\n0\n,\n\"The ceil value of -4.9 is: \"\n+\n(\nstring\n)\nllCeil\n(\n-\n4.9\n));\n//              \"The ceil value of -4.9 is: -4\"\nllSay\n(\n0\n,\n\"The ceil value of -4.1 is: \"\n+\n(\nstring\n)\nllCeil\n(\n-\n4.1\n));\n//              \"The ceil value of -4.1 is: -4\"\nllSay\n(\n0\n,\n\"The ceil value of 4.5 is: \"\n+\n(\nstring\n)\nllCeil\n(\n4.5\n));\n//              \"The ceil value of 4.5 is: 5\"\nllSay\n(\n0\n,\n\"The ceil value of 4.9 is: \"\n+\n(\nstring\n)\nllCeil\n(\n4.9\n));\n//              \"The ceil value of 4.9 is: 5\"\nllSay\n(\n0\n,\n\"The ceil value of 4.1 is: \"\n+\n(\nstring\n)\nllCeil\n(\n4.1\n));\n//              \"The ceil value of 4.1 is: 5\"\n}\n}"
+  ],
+  "related": [
+    "llRound",
+    "llFloor"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

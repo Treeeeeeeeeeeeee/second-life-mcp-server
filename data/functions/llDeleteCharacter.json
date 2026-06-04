@@ -1,0 +1,30 @@
+{
+  "name": "llDeleteCharacter",
+  "signature": "void llDeleteCharacter(  )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "create_character\n()\n{\n//  Clear any previous character behaviors\nllDeleteCharacter\n();\n//  default speed is 20\nllCreateCharacter\n([\nCHARACTER_DESIRED_SPEED\n,\n10.0\n]);\nllWanderWithin\n(\nllGetPos\n(),\n<\n10.0\n,\n10.0\n,\n2.0\n>\n,\n[]);\n}\ndefault\n{\non_rez\n(\ninteger\nstart_param\n)\n{\nllResetScript\n();\n}\nstate_entry\n()\n{\ncreate_character\n();\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\n//  Clear any previous character behaviors\nllDeleteCharacter\n();\n}\n}"
+  ],
+  "related": [
+    "llCreateCharacter",
+    "llDeleteCharacter",
+    "llEvade",
+    "llExecCharacterCmd",
+    "llGetClosestNavPoint",
+    "llFleeFrom",
+    "llNavigateTo",
+    "llPatrolPoints",
+    "llPursue",
+    "llUpdateCharacter",
+    "llWanderWithin"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

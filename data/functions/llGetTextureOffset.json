@@ -1,0 +1,24 @@
+{
+  "name": "llGetTextureOffset",
+  "signature": "vector llGetTextureOffset( integer face )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If face indicates a face that does not exist the return is <0.0, 0.0, 0.0>"
+  ],
+  "examples": [
+    "//Tells the owner the texture offset on all sides\ndefault\n{\nstate_entry\n()\n{\ninteger\ni\n=\n0\n;\ninteger\nmax\n=\nllGetNumberOfSides\n();\nwhile\n(\ni\n<\nmax\n)\n{\nllSay\n(\n0\n,\n\"Face \"\n+\n(\nstring\n)\ni\n+\n\" texture offset is \"\n+\n(\nstring\n)\nllGetTextureOffset\n(\ni\n));\n++\ni\n;\n}\n}\n}",
+    "vector\noffsetVec\n=\nllGetTextureOffset\n(\n0\n);\nfloat\nu\n=\noffsetVec\n.\nx\n;\nfloat\nv\n=\noffsetVec\n.\ny\n;\n// z is not used."
+  ],
+  "related": [
+    "llOffsetTexture",
+    "llGetNumberOfSides"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

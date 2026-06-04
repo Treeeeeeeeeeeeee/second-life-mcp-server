@@ -1,0 +1,27 @@
+{
+  "name": "llDetectedGrab",
+  "signature": "vector llDetectedGrab( integer number )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If number is out of bounds this function returns <0.0, 0.0, 0.0> and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]",
+    "When called in HUD attachments, values returned are affected by the wearer's position and rotation."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllSetStatus\n(\nPRIM_PHYSICS\n,\nTRUE\n);\n//This allows the object to be \"grabbed\" and dragged\n}\ntouch\n(\ninteger\nnum_detected\n)\n{\nllSay\n(\n0\n,(\nstring\n)\nllDetectedGrab\n(\n0\n));\n//Be prepared for a great amount of chatted info.\n//The faster you move the mouse while grabbing the object the greater the offset becomes.\n//This is not due to the speed but the reaction time of the turn around of the physical prim,\n//thus an offset (distance from grab to prim center) is created and measured by this function.\n}\n}",
+    "/******\nSimple llDetectedGrab illustration, rez a prim and add this script.\nThe prim will become a cone that follows mouse grabs.\nClick and hold the mouse button down on the object, then:\n- Drag left and right to move parallel to the camera focal plane.\n- Drag up and down to move to and from the camera.\n- Hold down Ctrl, then drag up and down to move vertically.\n******/\ndefault\n{\nstate_entry\n()\n{\nllMinEventDelay\n(\n0.25\n);\nllSetStatus\n(\nSTATUS_PHYSICS\n,\nFALSE\n);\n// make the object static for simplicity\nllSetPrimitiveParams\n([\nPRIM_SIZE\n,\n<\n0.5\n,\n0.5\n,\n0.5\n>\n,\nPRIM_TYPE\n,\nPRIM_TYPE_CYLINDER\n,\nPRIM_HOLE_DEFAULT\n,\n<\n0.0\n,\n1.0\n,\n0.0\n>\n,\n0.0\n,\nZERO_VECTOR\n,\nZERO_VECTOR\n,\nZERO_VECTOR\n]);\n// a cone that can follow the mouse pointer\n}\ntouch\n(\ninteger\ntotal_number\n)\n{\nllLookAt\n(\nllGetPos\n()\n+\nllDetectedGrab\n(\n0\n),\n1.0\n,\n1.0\n);\n}\n}"
+  ],
+  "related": [
+    "llPassTouches"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,28 @@
+{
+  "name": "llGetInventoryCreator",
+  "signature": "key llGetInventoryCreator( string item )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If item is missing from the prim's inventory then an error is shouted on DEBUG_CHANNEL .",
+    "If item has multiple creators, then this function will return NULL_KEY . (e.g. if an object created by Lex contained a script created by Strife). See SVC-6985 and SVC-6820 for more information."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n(){\nllRequestAgentData\n(\nllGetInventoryCreator\n(\nllGetInventoryName\n(\nINVENTORY_OBJECT\n,\n0\n)),\nDATA_NAME\n);\n}\ndataserver\n(\nkey\nqid\n,\nstring\ndata\n){\nllOwnerSay\n(\ndata\n);\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryAcquireTime",
+    "llGetInventoryName",
+    "llGetInventoryType",
+    "llGetInventoryNumber",
+    "llGetInventoryPermMask",
+    "llGetInventoryKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

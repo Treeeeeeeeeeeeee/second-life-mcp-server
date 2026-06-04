@@ -1,0 +1,23 @@
+{
+  "name": "llGetTimestamp",
+  "signature": "string llGetTimestamp(  )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "// Reset tracker\nstring\nBOOT_TIME\n;\ndefault\n{\nstate_entry\n()\n{\nBOOT_TIME\n=\nllGetTimestamp\n();\n// state_entry is triggered on script reset.\n}\ntouch_start\n(\ninteger\nnum\n)\n{\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"The last script was last reset @ \"\n+\nBOOT_TIME\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Right now it is \"\n+\nllGetTimestamp\n());\n}\n}",
+    "// Greeting\ndefault\n{\nstate_entry\n()\n{\nllSetTouchText\n(\n\"Greet\"\n);\n}\ntouch_start\n(\ninteger\nnum\n)\n{\nlist\nTimeStamp\n=\nllParseString2List\n(\nllGetTimestamp\n(),[\n\"-\"\n,\n\":\"\n],[\n\"T\"\n]);\n//Get timestamp and split into parts in a list\ninteger\nHour\n=\nllList2Integer\n(\nTimeStamp\n,\n4\n);\nif\n(\nHour\n<\n12\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Good Morning, Oliver Sintim-Aboagye!\"\n);\nelse\nif\n(\nHour\n<\n17\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Good Afternoon, \"\n+\nllDetectedName\n(\n0\n));\nelse\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Good Evening, \"\n+\nllKey2Name\n(\nllDetectedKey\n(\n0\n)));\n}\n}"
+  ],
+  "related": [
+    "llGetDate",
+    "llGetUnixTime",
+    "llGetTime"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

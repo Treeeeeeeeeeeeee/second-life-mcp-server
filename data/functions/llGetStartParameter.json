@@ -1,0 +1,26 @@
+{
+  "name": "llGetStartParameter",
+  "signature": "integer llGetStartParameter(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The start parameter does not survive region restarts ( SVC-2251 ) or region change ( SVC-3258 , crossing or teleport).",
+    "If the script is reset (using llResetScript or other means), the start parameter is set to 0."
+  ],
+  "examples": [
+    "default\n{\non_rez\n(\ninteger\nparam\n)\n{\nllOwnerSay\n(\n\"rezzed with the number \"\n+\n(\nstring\n)\nparam\n);\n}\nstate_entry\n()\n{\ninteger\ni\n=\nllGetStartParameter\n();\nif\n(\ni\n)\n{\nllOwnerSay\n(\n\"I was given the number \"\n+\n(\nstring\n)\ni\n+\n\" when I was rezzed\"\n);\n}\nelse\n{\nllOwnerSay\n(\n\"rezzed from inventory (or rezzed/loaded with 0)\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetStartString",
+    "llRemoteLoadScriptPin",
+    "llRezObject",
+    "llRezAtRoot"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

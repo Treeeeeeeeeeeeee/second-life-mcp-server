@@ -1,0 +1,23 @@
+{
+  "name": "llDetectedType",
+  "signature": "integer llDetectedType( integer number )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If number is out of bounds this function returns zero and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "//--// Type & name of collision source //--//\ndefault\n{\ncollision_start\n(\ninteger\nvIntCollided\n){\ninteger\nvBitType\n;\nstring\nvStrType\n;\ndo\n{\nvBitType\n=\nllDetectedType\n(\n--\nvIntCollided\n);\nif\n(\nvBitType\n&\nAGENT_BY_LEGACY_NAME\n)\nvStrType\n=\n\"avatar\"\n;\nelse\nvStrType\n=\n\"object\"\n;\nllOwnerSay\n(\n\"An \"\n+\nvStrType\n+\n\" named '\"\n+\nllDetectedName\n(\nvIntCollided\n)\n+\n\"' collided with me\"\n);\n}\nwhile\n(\nvIntCollided\n);\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

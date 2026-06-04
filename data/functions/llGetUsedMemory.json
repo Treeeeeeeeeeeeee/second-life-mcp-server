@@ -1,0 +1,25 @@
+{
+  "name": "llGetUsedMemory",
+  "signature": "integer llGetUsedMemory(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Scripts compiled to LSO always report 16KB memory used.",
+    "This can be called at any time and does not require llScriptProfiler"
+  ],
+  "examples": [
+    "integer\nused_memory\n=\nllGetUsedMemory\n();\nllOwnerSay\n((\nstring\n)\nused_memory\n+\n\" bytes of memory currently used.\"\n);"
+  ],
+  "related": [
+    "llGetFreeMemory",
+    "llSetMemoryLimit",
+    "llScriptProfiler"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

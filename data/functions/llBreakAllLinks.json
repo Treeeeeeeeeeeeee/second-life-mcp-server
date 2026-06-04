@@ -1,0 +1,30 @@
+{
+  "name": "llBreakAllLinks",
+  "signature": "void llBreakAllLinks(  )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_CHANGE_LINKS , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "If PERMISSION_CHANGE_LINKS is granted by anyone other than the owner, then when the function is called an error will be shouted on DEBUG_CHANNEL .",
+    "Once the PERMISSION_CHANGE_LINKS permission is granted there is no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or the script is reset or deleted.",
+    "This function fails if the owner does not have edit permissions on the object containing the script, the system message \" Delink failed because you do not have edit permission \" is received by the owner."
+  ],
+  "examples": [
+    "//-- requests permission to change linkes, then breaks all links on touch.\ndefault\n{\nstate_entry\n(){\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_CHANGE_LINKS\n);\n}\nrun_time_permissions\n(\ninteger\nvBitPermissions\n){\nif\n(\nPERMISSION_CHANGE_LINKS\n&\nvBitPermissions\n){\nstate sMain\n;\n}\nelse\n{\nllResetScript\n();\n}\n}\n}\nstate sMain\n{\ntouch_start\n(\ninteger\nvIntTouched\n){\nllBreakAllLinks\n();\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llBreakLink",
+    "llCreateLink"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

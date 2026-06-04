@@ -1,0 +1,24 @@
+{
+  "name": "llCos",
+  "signature": "float llCos( float theta )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// Touch the object with this script in it to see the cosine of random numbers!\ndefault\n{\ntouch_start\n(\ninteger\nnum\n)\n{\nfloat\nr\n=\nllFrand\n(\nTWO_PI\n);\nllOwnerSay\n(\n\"The cosine of \"\n+\n(\nstring\n)\nr\n+\n\" in radians or \"\n+\n(\nstring\n)(\nr\n*\nRAD_TO_DEG\n)\n+\n\" in degrees is \"\n+\n(\nstring\n)\nllCos\n(\nr\n));\n}\n}"
+  ],
+  "related": [
+    "llSin",
+    "llAsin",
+    "llAcos",
+    "llTan",
+    "llAtan2"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

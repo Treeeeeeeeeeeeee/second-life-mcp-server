@@ -1,0 +1,28 @@
+{
+  "name": "llAddToLandBanList",
+  "signature": "void llAddToLandBanList( key avatar, float hours )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.1,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "This function causes the script to sleep for 0.1 seconds.",
+    "Must be owned by the land owner.",
+    "When values below 1 are used, it seems the function bans in approximately 30 second increments. (Probably 36 second increments, as 0.01 of an hour is 36 seconds)"
+  ],
+  "examples": [
+    "// This is not a complete solution, requires full avatar names to work - even for unbanning someone!\n// This is meant only as an example of the land ban and pass management functions.\n// free to copy, use, modify, distribute - just don't ask me to debug your modified code.\u00a0;-)\n//\n// Commands are:\n//   /5 ban:full_avatar_name\n//   /5 tempban:full_avatar_name\n//   /5 unban:full_avatar_name\n//   /5 pass:full_avatar_name\n//   /5 unpass:full_avatar_name\n//   /5 clearban\n//   /5 clearpass\nstring\ncommand\n;\ndefault\n{\nstate_entry\n()\n{\nllListen\n(\n5\n,\n\"\"\n,\nllGetOwner\n(),\n\"\"\n);\n}\non_rez\n(\ninteger\nparam\n)\n{\nllResetScript\n();\n}\nlisten\n(\ninteger\nchan\n,\nstring\nname\n,\nkey\nid\n,\nstring\nmessage\n)\n{\nif\n(\ncommand\n!=\n\"\"\n)\n{\nllOwnerSay\n(\n\"Sorry, still processing last command, try again in a second.\"\n);\n}\nlist\nargs\n=\nllParseString2List\n(\nmessage\n,[\n\":\"\n],[]);\ncommand\n=\nllToLower\n(\nllList2String\n(\nargs\n,\n0\n));\nif\n(\ncommand\n==\n\"clearbans\"\n)\n{\nllResetLandBanList\n();\n}\nif\n(\ncommand\n==\n\"clearpass\"\n)\n{\nllResetLandPassList\n();\n}\nelse\n{\nllSensor\n(\nllList2String\n(\nargs\n,\n1\n),\nNULL_KEY\n,\nAGENT\n,\n96\n,\nPI\n);\n}\n}\nno_sensor\n()\n{\ncommand\n=\n\"\"\n;\n}\nsensor\n(\ninteger\nnum\n)\n{\ninteger\ni\n=\n0\n;\nfor\n(;\ni\n<\nnum\n;\n++\ni\n)\n{\nif\n(\ncommand\n==\n\"ban\"\n)\n{\n// Ban indefinetely\nllAddToLandBanList\n(\nllDetectedKey\n(\ni\n),\n0.0\n);\n}\nif\n(\ncommand\n==\n\"tempban\"\n)\n{\n// Ban for 1 hour.\nllAddToLandBanList\n(\nllDetectedKey\n(\ni\n),\n1.0\n);\n}\nif\n(\ncommand\n==\n\"unban\"\n)\n{\nllRemoveFromLandBanList\n(\nllDetectedKey\n(\ni\n));\n}\nif\n(\ncommand\n==\n\"pass\"\n)\n{\n// Add to land pass list for 1 hour\nllAddToLandPassList\n(\nllDetectedKey\n(\ni\n),\n1.0\n);\n}\nif\n(\ncommand\n==\n\"unpass\"\n)\n{\nllRemoveFromLandPassList\n(\nllDetectedKey\n(\ni\n));\n}\n}\ncommand\n=\n\"\"\n;\n}\n}"
+  ],
+  "related": [
+    "llAddToLandPassList",
+    "llRemoveFromLandBanList",
+    "llRemoveFromLandPassList",
+    "llResetLandBanList",
+    "llResetLandPassList"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

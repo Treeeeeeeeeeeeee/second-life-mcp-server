@@ -1,0 +1,25 @@
+{
+  "name": "llDie",
+  "signature": "void llDie(  )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 0.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "The script may not stop executing immediately after this function is called ( SVC-7421 ).",
+    "After this function is called, there is no way to undo the deletion of the object.",
+    "Has no effect if called from within an attachment ; there is no way to delete an attachment. To detach an object from the avatar, call llDetachFromAvatar . Detaching a temporary attachment will cause the attachment to be deleted.",
+    "To detach an object from the avatar, call llDetachFromAvatar .",
+    "Detaching a temporary attachment will cause the attachment to be deleted."
+  ],
+  "examples": [],
+  "related": [
+    "llDetachFromAvatar",
+    "llBreakLink"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

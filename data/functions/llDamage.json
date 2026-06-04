@@ -1,0 +1,32 @@
+{
+  "name": "llDamage",
+  "signature": "void llDamage( key target, float damage, integer damage_type )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Calls are throttled to a rate of \u226410/30sec per recipient. Exceptions are: Recipient is avatar of the attachment. Recipient is sitting on the object.",
+    "Recipient is avatar of the attachment.",
+    "Recipient is sitting on the object.",
+    "Triggering the damage throttle will shout an error to the debug channel and the script will continue running.",
+    "The prim containing the script and the prim receiving the damage must both be in damage enable parcels.",
+    "Targeting a seated avatar will redirect damage to the object the avatar is sitting on.",
+    "An attachment on the avatar.",
+    "An object or vehicle that the avatar is sitting on.",
+    "Damage is negative.",
+    "The source is an attachment on the avatar.",
+    "The source is an object that the avatar is sitting on.",
+    "The source is an object owned by a parcel owner or land group."
+  ],
+  "examples": [],
+  "related": [
+    "llDetectedDamage",
+    "llAdjustDamage"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,34 @@
+{
+  "name": "llDetectedTouchPos",
+  "signature": "vector llDetectedTouchPos( integer index )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "HUD attachments currently return coordinates relative to the center of the screen rather than the attachment point. SVC-3425",
+    "If index is out of bounds the script continues to execute without an error message.",
+    "TOUCH_INVALID_VECTOR is returned when... The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace . The touch has moved off the surface of the prim. The event triggered is not a touch event.",
+    "The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "The touch has moved off the surface of the prim.",
+    "The event triggered is not a touch event."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nllWhisper\n(\n0\n,\n\"Pos clicked: \"\n+\n(\nstring\n)\nllDetectedTouchPos\n(\n0\n));\n}\n}",
+    "vector\nGetRealTouchPos\n(\nvector\npos\n)\n{\n//  By Ariu Arai for free use to anyone\n//  Returns a useful HUD Position Vector from the llDetectedTouchPos(); function\n//  USE: vector pos = GetRealTouchPos(llDetectedTouchPos(0)); .. Etc.\n//  This function is intended to be used to move child prims to where the user clicks. This does not work on the root prim.\ninteger\npoint\n=\nllGetAttached\n();\nvector\noffset\n;\nif\n(\npoint\n==\nATTACH_HUD_TOP_RIGHT\n)\noffset\n=\n<\n1.0\n,\n0.933\n,\n-\n0.5\n>\n;\nelse\nif\n(\npoint\n==\nATTACH_HUD_TOP_CENTER\n)\noffset\n=\n<\n1.0\n,\n0.000\n,\n-\n0.5\n>\n;\nelse\nif\n(\npoint\n==\nATTACH_HUD_TOP_LEFT\n)\noffset\n=\n<\n1.0\n,\n-\n0.933\n,\n-\n0.5\n>\n;\nelse\nif\n(\npoint\n==\nATTACH_HUD_BOTTOM_LEFT\n)\noffset\n=\n<\n1.0\n,\n-\n0.933\n,\n0.5\n>\n;\nelse\nif\n(\npoint\n==\nATTACH_HUD_BOTTOM\n)\noffset\n=\n<\n1.0\n,\n0.000\n,\n0.5\n>\n;\nelse\nif\n(\npoint\n==\nATTACH_HUD_BOTTOM_RIGHT\n)\noffset\n=\n<\n1.0\n,\n0.933\n,\n0.5\n>\n;\n//return (pos - llGetLocalPos()) + (offset * llGetLocalRot());\nreturn\n((\noffset\n-\nllGetLocalPos\n())\n+\npos\n)\n/\nllGetLocalRot\n();\n}"
+  ],
+  "related": [
+    "llDetectedLinkNumber",
+    "llDetectedTouchFace",
+    "llDetectedTouchST",
+    "llDetectedTouchUV",
+    "llDetectedTouchNormal",
+    "llDetectedTouchBinormal"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

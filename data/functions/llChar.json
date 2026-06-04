@@ -1,0 +1,31 @@
+{
+  "name": "llChar",
+  "signature": "string llChar( integer val )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Value range is between 0x1 \u2013 0x10FFFF",
+    "Values in the surrogate range 0xD800 \u2013 0xDFFF will return the replacement character \"\ufffd\" ( 0xFFFD ) instead",
+    "Values for the special noncharacters 0xFFFE and 0xFFFF will return the replacement character instead",
+    "SLua's equivilant utf8.char has none of the above caveats, and also handles 0x0 (the null character) correctly ( validation script, in SLua )",
+    "Values for UTF-8 multibyte ranges are: 1 byte: 0x0 \u2013 0x7F 2 bytes: 0x80 \u2013 0x07FF 3 bytes: 0x0800 \u2013 0xFFFF 4 bytes: 0x10000 \u2013 0x10FFFF",
+    "1 byte: 0x0 \u2013 0x7F",
+    "2 bytes: 0x80 \u2013 0x07FF",
+    "3 bytes: 0x0800 \u2013 0xFFFF",
+    "4 bytes: 0x10000 \u2013 0x10FFFF"
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nstring\ntest_string\n=\n\"The quick brown fox jumped over the lazy dog\"\n;\nlist\ntest_list\n=\n[];\nstring\ntest_string2\n=\n\"\"\n;\ninteger\nindex\n;\ninteger\nord\n;\nfor\n(\nindex\n=\n0\n;\nindex\n<\nllStringLength\n(\ntest_string\n);\n++\nindex\n)\n{\nord\n=\nllOrd\n(\ntest_string\n,\nindex\n);\ntest_list\n=\ntest_list\n+\n[\nord\n];\n}\nstring\nchar\n;\nfor\n(\nindex\n=\n0\n;\nindex\n<\nllGetListLength\n(\ntest_list\n);\n++\nindex\n)\n{\nord\n=\nllList2Integer\n(\ntest_list\n,\nindex\n);\nchar\n=\nllChar\n(\nord\n);\ntest_string2\n=\ntest_string2\n+\nchar\n;\n}\nllSay\n(\n0\n,\n\"\n\\\"\n\"\n+\ntest_string\n+\n\"\n\\\"\n-> [\"\n+\nllDumpList2String\n(\ntest_list\n,\n\", \"\n)\n+\n\"] ->\n\\\"\n\"\n+\ntest_string2\n+\n\"\n\\\"\n\"\n);\n}\n}"
+  ],
+  "related": [
+    "llOrd",
+    "llHash"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

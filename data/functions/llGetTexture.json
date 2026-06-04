@@ -1,0 +1,27 @@
+{
+  "name": "llGetTexture",
+  "signature": "string llGetTexture( integer face )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If face indicates a face that does not exist the return is NULL_KEY",
+    "NULL_KEY is returned when the owner does not have full permissions to the object and the texture is not in the prim's inventory.",
+    "The white texture from the texture picker is \" 5748decc-f629-461c-9a36-a35a221fe21f \"",
+    "The default texture (plywood) is \" 89556747-24cb-43ed-920b-47caed15465f \""
+  ],
+  "examples": [
+    "//Tells (on chat) the texture keys / texture names on 6 sides\ndefault\n{\nstate_entry\n()\n{\ninteger\ni\n=\n0\n;\ninteger\nmax\n=\nllGetNumberOfSides\n();\nwhile\n(\ni\n<\nmax\n)\n{\nllSay\n(\n0\n,\n\"Side \"\n+\n(\nstring\n)\ni\n+\n\" texture is: \"\n+\n(\nstring\n)\nllGetTexture\n(\ni\n));\n++\ni\n;\n}\n}\n}"
+  ],
+  "related": [
+    "llSetTexture",
+    "llSetLinkTexture",
+    "llGetNumberOfSides"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

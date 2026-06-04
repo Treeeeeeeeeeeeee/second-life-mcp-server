@@ -1,0 +1,27 @@
+{
+  "name": "llGetInventoryNumber",
+  "signature": "integer llGetInventoryNumber( integer type )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "//                             Item Counter\n//                       By Apollia Pirandello\n//                              9/19/2007\n//\n// Public domain.  Free to use and/or modify for any purpose,\n// including commercial purposes.\n//\n// Once you drop this script in any prim, it will immediately\n// tell you in an OwnerSay how many items are in that prim,\n// minus 1, so the script itself isn't counted.\n//\n// It will also do that whenever the prim is touched.\n//**********SCRIPT BEGINS BELOW**********\n//****VARIABLE\ninteger\nitems_contained\n;\n//****END OF VARIABLE SECTION\n//****FUNCTIONS****\nCountItems\n()\n{\nitems_contained\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\n--\nitems_contained\n;\n//minus 1, the script itself isn't counted, since its used with the INVENTORY_ALL flag\n}\nSayCount\n()\n{\nllOwnerSay\n(\n\"This prim contains \"\n+\n(\nstring\n)\nitems_contained\n+\n\" items.\"\n);\n}\n//****END OF FUNCTIONS****\n//****DEFAULT STATE****\ndefault\n{\nstate_entry\n()\n{\nCountItems\n();\nSayCount\n();\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nCountItems\n();\nSayCount\n();\n}\n}",
+    "objects\n=\nllGetInventoryNumber\n(\nINVENTORY_OBJECT\n);",
+    "// Inventory Statistic By Zep Palen.\n// Here is another use of llGetInventoryNumber to show a statistic in a hovertext\n// For this script to work you must add a showlist and an excludelist to the Description of the item this script is in.\n// The description field must be filled like follows: [showlist];[Excludelist]\n// Example: 0,1,3,5,6,7,10,13,20,21;3,7,10\n// in the example all types are shown, but only types 3,7 and 10 are counted as total. You can see in the 2 lists below which number means which type\n// -----------------\n// This script is free to use and modify as you wish - Zep Palen\n// --------------------------\nlist\ninv_types\n=\n[\n0\n,\n1\n,\n3\n,\n5\n,\n6\n,\n7\n,\n10\n,\n13\n,\n20\n,\n21\n];\nlist\ninv_names\n=\n[\n\"Textures\"\n,\n\"Sounds\"\n,\n\"Landmarks\"\n,\n\"Clothings\"\n,\n\"Objects\"\n,\n\"Notecards\"\n,\n\"Scripts\"\n,\n\"Bodyparts\"\n,\n\"Animations\"\n,\n\"Gestures\"\n];\nprocessCountInventory\n()\n{\nlist\nobjDesc\n=\nllParseString2List\n(\nllGetObjectDesc\n(),\n[\n\";\"\n],\n[]);\nlist\nshowList\n=\nllParseString2List\n(\nllList2String\n(\nobjDesc\n,\n0\n),\n[\n\",\"\n],\n[]);\nlist\nexcludeFromCount\n=\nllParseString2List\n(\nllList2String\n(\nobjDesc\n,\n1\n),\n[\n\",\"\n],\n[]);\nstring\ncounted\n=\n\"ITEM COUNTER\"\n;\ninteger\ni\n=\n~\nllGetListLength\n(\nshowList\n);\nwhile\n(\n++\ni\n)\n{\ninteger\nshowItem\n=\n(\ninteger\n)\nllList2String\n(\nshowList\n,\ni\n);\ninteger\nsIndex\n=\nllListFindList\n(\ninv_types\n,\n[\nshowItem\n]);\nif\n(\n~\nsIndex\n)\ncounted\n+=\n\"\n\\n\n\"\n+\nllList2String\n(\ninv_names\n,\nsIndex\n)\n+\n\": \"\n+\n(\nstring\n)\nllGetInventoryNumber\n(\nshowItem\n);\n}\ninteger\ntotalCount\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\nfor\n(\ni\n=\n~\nllGetListLength\n(\nexcludeFromCount\n);\n++\ni\n;)\n{\ninteger\nexclItem\n=\n(\ninteger\n)\nllList2String\n(\nexcludeFromCount\n,\ni\n);\ninteger\ncIndex\n=\nllListFindList\n(\ninv_types\n,\n[(\nstring\n)\nexclItem\n]);\nif\n(\n~\ncIndex\n)\ntotalCount\n=\ntotalCount\n-\nllGetInventoryNumber\n(\nexclItem\n);\n}\ncounted\n+=\n\"\n\\n\n\\n\n\"\n+\n\"Total: \"\n+\n(\nstring\n)\ntotalCount\n;\nllSetText\n(\ncounted\n,\n<\n1\n,\n1\n,\n0\n>\n,\n1\n);\n}\ndefault\n{\nstate_entry\n()\n{\nprocessCountInventory\n();\n}\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_INVENTORY\n)\n{\nprocessCountInventory\n();\n}\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryAcquireTime",
+    "llGetInventoryName",
+    "llGetInventoryType",
+    "llGetInventoryCreator",
+    "llGetInventoryPermMask",
+    "llGetInventoryKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

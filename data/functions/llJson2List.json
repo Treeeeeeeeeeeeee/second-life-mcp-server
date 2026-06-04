@@ -1,0 +1,23 @@
+{
+  "name": "llJson2List",
+  "signature": "list llJson2List( string src )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nlist\nitems\n;\nstring\nvalue\n=\n\"89556747-24cb-43ed-920b-47caed15465f\"\n;\nitems\n=\nllJson2List\n(\nvalue\n);\n// [\"89556747-24cb-43ed-920b-47caed15465f\"]\nstring\nobject\n=\n\"{\n\\\"\npi\n\\\"\n: 3.14,\n\\\"\nset\n\\\"\n: [1,2,3],\n\\\"\nstatus\n\\\"\n:\n\\\"\nok\n\\\"\n}\"\n;\nitems\n=\nllJson2List\n(\nobject\n);\n// [\"pi\", 3.140000, \"set\", \"[1,2,3]\", \"status\", \"ok\"]\nstring\narray\n=\n\"[0, 3.14, [1,2,3], {}]\"\n;\nitems\n=\nllJson2List\n(\narray\n);\n// [0, 3.140000, \"[1,2,3]\", \"{}\"]\n}\n}"
+  ],
+  "related": [
+    "llList2Json",
+    "llJsonGetValue",
+    "llJsonSetValue",
+    "llJsonValueType"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

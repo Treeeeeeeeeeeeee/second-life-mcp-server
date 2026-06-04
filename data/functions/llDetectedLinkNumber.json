@@ -1,0 +1,26 @@
+{
+  "name": "llDetectedLinkNumber",
+  "signature": "integer llDetectedLinkNumber( integer number )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "llDetectedLinkNumber will return 0 in collision_start and collision_end events of VolumeDetect objects ( SVC-2996 ).",
+    "If number is out of bounds this function returns 0 and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "default\n{\n// Drop this script into the root prim of of a build\n// Touch any prim to learn its link number\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nllOwnerSay\n(\n\"Link number clicked: \"\n+\n(\nstring\n)\nllDetectedLinkNumber\n(\n0\n));\n}\n}"
+  ],
+  "related": [
+    "llDetectedTouchFace"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

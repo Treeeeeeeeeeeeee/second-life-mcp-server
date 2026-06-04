@@ -1,0 +1,27 @@
+{
+  "name": "llGetBoundingBox",
+  "signature": "list llGetBoundingBox( key object )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Regardless if object is a non-root prim, the bounding box of the object is returned. This also applies if object is an agent sitting on an object - the bounding box of the sat-upon object (including the agent's shape) is returned.",
+    "The bounding box is determined by the physics models, not the visual representation. A child prim with its physics mode set to none will not affect the bounding box. Phantom and volume detect objects do have physics interactions, which is why they still have bounding boxes. Attachments have no bounding boxes of their own as they have no physics interaction, instead the bounding box of the avatar is returned.",
+    "A child prim with its physics mode set to none will not affect the bounding box.",
+    "Phantom and volume detect objects do have physics interactions, which is why they still have bounding boxes.",
+    "Attachments have no bounding boxes of their own as they have no physics interaction, instead the bounding box of the avatar is returned."
+  ],
+  "examples": [
+    "default\n//An avatar bounding box ruler thingy\n{\nstate_entry\n()\n{\nllSetStatus\n(\nSTATUS_PHANTOM\n,\nTRUE\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nkey\ntarget\n=\nllDetectedKey\n(\n0\n);\nlist\nbox\n=\nllGetBoundingBox\n(\ntarget\n);\nvector\ncenter\n=\nllDetectedPos\n(\n0\n)\n+\n(\nllList2Vector\n(\nbox\n,\n0\n)\n+\nllList2Vector\n(\nbox\n,\n1\n))\n*\n0.5\n;\nvector\nsize\n=\nllList2Vector\n(\nbox\n,\n1\n)\n-\nllList2Vector\n(\nbox\n,\n0\n);\nllSetPrimitiveParams\n([\nPRIM_POSITION\n,\ncenter\n,\nPRIM_SIZE\n,\nsize\n]);\nllSetText\n(\n\"Name: \"\n+\nllDetectedName\n(\n0\n)\n+\n\", UUID: \"\n+\n(\nstring\n)\ntarget\n+\n\"\n\\n\nBounding Box Size: \"\n+\n(\nstring\n)\nsize\n,\n<\n1.0\n,\n1.0\n,\n1.0\n>\n,\n1.0\n);\n}\n}",
+    "// Enclose a named object in the tightest possible box\n// that is aligned with the object's root prim axes.\n// Drop this script in a box near the object to enclose\n// (must be in a 10m range)\nstring\nObjectNameToEnclose\n=\n\"SearchMe\"\n;\nkey\nUUID\n;\ndefault\n{\nstate_entry\n()\n{\nllSensor\n(\nObjectNameToEnclose\n,\n\"\"\n,\nACTIVE\n|\nPASSIVE\n,\n10\n,\nPI\n);\n}\nsensor\n(\ninteger\nn\n)\n{\nUUID\n=\nllDetectedKey\n(\n0\n);\nllSetTimerEvent\n(\n1\n);\n}\ntimer\n()\n{\nlist\ninfo\n=\nllGetObjectDetails\n(\nUUID\n,\n[\nOBJECT_POS\n,\nOBJECT_ROT\n])\n+\nllGetBoundingBox\n(\nUUID\n);\nvector\npos\n=\nllList2Vector\n(\ninfo\n,\n0\n);\nrotation\nrot\n=\nllList2Rot\n(\ninfo\n,\n1\n);\nvector\ncorner1\n=\nllList2Vector\n(\ninfo\n,\n2\n)\n*\nrot\n+\npos\n;\nvector\ncorner2\n=\nllList2Vector\n(\ninfo\n,\n3\n)\n*\nrot\n+\npos\n;\nvector\nsize\n=\nllList2Vector\n(\ninfo\n,\n3\n)\n-\nllList2Vector\n(\ninfo\n,\n2\n);\nllSetPos\n((\ncorner1\n+\ncorner2\n)\n*\n0.5\n);\n// Set position to the midpoint (average) of the corners\nllSetRot\n(\nrot\n);\nllSetScale\n(\nsize\n);\n}\n}"
+  ],
+  "related": [
+    "llGetAgentSize"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

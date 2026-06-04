@@ -1,0 +1,27 @@
+{
+  "name": "llGetAgentSize",
+  "signature": "vector llGetAgentSize( key avatar )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "The returned vector is an estimate calculated from the avatar's current shape including shoes. x is a constant 0.45 [1] , y is a constant 0.60 [2] , z is the approximate total height of all avatar's bones, with an arbitrary amount added or subtracted based on the current shape's \"Hover\" setting. Reported height is constrained to the range 1.1 to 2.45 meters, and does not include animation or mesh bone offsets. [3] Due to the shape Hover setting, and mesh and animation offsets, it is not possible to use this function to determine the rendered height of an avatar with any degree of confidence.",
+    "Due to the shape Hover setting, and mesh and animation offsets, it is not possible to use this function to determine the rendered height of an avatar with any degree of confidence.",
+    "As of Second Life Server 13.11.19.284082, the return value is the avatar's reported bounding box - <0.1, 0.1, 0.2> when standing. (Avatar bounding boxes have historically been redefined with major physics upgrades.) An avatar's bounding box changes when an avatar sits, while llGetAgentSize is constant for as long as the shape does not change."
+  ],
+  "examples": [
+    "//A simple script that makes a box hover above the owner's head.\ndefault\n{\nstate_entry\n()\n{\nkey\nowner\n=\nllGetOwner\n();\nvector\npos\n=\nllList2Vector\n(\nllGetObjectDetails\n(\nowner\n,\n[\nOBJECT_POS\n]),\n0\n);\nvector\nagent\n=\nllGetAgentSize\n(\nowner\n);\n//  \"pos\" needs to be adjusted so it appears above the owner.\npos\n.\nz\n+=\n0.5\n+\nagent\n.\nz\n/\n2\n;\n//  makes sure it found the owner, a zero vector evaluates as false\nif\n(\nagent\n)\nllSetPos\n(\npos\n);\n}\ntouch_start\n(\ninteger\nnum\n)\n{\nllResetScript\n();\n}\n}"
+  ],
+  "related": [
+    "llGetObjectDetails",
+    "llGetBoundingBox",
+    "llGetAgentInfo",
+    "llRequestAgentData"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

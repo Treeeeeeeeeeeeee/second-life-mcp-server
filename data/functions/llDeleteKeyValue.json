@@ -1,0 +1,29 @@
+{
+  "name": "llDeleteKeyValue",
+  "signature": "key llDeleteKeyValue( string k )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If you recompile a script that was previously associated with an Experience but do so with a client that lacks the ability to compile scripts into an experience the script will lose the associated Experience."
+  ],
+  "examples": [
+    "key\ntrans\n;\ndefault\n{\nstate_entry\n()\n{\ntrans\n=\nllDeleteKeyValue\n(\n\"FOO\"\n);\n}\ndataserver\n(\nkey\nt\n,\nstring\nvalue\n)\n{\nif\n(\nt\n==\ntrans\n)\n{\n// our llDeleteKeyValue transaction is done\nlist\nresult\n=\nllCSV2List\n(\nvalue\n);\nif\n(\nllList2Integer\n(\nresult\n,\n0\n)\n==\n1\n)\n{\n// the key-value pair was successfully deleted\nllSay\n(\n0\n,\n\"New key-value pair was deleted\"\n);\n}\nelse\n{\n// the key-value pair was not deleted\nllSay\n(\n0\n,\n\"Key-value failed to delete: \"\n+\nllList2String\n(\nresult\n,\n1\n)\n);\n}\n}\n}\n}"
+  ],
+  "related": [
+    "llGetExperienceErrorMessage",
+    "llCreateKeyValue",
+    "llReadKeyValue",
+    "llUpdateKeyValue",
+    "llDeleteKeyValue",
+    "llDataSizeKeyValue",
+    "llKeyCountKeyValue",
+    "llKeysKeyValue"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

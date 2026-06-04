@@ -1,0 +1,23 @@
+{
+  "name": "llAbs",
+  "signature": "integer llAbs( integer val )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The llAbs of -2147483648 is -2147483648. This is because the positive integer 2147483648 is outside the range of allowed LSL integer values ."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\n//      returns: \"The absolute value of -4 is: 4\"\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"The absolute value of -4 is: \"\n+\n(\nstring\n)\nllAbs\n(\n-\n4\n)\n);\n}\n}",
+    "// Here's a more elaborate example.\nShowAbsolute\n(\ninteger\ninputInteger\n)\n{\nstring\noutput\n=\n\"llAbs(\"\n+\n(\nstring\n)\ninputInteger\n+\n\") --> \"\n+\n(\nstring\n)\nllAbs\n(\ninputInteger\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\noutput\n);\n}\ndefault\n{\nstate_entry\n()\n{\nShowAbsolute\n(\n-\n3\n);\n//  llAbs(-3)  --> 3\nShowAbsolute\n(\n5\n);\n//  llAbs(5)   --> 5\nShowAbsolute\n(\n-\n20\n);\n//  llAbs(-20) --> 20\nShowAbsolute\n(\n0\n);\n//  llAbs(0)   --> 0\n}\n}"
+  ],
+  "related": [
+    "llFabs"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,24 @@
+{
+  "name": "llApplyRotationalImpulse",
+  "signature": "void llApplyRotationalImpulse( vector force, integer local )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Only works in physics-enabled objects.",
+    "It does not work on attachments."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllApplyRotationalImpulse\n(\n<\n0\n,\n5\n,\n0\n>\n,\nTRUE\n);\n//Rotates object.\n}\n}"
+  ],
+  "related": [
+    "llApplyImpulse",
+    "llSetAngularVelocity"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

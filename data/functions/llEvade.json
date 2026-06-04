@@ -1,0 +1,33 @@
+{
+  "name": "llEvade",
+  "signature": "void llEvade( key target, list options )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Must use llCreateCharacter or script will shout an error \"You must call llCreateCharacter before llEvade.\".",
+    "If the target is an object, it must be unlinked or be the root prim of a linkset."
+  ],
+  "examples": [
+    "vector\nstart_position\n;\ndefault\n{\non_rez\n(\ninteger\nstart_param\n)\n{\nllResetScript\n();\n}\nstate_entry\n()\n{\nllDeleteCharacter\n();\nllCreateCharacter\n([\nCHARACTER_MAX_SPEED\n,\n25\n,\nCHARACTER_DESIRED_SPEED\n,\n15.0\n]);\nstart_position\n=\nllGetPos\n();\nllWanderWithin\n(\nstart_position\n,\n<\n10.0\n,\n10.0\n,\n2.0\n>\n,\n[]\n);\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nllEvade\n(\nllDetectedKey\n(\n0\n),\n[]);\nllSetTimerEvent\n(\n20.0\n);\n}\ntimer\n()\n{\n//  do not keep running away...\nllSetTimerEvent\n(\n0.0\n);\nllWanderWithin\n(\nstart_position\n,\n<\n10.0\n,\n10.0\n,\n2.0\n>\n,\n[]\n);\n}\n}"
+  ],
+  "related": [
+    "llCreateCharacter",
+    "llDeleteCharacter",
+    "llEvade",
+    "llExecCharacterCmd",
+    "llGetClosestNavPoint",
+    "llFleeFrom",
+    "llNavigateTo",
+    "llPatrolPoints",
+    "llPursue",
+    "llUpdateCharacter",
+    "llWanderWithin"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

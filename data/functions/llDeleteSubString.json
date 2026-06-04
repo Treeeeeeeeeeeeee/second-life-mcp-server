@@ -1,0 +1,28 @@
+{
+  "name": "llDeleteSubString",
+  "signature": "string llDeleteSubString( string src, integer start, integer end )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If either start or end are out of bounds the script continues to execute without an error message.",
+    "start & end will form an exclusion range when start is past end (Approximately: start > end )."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nstring\nex\n=\n\"abcdefghi\"\n;\nllDeleteSubString\n(\nex\n,\n4\n,\n7\n);\n//Incorrect!\n}\n}",
+    "default\n{\nstate_entry\n()\n{\nstring\nex\n=\n\"abcdefghi\"\n;\nex\n=\nllDeleteSubString\n(\nex\n,\n4\n,\n7\n);\n//Correct\nllSay\n(\n0\n,\nex\n);\n//Would say \"abcdi\"\n}\n}",
+    "//-- special case\ndefault\n{\nstate_entry\n()\n{\nstring\nex\n=\n\"abcdefghi\"\n;\nllSay\n(\n0\n,\nllDeleteSubString\n(\nex\n,\n4\n,\n7\n)\n);\n//Would say \"abcdi\"\n//-- acceptable if you do NOT want to change the contents of 'ex', only the output\n}\n}"
+  ],
+  "related": [
+    "llGetSubString",
+    "llReplaceSubString",
+    "llInsertString",
+    "llDeleteSubList"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

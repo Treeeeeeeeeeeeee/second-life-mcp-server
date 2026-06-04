@@ -1,0 +1,39 @@
+{
+  "name": "llAdjustSoundVolume",
+  "signature": "void llAdjustSoundVolume( float volume )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.1,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllListen\n(\n42\n,\n\"\"\n,\nllGetOwner\n(),\n\"\"\n);\n}\nlisten\n(\ninteger\nchan\n,\nstring\nname\n,\nkey\nid\n,\nstring\nmsg\n)\n{\nfloat\nvalue\n=\n(\nfloat\n)\nmsg\n;\nllAdjustSoundVolume\n(\nvalue\n);\nllOwnerSay\n(\n\"Volume set to: \"\n+\n(\nstring\n)\nvalue\n+\n\" of 1.0\"\n);\n}\n}",
+    "default\n{\ncollision_start\n(\ninteger\np\n)\n{\nllPlaySound\n(\n\"5df2e97f-d3ab-9a80-7063-69007470a182\"\n,\n1.0\n);\nllAdjustSoundVolume\n(\n1.0\n);\nllSetTimerEvent\n(\n0.2\n);\n//In 0.2 seconds, will reduce the volume of the currently playing audio.\n}\ntimer\n(){\nllAdjustSoundVolume\n(\n0.1\n);\nllSetTimerEvent\n(\n0.0\n);\n}\n}"
+  ],
+  "related": [
+    "llGetLinkNumber",
+    "llGetLinkNumberOfSides",
+    "llLinkPlaySound",
+    "llLinkSetSoundQueueing",
+    "llLinkSetSoundRadius",
+    "llLinkStopSound",
+    "llLoopSound",
+    "llLoopSoundMaster",
+    "llLoopSoundSlave",
+    "llPlaySound",
+    "llPlaySoundSlave",
+    "llPreloadSound",
+    "llSetSoundQueueing",
+    "llSetSoundRadius",
+    "llSound",
+    "llSoundPreload",
+    "llStopSound",
+    "llTriggerSound",
+    "llTriggerSoundLimited"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

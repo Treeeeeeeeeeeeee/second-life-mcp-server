@@ -1,0 +1,23 @@
+{
+  "name": "llIntegerToBase64",
+  "signature": "string llIntegerToBase64( integer number )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "string\nASCII7ToString\n(\ninteger\nletter\n)\n{\nif\n(\nletter\n>=\n0x80\n||\nletter\n<\n0\n)\nreturn\n\"\"\n;\n//Not valid ascii7 character\nreturn\nllBase64ToString\n(\nllIntegerToBase64\n(\nletter\n<<\n24\n));\n}",
+    "// Packs a 24-bit unsigned integer value (0-16777215) to only 4 Base64 characters.\nstring\nInt24ToBase64\n(\ninteger\nvalue\n)\n{\nreturn\nllGetSubString\n(\nllIntegerToBase64\n(\nvalue\n<<\n8\n),\n0\n,\n3\n);\n}\n// unpacks a 4-character Base64 value to a 24-bit unsigned integer\ninteger\nBase64ToInt24\n(\nstring\nvalue\n)\n{\nreturn\n(\nllBase64ToInteger\n(\nvalue\n)\n>>\n8\n)\n&\n0xffffff\n;\n// Masking required to remove sign extension from bit-shifting\n}"
+  ],
+  "related": [
+    "llBase64ToInteger",
+    "llBase64ToString",
+    "llStringToBase64"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,20 @@
+{
+  "name": "llGetExperienceDetails",
+  "signature": "list llGetExperienceDetails( key experience_id )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nkey\nxp\n=\n\"9170c22b-f445-ea5d-89fa-0f2f1e144f04\"\n;\nllOwnerSay\n(\nllDumpList2String\n(\nllGetExperienceDetails\n(\nxp\n),\n\"\n\\n\n\"\n));\n// Prints:\n// Linden Realms\n// id\n// status msg\nllOwnerSay\n(\nllDumpList2String\n(\nllGetExperienceDetails\n(\nNULL_KEY\n),\n\"\n\\n\n\"\n));\n// Print nothing if not associated with an XP or info about the associated experience\n}\n}"
+  ],
+  "related": [
+    "llAgentInExperience"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

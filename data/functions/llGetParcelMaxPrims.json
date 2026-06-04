@@ -1,0 +1,22 @@
+{
+  "name": "llGetParcelMaxPrims",
+  "signature": "integer llGetParcelMaxPrims( vector pos, integer sim_wide )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If there is an Object Bonus for the region, the value returned may be more than the region's total limit."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nllSay\n(\n0\n,\n\"The total land impact of objects rezzed on this parcel is \"\n+\n(\nstring\n)\nllGetParcelPrimCount\n(\nllGetPos\n(),\nPARCEL_COUNT_TOTAL\n,\nFALSE\n)\n+\n\", of \"\n+\n(\nstring\n)\nllGetParcelMaxPrims\n(\nllGetPos\n(),\nFALSE\n)\n+\n\" allowed.\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetParcelPrimCount"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

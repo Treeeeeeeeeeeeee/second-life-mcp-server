@@ -1,0 +1,33 @@
+{
+  "name": "llDetectedTouchNormal",
+  "signature": "vector llDetectedTouchNormal( integer index )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If index is out of bounds the script continues to execute without an error message.",
+    "TOUCH_INVALID_VECTOR is returned when... The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace . The touch has moved off the surface of the prim. The event triggered is not a touch event.",
+    "The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "The touch has moved off the surface of the prim.",
+    "The event triggered is not a touch event.",
+    "The rotation of a legacy sphere prim does not influence touch normal like it does with other legacy prims."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_num\n)\n{\nllOwnerSay\n((\nstring\n)\nllDetectedTouchNormal\n(\n0\n));\n//Says the vector where the touched face is pointing to.\n}\n}"
+  ],
+  "related": [
+    "llDetectedLinkNumber",
+    "llDetectedTouchFace",
+    "llDetectedTouchST",
+    "llDetectedTouchUV",
+    "llDetectedTouchPos",
+    "llDetectedTouchBinormal"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

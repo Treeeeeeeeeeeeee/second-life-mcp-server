@@ -1,0 +1,23 @@
+{
+  "name": "llDetectedRot",
+  "signature": "rotation llDetectedRot( integer number )",
+  "return_type": "rotation",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If number is out of bounds this function returns <0.0, 0.0, 0.0, 1.0> and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "//--// get compass facing of Avatar that touches this object //--//\n//-- list of compass directions starting at East, rotated clockwise\nlist\ngLstCompassPoints\n=\n[\n\"East\"\n,\n\"NorthEast\"\n,\n\"North\"\n,\n\"NorthWest\"\n,\n\"West\"\n,\n\"SouthWest\"\n,\n\"South\"\n,\n\"SouthEast\"\n];\n//-- convert rotation to z-axis compass direction\nstring\nCompassDirection\n(\nrotation\nrRotBase\n)\n{\ninteger\niCountCompassPoints\n=\nllGetListLength\n(\ngLstCompassPoints\n);\n//-- convert rotation to a direction\nvector\nvDirection\n=\n<\n0.0\n,\n1.0\n,\n0.0\n>\n/\nrRotBase\n;\n//-- take the direction and determine the z rotation\nfloat\nfAngle\n=\nllAtan2\n(\nvDirection\n.\nx\n,\nvDirection\n.\ny\n);\n//-- take the angle and find the compass point\ninteger\niCompassPoint\n=\nllRound\n(\nfAngle\n*\niCountCompassPoints\n/\nTWO_PI\n);\n//-- convert to string\nreturn\nllList2String\n(\ngLstCompassPoints\n,\niCompassPoint\n);\n}\ndefault\n{\nstate_entry\n()\n{\nllSay\n(\n0\n,\n\"Touch me to get your compass facing\"\n);\n}\ntouch_start\n(\ninteger\nvIntTouchCount\n)\n{\ninteger\nvIntCounter\n=\n0\n;\ndo\n{\nllSay\n(\n0\n,\nllDetectedName\n(\nvIntCounter\n)\n+\n\" is facing \"\n//-- next line gets avatar rotation and converts to compass direction\n+\nCompassDirection\n(\nllDetectedRot\n(\nvIntCounter\n)\n)\n);\n}\nwhile\n(\n++\nvIntCounter\n<\nvIntTouchCount\n);\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

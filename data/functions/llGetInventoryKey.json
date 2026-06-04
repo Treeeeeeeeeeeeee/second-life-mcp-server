@@ -1,0 +1,35 @@
+{
+  "name": "llGetInventoryKey",
+  "signature": "key llGetInventoryKey( string name )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Inventory items are records that usually point to assets, but they are not the actual assets. Multiple inventory items can point to the same asset and return the same key. Some newly created inventory entries get default keys until they are edited and saved: Newly created notecard entries use NULL_KEY at present, until they are edited and saved. Newly created script entries point to the \" Hello Avatar \" script (\"d0d40b7c-e32b-3bcb-3346-2be8470093c0\" at this writing, not a guaranteed default) until they are edited and saved. Most other inventory entries are given unique asset keys at creation time. When an asset is \"edited\" a new asset key is assigned to the edit. The inventory item used to open the asset for editing is updated with the new asset key. No other inventory items that share the original asset are updated with the new asset key.",
+    "Multiple inventory items can point to the same asset and return the same key.",
+    "Some newly created inventory entries get default keys until they are edited and saved: Newly created notecard entries use NULL_KEY at present, until they are edited and saved. Newly created script entries point to the \" Hello Avatar \" script (\"d0d40b7c-e32b-3bcb-3346-2be8470093c0\" at this writing, not a guaranteed default) until they are edited and saved. Most other inventory entries are given unique asset keys at creation time.",
+    "Newly created notecard entries use NULL_KEY at present, until they are edited and saved.",
+    "Newly created script entries point to the \" Hello Avatar \" script (\"d0d40b7c-e32b-3bcb-3346-2be8470093c0\" at this writing, not a guaranteed default) until they are edited and saved.",
+    "Most other inventory entries are given unique asset keys at creation time.",
+    "When an asset is \"edited\" a new asset key is assigned to the edit. The inventory item used to open the asset for editing is updated with the new asset key. No other inventory items that share the original asset are updated with the new asset key.",
+    "No other inventory items that share the original asset are updated with the new asset key."
+  ],
+  "examples": [
+    "// Put this script in an empty prim, and drag a full-perm texture into the prim's contents to find out its UUID\ndefault\n{\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_INVENTORY\n)\n// if there has been a change to the prim's contents ...\n{\nstring\nname\n=\nllGetInventoryName\n(\nINVENTORY_TEXTURE\n,\n0\n);\nif\n(\nname\n)\n// if a texture exists ...\n{\nkey\nuuid\n=\nllGetInventoryKey\n(\nname\n);\nif\n(\nuuid\n)\n// if the uuid is valid ...\nllOwnerSay\n(\n\"The UUID of '\"\n+\nname\n+\n\"' is \"\n+\n(\nstring\n)\nuuid\n);\nelse\n// texture was not full-perm\nllOwnerSay\n(\n\"The UUID of '\"\n+\nname\n+\n\"' could not be determined\"\n);\n}\n}\n}\n}",
+    "string\nitem\n=\n\"Default\"\n;\ndefault\n{\nstate_entry\n()\n{\nllOwnerSay\n(\n\"Touch to get information about\n\\\"\n\"\n+\nitem\n+\n\"\n\\\"\n.\"\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\ninteger\ntype\n=\nllGetInventoryType\n(\nitem\n);\ninteger\nindex\n=\nllListFindList\n([\nINVENTORY_NONE\n,\nINVENTORY_TEXTURE\n,\nINVENTORY_SOUND\n,\nINVENTORY_LANDMARK\n,\nINVENTORY_CLOTHING\n,\nINVENTORY_OBJECT\n,\nINVENTORY_NOTECARD\n,\nINVENTORY_SCRIPT\n,\nINVENTORY_BODYPART\n,\nINVENTORY_ANIMATION\n,\nINVENTORY_GESTURE\n],\n[\ntype\n]);\nstring\nname\n=\nllList2String\n([\n\"does not exist\"\n,\n\"texture\"\n,\n\"sound\"\n,\n\"landmark\"\n,\n\"clothing\"\n,\n\"object\"\n,\n\"notecard\"\n,\n\"script\"\n,\n\"body part\"\n,\n\"animation\"\n,\n\"gesture\"\n],\nindex\n);\nllOwnerSay\n(\n\"Type: \"\n+\nname\n);\nif\n(\ntype\n==\nINVENTORY_NONE\n)\nreturn\n;\ninteger\nowner_perms\n=\nllGetInventoryPermMask\n(\nitem\n,\nMASK_OWNER\n);\nlist\nperms\n;\nif\n(\nowner_perms\n&\nPERM_COPY\n)\nperms\n+=\n\"Copy\"\n;\nif\n(\nowner_perms\n&\nPERM_MODIFY\n)\nperms\n+=\n\"Modify\"\n;\nif\n(\nowner_perms\n&\nPERM_TRANSFER\n)\nperms\n+=\n\"Transfer\"\n;\nif\n(\nowner_perms\n&\nPERM_MOVE\n)\nperms\n+=\n\"Move\"\n;\nllOwnerSay\n(\n\"Perms: \"\n+\nllList2CSV\n(\nperms\n));\ninteger\ntemp\n=\nPERM_COPY\n|\nPERM_MODIFY\n|\nPERM_TRANSFER\n;\nif\n((\nowner_perms\n&\ntemp\n)\n!=\ntemp\n)\nreturn\n;\nllOwnerSay\n(\n\"Key: \"\n+\n(\nstring\n)\nllGetInventoryKey\n(\nitem\n));\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryAcquireTime",
+    "llGetInventoryName",
+    "llGetInventoryType",
+    "llGetInventoryNumber",
+    "llGetInventoryPermMask",
+    "llGetInventoryCreator"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

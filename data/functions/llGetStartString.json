@@ -1,0 +1,23 @@
+{
+  "name": "llGetStartString",
+  "signature": "string llGetStartString(  )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Start string survives script resets, region crosses and region restarts."
+  ],
+  "examples": [
+    "default\n{\non_rez\n(\ninteger\nparam\n)\n{\nllOwnerSay\n(\n\"rezzed with the number \"\n+\n(\nstring\n)\nparam\n+\n\" and a start string of\n\\\"\n\"\n+\nllGetStartString\n()\n+\n\"\n\\\"\n\"\n);\n}\nstate_entry\n()\n{\nstring\ns\n=\nllGetStartString\n();\nllOwnerSay\n(\n\"I was given the string\n\\\"\n\"\n+\ns\n+\n\"\n\\\"\nwhen I was rezzed\"\n);\n}\n}"
+  ],
+  "related": [
+    "llRezObjectWithParams",
+    "llGetStartParameter"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

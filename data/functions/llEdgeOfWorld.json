@@ -1,0 +1,25 @@
+{
+  "name": "llEdgeOfWorld",
+  "signature": "integer llEdgeOfWorld( vector pos, vector dir )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If the x and y components of dir are zero (like with ZERO_VECTOR ), TRUE is always returned.",
+    "pos must be in the region.",
+    "Can only be used to detect directly adjacent regions, not diagonally adjacent regions",
+    "This function will also return TRUE if llRequestSimulatorData () returns \"up\" for an adjacent region but that region doesn't visibly show when standing next to its border."
+  ],
+  "examples": [
+    "//--// Tells if there are neighboring sims on touch //--//\ndefault\n{\ntouch_start\n(\ninteger\nvIntTouched\n){\nvector\nvPosObject\n=\nllGetPos\n();\nif\n(\n!\nllEdgeOfWorld\n(\nvPosObject\n,\n<\n0.0\n,\n1.0\n,\n0.0\n>\n)){\nllOwnerSay\n(\n\"There is a Sim to the North\"\n);\n}\nif\n(\n!\nllEdgeOfWorld\n(\nvPosObject\n,\n<\n1.0\n,\n0.0\n,\n0.0\n>\n)){\nllOwnerSay\n(\n\"There is a Sim to the East\"\n);\n}\nif\n(\n!\nllEdgeOfWorld\n(\nvPosObject\n,\n<\n0.0\n,\n-\n1.0\n,\n0.0\n>\n)){\nllOwnerSay\n(\n\"There is a Sim to the South\"\n);\n}\nif\n(\n!\nllEdgeOfWorld\n(\nvPosObject\n,\n<-\n1.0\n,\n0.0\n,\n0.0\n>\n)){\nllOwnerSay\n(\n\"There is a Sim to the West\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llScriptDanger"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

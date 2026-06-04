@@ -1,0 +1,20 @@
+{
+  "name": "llGetSimStats",
+  "signature": "float llGetSimStats( integer stat_type )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nfloat\npct_chars_stepped\n=\nllGetSimStats\n(\nSIM_STAT_PCT_CHARS_STEPPED\n);\nllSay\n(\n0\n,\n\"The percentage of pathfinding characters updated each frame was \"\n+\n(\nstring\n)\npct_chars_stepped\n+\n\"averaged over the last minute. The \"\n+\n\"value corresponds to the 'Characters Updated' stat in the \"\n+\n\"viewer's Statistics Bar. \"\n);\n}\n}"
+  ],
+  "related": [
+    "llAbs"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

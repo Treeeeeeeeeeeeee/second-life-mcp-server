@@ -1,0 +1,31 @@
+{
+  "name": "llEmail",
+  "signature": "void llEmail( string address, string subject, string message )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 20.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "This function causes the script to sleep for 20.0 seconds.",
+    "If you're sending to the object owner , prefer the llTargetedEmail method.",
+    "There is a limit to the number of email messages an object can send in a given amount of time.",
+    "There is a limit of 500 messages from a single agent 's objects in a one-hour period.",
+    "The 4096-byte size limit includes the subject line and automatically added text. The practical maximum body size is approximately 3600 bytes.",
+    "(Sept-2008) The Email Throttle was modified slightly, Per Prospero Linden 's comments:",
+    "Due to the bug SVC-23 (present since 2005), objects may stop receiving emails completely until either the region is restarted or the object crosses a region boundary (resetting the script doesn't help). Emails sent may eventually be received after a restart/region-cross. Hence, don't rely on this function for reliable inter-region messaging.",
+    "Due to bug BUG-229767 , an object's email queue can still become suspended until the object crosses a region border (neither a region restart nor a script reset helps). First analysis has revealed a potential workaround, by implementing a delay of about 30 seconds before first trying to send email to a freshly rezzed script - apparently registering the email(...) event handler can take quite some time, and emails arriving prior to said registry process is what gets the entire queue stuck. Official Linden Lab response still pending.",
+    "Due to the bug SVC-391 , llEmail will silently fail (no mail will arrive) when non-ASCII characters are present in the subject. However, non-ASCII characters in the message body will be replaced by \"?\" ."
+  ],
+  "examples": [
+    "string\nemailAddress\n=\n\"somebody@example.com\"\n;\nstring\nemailHeader\n=\n\"Someone touched me!\"\n;\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\n// llSay(PUBLIC_CHANNEL, \"Sending eMail report now, this will take ~20 seconds.\");\nkey\nid\n=\nllDetectedKey\n(\n0\n);\nstring\nname\n=\nllDetectedName\n(\n0\n);\nllEmail\n(\nemailAddress\n,\nemailHeader\n,\n\"I was touched by: '\"\n+\nname\n+\n\"' (\"\n+\n(\nstring\n)\nid\n+\n\").\"\n);\n// llSay(PUBLIC_CHANNEL, \"Email has been sent.\");\n}\n}"
+  ],
+  "related": [
+    "llGetNextEmail",
+    "llMessageLinked"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

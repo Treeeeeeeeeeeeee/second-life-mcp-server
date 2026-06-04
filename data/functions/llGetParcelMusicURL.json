@@ -1,0 +1,20 @@
+{
+  "name": "llGetParcelMusicURL",
+  "signature": "string llGetParcelMusicURL(  )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "string\nparcel_music_url\n()\n{\nstring\nparcelMusicURL\n=\nllGetParcelMusicURL\n();\nif\n(\nparcelMusicURL\n!=\n\"\"\n)\nreturn\nparcelMusicURL\n;\n//  else\nreturn\n\"Sorry, could not retrieve parcel's music URL.\n\\n\n\"\n+\n\"You'll either need to be the land owner or able to deed me.\"\n;\n}\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\n// PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\nparcel_music_url\n()\n);\n}\n}"
+  ],
+  "related": [
+    "llSetParcelMusicURL"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

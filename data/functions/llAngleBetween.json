@@ -1,0 +1,21 @@
+{
+  "name": "llAngleBetween",
+  "signature": "float llAngleBetween( rotation a, rotation b )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nrotation\ncurrentRootRotation\n=\nllGetRootRotation\n();\nfloat\nangle\n=\nllAngleBetween\n(\nZERO_ROTATION\n,\ncurrentRootRotation\n);\n// PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"llAngleBetween(ZERO_ROTATION, \"\n+\n(\nstring\n)\ncurrentRootRotation\n+\n\") = \"\n+\n(\nstring\n)\nangle\n);\n}\n}"
+  ],
+  "related": [
+    "llRotBetween",
+    "llRot2Angle"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

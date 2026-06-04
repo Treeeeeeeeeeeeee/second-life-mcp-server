@@ -1,0 +1,49 @@
+{
+  "name": "llHTTPRequest",
+  "signature": "key llHTTPRequest( string url, list parameters, string body )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Spaces, control characters, and other characters that are not allowed in URLs will cause a run time error.",
+    "The corresponding http_response event will be triggered in all scripts in the prim , not just in the requesting script.",
+    "Requests must fully complete after 60 seconds, or else the response will be thrown away and the http_response status code will be 499.",
+    "The response body is limited to 2048 bytes by default, see HTTP_BODY_MAXLENGTH above to increase it. If the response is longer, it will be truncated.",
+    "The request body size (e.g., of POST and PUT requests) is limited only by available script memory. Scripts can hold at most 32k characters in a string, under Mono , as characters are two bytes each, so, scripts cannot upload over 32k UTF-8 characters",
+    "Cannot be used to load textures or images from the internet, for more information see Web Textures [2] .",
+    "If the accessed site is relying on the LSL script to report L$ transactions, then it must check the X-SecondLife-Shard header to see if the script is running on the beta grid.",
+    "Some servers will return a 405 error if you send POST to a file that can't accept metadata, such as a text or HTML file. Make sure you use the GET method to ensure success in any environment.",
+    "While the HTTP status code from the server is provided to the script, redirect codes such as 302 will result in the redirect being automatically and transparently followed ONLY IF the HTTP_METHOD is GET, with the resulting response being returned. If the HTTP_METHOD is anything other than GET then you'll get back an http_response with a status code of 302 , but without any way to view the headers, you can't know where you were being redirected to unless that was also included in the body.",
+    "The following applies when making a request to a script using HTTP-In: When appending a query string to a cap URL there MUST be a trailing slash between the cap guid and the query string token \"?\" . For example: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322 ? arg=gra will return a 500 HTTP status Server Error code , but https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322 / ? arg=gra will succeed.",
+    "When appending a query string to a cap URL there MUST be a trailing slash between the cap guid and the query string token \"?\" . For example: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322 ? arg=gra will return a 500 HTTP status Server Error code , but https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322 / ? arg=gra will succeed.",
+    "X-SecondLife-Owner-Name may return \"(Loading...)\" instead of owner name (still true, 30th of March, 2022)",
+    "Requests made at approx 0625 SLT may fail with a 503 status code, with \"ERROR: The requested URL could not be retrieved\" , and \"(111) Connection refused\" in the body of the response. This has been confirmed as expected behavior by Kelly, due to the nightly maintenance and log rotation. It does reliably impact object to object HTTP at that time, and quite probably may impact object to/from web around the same time. The interruption in service is fairly brief, and the precise timing may vary as LL adjust their nightly maintenance processes, or due to server load.",
+    "Use HTTP_MIMETYPE to set the Content-Type header. Attempts to use HTTP_CUSTOM_HEADER to set it will cause a runtime script error.",
+    "If the origin server does not include a content-type header in its response, LSL will attempt to treat the incoming data as \"text/plain; charset=utf-8\". This behavior diverges from RFC 2616 .",
+    "25 requests in 20 seconds for each object",
+    "1000 requests in 20 seconds for each owner with higher limits for some regions",
+    "Five HTTP errors (500 or higher) in 60 seconds for each script",
+    "Pause further requests until the throttle clears",
+    "Do not make any additional llHTTPRequest calls until enough time has passed for the throttle to reset. They will fail and continue to return NULL_KEY otherwise.",
+    "Once reached, the throttles will remain in effect as long as requests continue, but will clear if there is a silent period with no requests at least twice the throttle interval, in the common case 2 * 20 or 40 seconds.\u200e",
+    "Object requests are throttled at approximately 25 requests per 20 seconds. This is to support a sustained rate of one per second or a maximum burst of up to 25 every 40 seconds (twice the interval for maximum burst), smaller bursts are recommended.",
+    "NULL_KEY is returned if the request is throttled.",
+    "See this thread and this thread for older details."
+  ],
+  "examples": [
+    "key\nhttp_request_id\n;\ndefault\n{\nstate_entry\n()\n{\nhttp_request_id\n=\nllHTTPRequest\n(\n\"url\"\n,\n[],\n\"\"\n);\n}\nhttp_response\n(\nkey\nrequest_id\n,\ninteger\nstatus\n,\nlist\nmetadata\n,\nstring\nbody\n)\n{\nif\n(\nrequest_id\n!=\nhttp_request_id\n)\nreturn\n;\n// exit if unknown\nvector\nCOLOR_BLUE\n=\n<\n0.0\n,\n0.0\n,\n1.0\n>\n;\nfloat\nOPAQUE\n=\n1.0\n;\nllSetText\n(\nbody\n,\nCOLOR_BLUE\n,\nOPAQUE\n);\n}\n}",
+    "<?php\nheader\n(\n\"content-type: text/plain; charset=utf-8\"\n);\n?>\nHeaders received:\n<?php\n/**\n* @author Wouter Hobble\n* @copyright 2008\n*/\nforeach\n(\n$_SERVER\nas\n$k\n=>\n$v\n)\n{\nif\n(\nsubstr\n(\n$k\n,\n0\n,\n5\n)\n==\n'HTTP_'\n)\n{\nprint\n\"\n\\n\n\"\n.\n$k\n.\n\"\n\\t\n\"\n.\n$v\n;\n}\n}\n?>",
+    "<?php\n// Author Waster Skronski.\n// General Public License (GPL).\n// Mind that some headers are not included because they're either useless or unreliable.\n$USE_APACHE_HEADERS\n=\nTRUE\n;\n// switch to false if you need CGI methods\nif\n(\n$USE_APACHE_HEADERS\n)\n{\n$headers\n=\napache_request_headers\n();\n$objectgrid\n=\n$headers\n[\n\"X-SecondLife-Shard\"\n];\n$objectname\n=\n$headers\n[\n\"X-SecondLife-Object-Name\"\n];\n$objectkey\n=\n$headers\n[\n\"X-SecondLife-Object-Key\"\n];\n$objectpos\n=\n$headers\n[\n\"X-SecondLife-Local-Position\"\n];\n$ownerkey\n=\n$headers\n[\n\"X-SecondLife-Owner-Key\"\n];\n$ownername\n=\n$headers\n[\n\"X-SecondLife-Owner-Name\"\n];\n$regiondata\n=\n$headers\n[\n\"X-SecondLife-Region\"\n];\n$regiontmp\n=\nexplode\n(\n\"(\"\n,\n$regiondata\n);\n// cut coords off\n$regionpos\n=\nexplode\n(\n\")\"\n,\n$regiontmp\n[\n1\n]);\n$regionname\n=\nsubstr\n(\n$regiontmp\n[\n0\n],\n0\n,\n-\n1\n);\n// cut last space from region name\n}\nelse\n{\n$db\n=\n$GLOBALS\n;\n$headers\n=\n$db\n[\n'$_ENV'\n];\n$objectgrid\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_SHARD\"\n];\n$objectname\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_OBJECT_NAME\"\n];\n$objectkey\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_OBJECT_KEY\"\n];\n$ownerkey\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_OWNER_KEY\"\n];\n$objectpos\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_LOCAL_POSITION\"\n];\n$ownername\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_OWNER_NAME\"\n];\n$regiondata\n=\n$headers\n[\n\"HTTP_X_SECONDLIFE_REGION\"\n];\n$regiontmp\n=\nexplode\n(\n\"(\"\n,\n$regiondata\n);\n$regionpos\n=\nexplode\n(\n\")\"\n,\n$regiontmp\n[\n1\n]);\n$regionname\n=\nsubstr\n(\n$regiontmp\n[\n0\n],\n0\n,\n-\n1\n);\n}\n?>"
+  ],
+  "related": [
+    "llEscapeURL",
+    "llHTTPResponse",
+    "llUnescapeURL"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

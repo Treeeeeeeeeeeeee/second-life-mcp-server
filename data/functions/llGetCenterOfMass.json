@@ -1,0 +1,27 @@
+{
+  "name": "llGetCenterOfMass",
+  "signature": "vector llGetCenterOfMass(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Works in physical objects only . The value is stored as a prim property and will only change when Center Of Mass is computed. If called from within a non-physical object it will return the stored COM value or in the absence of a stored COM value it will return llGetPos (). It will not compute or recompute the COM if the object is non-physical. The stored value can only be updated when the object is physical. Neither moving or changing the objects shape will update, invalidate or remove the stored COM value when it is non-physical.",
+    "The value is stored as a prim property and will only change when Center Of Mass is computed.",
+    "If called from within a non-physical object it will return the stored COM value or in the absence of a stored COM value it will return llGetPos (). It will not compute or recompute the COM if the object is non-physical. The stored value can only be updated when the object is physical. Neither moving or changing the objects shape will update, invalidate or remove the stored COM value when it is non-physical.",
+    "It will not compute or recompute the COM if the object is non-physical.",
+    "The stored value can only be updated when the object is physical. Neither moving or changing the objects shape will update, invalidate or remove the stored COM value when it is non-physical."
+  ],
+  "examples": [
+    "//  this example script will not check for physical status\n//  you'll usually need it though to get a correct vector\ndefault\n{\nstate_entry\n()\n{\nvector\nmassCenter\n=\nllGetCenterOfMass\n();\ninteger\nlink\n=\nllGetLinkNumber\n();\nif\n(\nlink\n==\n0\n||\nlink\n==\n1\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"The center of the mass of the object is \"\n+\n(\nstring\n)\nmassCenter\n);\nelse\nif\n(\n1\n<\nlink\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"The center of the mass of link no. \"\n+\n(\nstring\n)\nlink\n+\n\" is \"\n+\n(\nstring\n)\nmassCenter\n);\n//  this script was just a test, remove it again\nstring\nthisScript\n=\nllGetScriptName\n();\nllRemoveInventory\n(\nthisScript\n);\n}\n}"
+  ],
+  "related": [
+    "llGetPos",
+    "llGetGeometricCenter"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

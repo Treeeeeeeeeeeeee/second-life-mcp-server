@@ -1,0 +1,45 @@
+{
+  "name": "llGiveInventory",
+  "signature": "void llGiveInventory( key destination, string inventory )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If destination is an avatar the script sleeps for 2.0 seconds. (Giving to objects or attachments has no delay)",
+    "If destination is not the owner nor shares the same owner, and inventory does not have transfer permissions, an error is shouted on DEBUG_CHANNEL .",
+    "When scripts are copied or moved between inventories, their state does not survive the transfer. Memory, event queue and execution position are all discarded.",
+    "If inventory is missing from the prim's inventory then an error is shouted on DEBUG_CHANNEL .",
+    "There is no way to know if the transaction failed. Unless you send a message when inventory is given to a prim and prim's script checks its inventory and sends a message back using llRegionSay.",
+    "Scripts reach destination disabled (not running, and cannot be made to run unless the destination object is taken to inventory and rezzed again, or the script is recompiled). To send a running script to a prim use llSetRemoteScriptAccessPin and llRemoteLoadScriptPin .",
+    "If destination is locked then inventory is not transferred and a Blocked by permissions error is shouted on the DEBUG_CHANNEL .",
+    "If destination object is not modifiable then inventory is not transferred and a Blocked by permissions error is shouted on the DEBUG_CHANNEL .",
+    "If inventory is no-copy it is transfered to destination without copying it. Since it is no-copy the only copy is given to destination ; removing it from the source prim's inventory. the changed event does not fire in this case To avoid this problem use llGetInventoryPermMask to check the permissions of inventory .",
+    "the changed event does not fire in this case",
+    "To avoid this problem use llGetInventoryPermMask to check the permissions of inventory .",
+    "Attachments cannot give or receive no-copy inventory. When attempted an error is shouted on DEBUG_CHANNEL .",
+    "When giving to an attachment that is not owned by the script owner, the receiving attachment must have llAllowInventoryDrop set to TRUE.",
+    "If destination is an avatar that refuses to accept it (by manual decline or muting), is in busy mode, or is offline with instant messages capped, it is not returned to the prim's inventory; it is deleted. It is not returned to the owner. It does not show up in their lost and found or any other inventory folder. It is not put in the target's trash folder.",
+    "It is not returned to the owner. It does not show up in their lost and found or any other inventory folder.",
+    "It is not put in the target's trash folder.",
+    "A successful send to an offline avatar by means of llGiveInventory() counts as an IM against that avatar\u2019s IM cap.",
+    "As of 31th January 2012, llGiveInventory now has similar throttle to instant messages. A throttle of 5k per hour per owner per region; with a maximum burst of 2.5k. This throttle only affects gives to agents, not to non-agents. \"With 3k subscribers you will want to send slow enough that it takes ~45 minutes to send 1 item to each subscriber. A general safe way would be to send ~2k as fast as you can, then wait 31 minutes and send another 2k.\" Kelly Linden on SVC-7631 Be aware that while you script a system to handle the top of these limits that other busy scripted objects can be adding up to the throttle as well, such as vendors.",
+    "\"With 3k subscribers you will want to send slow enough that it takes ~45 minutes to send 1 item to each subscriber. A general safe way would be to send ~2k as fast as you can, then wait 31 minutes and send another 2k.\" Kelly Linden on SVC-7631",
+    "Be aware that while you script a system to handle the top of these limits that other busy scripted objects can be adding up to the throttle as well, such as vendors."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nn\n)\n{\n//Gives this script to whoever touches the object.\nllGiveInventory\n(\nllDetectedKey\n(\n0\n),\nllGetScriptName\n());\n}\n}"
+  ],
+  "related": [
+    "llGiveInventoryList",
+    "llGiveAgentInventory",
+    "llRemoteLoadScriptPin",
+    "llSetRemoteScriptAccessPin",
+    "llMapDestination"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

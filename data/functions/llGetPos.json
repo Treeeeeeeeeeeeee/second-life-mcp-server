@@ -1,0 +1,29 @@
+{
+  "name": "llGetPos",
+  "signature": "vector llGetPos(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "When called from the root of an attachment, returns the wearer's region position. To see the position used, enable Develop>Avatar>Display Agent Target and use the red crosshair. If the avatar is sitting on an object, the red crosshair may be hidden by the white one, in the same position.",
+    "When called in an attachment's child prim, the position given is again relative to the avatar's root position and rotation, but with the offset from the root prim added. Visually, the reported position will only be correct if the object's root is attached to ATTACH_AVATAR_CENTER , at ZERO_ROTATION and ZERO_VECTOR . Moving the attachment's root or changing the attachment point will not affect the reported position. Avatar animation is invisible to the simulator, so it also does not affect the reported position."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\n// When touched, check the position of\n// the object, save it to \"position\",\n// then convert it into a string and\n// say it.\nvector\nposition\n=\nllGetPos\n();\nllSay\n(\n0\n,\n(\nstring\n)\nposition\n);\n}\n}",
+    "default\n{\non_rez\n(\ninteger\nparam\n)\n{\n// Adding .x .y or .z after the vector name can be used to get the float value of just that axis.\nvector\npos\n=\nllGetPos\n();\nfloat\nZ\n=\npos\n.\nz\n;\n// <--- Like this.\nif\n(\nZ\n>\n500.0\n)\nllOwnerSay\n(\n\"Oooh! I'm up high!\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetLocalPos",
+    "llGetPrimitiveParams",
+    "llGetRootPosition",
+    "llSetPos",
+    "llSetPrimitiveParams",
+    "llSetLinkPrimitiveParams"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

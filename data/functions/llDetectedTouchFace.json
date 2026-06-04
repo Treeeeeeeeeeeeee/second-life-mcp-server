@@ -1,0 +1,32 @@
+{
+  "name": "llDetectedTouchFace",
+  "signature": "integer llDetectedTouchFace( integer index )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If index is out of bounds the script continues to execute without an error message.",
+    "TOUCH_INVALID_FACE is returned when... The avatar's viewer does not support face touch detection. The touch has moved off the surface of the prim. The event triggered is not a touch event.",
+    "The avatar's viewer does not support face touch detection.",
+    "The touch has moved off the surface of the prim.",
+    "The event triggered is not a touch event."
+  ],
+  "examples": [
+    "// This is the essential script to drop in a prim when you need to ascertain the number of a face (or faces)\n// Touch the prim surfaces to learn their face numbers, which you can then use in other scripts for texturing, colouring etc.\nsay\n(\nstring\nmessage\n)\n{\nllSay\n(\nPUBLIC_CHANNEL\n,\nmessage\n);\n}\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\ninteger\nface\n=\nllDetectedTouchFace\n(\n0\n);\nif\n(\nface\n==\nTOUCH_INVALID_FACE\n)\n//      {\nsay\n(\n\"The touched face could not be determined\"\n);\n//      }\nelse\n//      {\nsay\n(\n\"You touched face number \"\n+\n(\nstring\n)\nface\n);\n//      }\n}\n}",
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\ninteger\nlink\n=\nllDetectedLinkNumber\n(\n0\n);\ninteger\nface\n=\nllDetectedTouchFace\n(\n0\n);\nif\n(\nface\n==\nTOUCH_INVALID_FACE\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Sorry, your viewer doesn't support touched faces.\"\n);\nelse\n{\n// store the original color\nlist\ncolorParams\n=\nllGetLinkPrimitiveParams\n(\nlink\n,\n[\nPRIM_COLOR\n,\nface\n]);\nvector\noriginalColor\n=\nllList2Vector\n(\ncolorParams\n,\n0\n);\n// color detected face white\nllSetLinkColor\n(\nlink\n,\n<\n1.0\n,\n1.0\n,\n1.0\n>\n,\nface\n);\nllSleep\n(\n0.2\n);\n// color detected face black\nllSetLinkColor\n(\nlink\n,\nZERO_VECTOR\n,\nface\n);\nllSleep\n(\n0.2\n);\n// color detected face back to original color\nllSetLinkColor\n(\nlink\n,\noriginalColor\n,\nface\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llDetectedLinkNumber",
+    "llDetectedTouchST",
+    "llDetectedTouchUV",
+    "llDetectedTouchPos",
+    "llDetectedTouchNormal",
+    "llDetectedTouchBinormal"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

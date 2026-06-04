@@ -1,0 +1,27 @@
+{
+  "name": "llCollisionSound",
+  "signature": "void llCollisionSound( string impact_sound, float impact_volume )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If impact_sound is not an empty string and... impact_sound is missing from the prim's inventory and it is not a UUID or it is not a sound then an error is shouted on DEBUG_CHANNEL .",
+    "impact_sound is missing from the prim's inventory and it is not a UUID or it is not a sound then an error is shouted on DEBUG_CHANNEL .",
+    "If impact_sound is a UUID then there are no new asset permissions consequences for the object. The resulting object develops no new usage restrictions that might have occurred if the asset had been placed in the prims inventory.",
+    "The resulting object develops no new usage restrictions that might have occurred if the asset had been placed in the prims inventory.",
+    "If this function is used to suppress collision sounds, NO sound will be generated even if the suppressed object collides with an unsuppressed object (there will be no sound from the unsuppressed object either)."
+  ],
+  "examples": [
+    "//Play Sound When Collision Occurs With Other Object Or An AGENT\n//Creator: TonyH Wrangler\nstring\nsound\n=\n\"ed124764-705d-d497-167a-182cd9fa2e6c\"\n;\n//uuid or name of item in inventory\ndefault\n{\nstate_entry\n()\n{\nllCollisionSound\n(\nsound\n,\n1.0\n);\n}\n}"
+  ],
+  "related": [
+    "llCollisionFilter",
+    "llCollisionSprite"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

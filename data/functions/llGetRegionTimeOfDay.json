@@ -1,0 +1,21 @@
+{
+  "name": "llGetRegionTimeOfDay",
+  "signature": "float llGetRegionTimeOfDay(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "//Time will be less than 4 hours unless the sun is locked.\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nfloat\ntod\n=\nllGetRegionTimeOfDay\n(\n);\nllOwnerSay\n(\n\"Time since last region restart or SL midnight (based on SL 4 hour day):\"\n);\ninteger\nhours\n=\n((\ninteger\n)\ntod\n/\n3600\n)\n;\ninteger\nminutes\n=\n((\ninteger\n)\ntod\n/\n60\n)\n-\n(\nhours\n*\n60\n);\nllOwnerSay\n((\nstring\n)\ntod\n+\n\" seconds which is \"\n+\n(\nstring\n)\nhours\n+\n\"h \"\n+\n(\nstring\n)\nminutes\n+\n\"m\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetSunDirection",
+    "llGetTimeOfDay"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

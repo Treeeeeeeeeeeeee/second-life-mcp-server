@@ -1,0 +1,29 @@
+{
+  "name": "llAvatarOnLinkSitTarget",
+  "signature": "key llAvatarOnLinkSitTarget( integer link )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "link needs to be either an actual link number or a link constants that equate to a single prim, such as LINK_ROOT and LINK_THIS . LINK_SET , LINK_ALL_CHILDREN and LINK_ALL_OTHERS will not work.",
+    "LINK_SET , LINK_ALL_CHILDREN and LINK_ALL_OTHERS will not work.",
+    "A prim does not have a sit target unless llSitTarget / llLinkSitTarget has been called with a nonzero vector as the first argument.",
+    "The root link number changes from zero to one when someone sits on an unlinked prim. So (llAvatarOnLinkSitTarget( 0) == NULL_KEY) is always true. Nobody ever sits on link number 0",
+    "So (llAvatarOnLinkSitTarget( 0) == NULL_KEY) is always true. Nobody ever sits on link number 0"
+  ],
+  "examples": [
+    "// Unseat a second avatar on this object\nstring\none_sitter_message\n=\n\"Hey!  I don't take passengers.\"\n;\ndefault\n{\nstate_entry\n()\n{\n// Sit target 1 is your sit target on the root prim\nllLinkSitTarget\n(\n1\n,\n<\n0.0\n,\n0.0\n,\n0.5\n>\n,\nZERO_ROTATION\n);\n// Sit target 2 is the target on child prim 2, a small transparent prim inside the object\nllLinkSitTarget\n(\n2\n,\n<\n0.0\n,\n0.0\n,\n0.1\n>\n,\nZERO_ROTATION\n);\n}\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_LINK\n)\n{\n// An avatar on child prim 2, whether seated by choice or by redirection after sit target 1 is occupied, will be unseated.\nif\n(\nllAvatarOnLinkSitTarget\n(\n2\n))\n{\nllRegionSayTo\n(\nllAvatarOnLinkSitTarget\n(\n2\n),\nPUBLIC_CHANNEL\n,\none_sitter_message\n);\nllUnSit\n(\nllAvatarOnLinkSitTarget\n(\n2\n));\n}\n// Now pay attention to the avatar on the root prim.\nkey\nagent\n=\nllAvatarOnLinkSitTarget\n(\n1\n);\nif\n(\nagent\n)\n{\nllRegionSayTo\n(\nagent\n,\nPUBLIC_CHANNEL\n,\n\"Hello!\"\n);\n}\n}\n}\n}"
+  ],
+  "related": [
+    "llGetLinkNumber",
+    "llAvatarOnSitTarget",
+    "llLinkSitTarget",
+    "llGetLinkKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

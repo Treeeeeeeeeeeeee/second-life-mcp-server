@@ -1,0 +1,27 @@
+{
+  "name": "llBase64ToInteger",
+  "signature": "integer llBase64ToInteger( string str )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If str contains fewer than 6 characters, any incomplete least-significant bytes of the integer are set to 0. For example, the Base64 value \"qqqqqq==\" corresponds to the hexadecimal value 0xAAAAAAAA . If the padding \"=\" characters and the last \"q\" are dropped, there are 5*6=30 bits remaining and those can form only 3 full bytes (24 bits). The result is 0xAAAAAA00 . The Base64 value \"qqqq\" has 4*6=24 bits available, which is enough for the same 3 full bytes. The result is also 0xAAAAAA00 . Similarly, 3-character Base64 has 18 bits, enough for 2 bytes, and 2-character Base64 has 12 bits, enough for one byte. Finally, single-character Base64 has only 6 bits and thus no complete bytes, and the result is always zero.",
+    "For example, the Base64 value \"qqqqqq==\" corresponds to the hexadecimal value 0xAAAAAAAA . If the padding \"=\" characters and the last \"q\" are dropped, there are 5*6=30 bits remaining and those can form only 3 full bytes (24 bits). The result is 0xAAAAAA00 .",
+    "The Base64 value \"qqqq\" has 4*6=24 bits available, which is enough for the same 3 full bytes. The result is also 0xAAAAAA00 .",
+    "Similarly, 3-character Base64 has 18 bits, enough for 2 bytes, and 2-character Base64 has 12 bits, enough for one byte.",
+    "Finally, single-character Base64 has only 6 bits and thus no complete bytes, and the result is always zero.",
+    "Returns zero if str is longer than 8 characters."
+  ],
+  "examples": [
+    "integer\nvalue\n=\nllBase64ToInteger\n(\n\"3q0AAA==\"\n);\n// writes out -559087616\nllOwnerSay\n((\nstring\n)\nvalue\n);"
+  ],
+  "related": [
+    "llIntegerToBase64"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

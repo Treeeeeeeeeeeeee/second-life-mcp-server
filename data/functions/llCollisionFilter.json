@@ -1,0 +1,28 @@
+{
+  "name": "llCollisionFilter",
+  "signature": "void llCollisionFilter( string name, key id, integer accept )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Any call of llCollisionFilter in the same event as llVolumeDetect changing (not just being called, but actually moving from FALSE to TRUE or vice versa) will be disregarded (before or after), if the event handler previously called a user-defined function. See #SVC-2490 You can get around this by calling them in separate events, such as touch_start and touch_end .",
+    "You can get around this by calling them in separate events, such as touch_start and touch_end .",
+    "Damage caused by llSetDamage will still apply to a filtered avatar. Consequently, the object will immediately die on collision with the avatar. (And kill the avatar their health reaches 0.)",
+    "Consequently, the object will immediately die on collision with the avatar. (And kill the avatar their health reaches 0.)"
+  ],
+  "examples": [
+    "llCollisionFilter\n(\n\"\"\n,\nNULL_KEY\n,\nTRUE\n);",
+    "llCollisionFilter\n(\n\"\"\n,\nNULL_KEY\n,\nFALSE\n);",
+    "default\n{\nstate_entry\n()\n{\nllCollisionFilter\n(\n\"Post\"\n,\n\"\"\n,\nTRUE\n);\n}\ncollision_start\n(\ninteger\ntotal_number\n)\n{\nllSay\n(\n0\n,\n\"OUCH!\"\n);\n}\n}"
+  ],
+  "related": [
+    "llPassCollisions",
+    "llVolumeDetect"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,34 @@
+{
+  "name": "llGetNotecardLine",
+  "signature": "key llGetNotecardLine( string name, integer line )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.1,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "This function causes the script to sleep for 0.1 seconds.",
+    "If line is out of bounds the script continues to execute without an error message.",
+    "If name is missing from the prim's inventory and it is not a UUID or it is not a notecard then an error is shouted on DEBUG_CHANNEL .",
+    "If name is a UUID then there are no new asset permissions consequences for the object. The resulting object develops no new usage restrictions that might have occurred if the asset had been placed in the prims inventory.",
+    "The resulting object develops no new usage restrictions that might have occurred if the asset had been placed in the prims inventory.",
+    "If name is a new empty notecard (never saved) then an error \"Couldn't find notecard ~NAME~\" (~NAME~ being the value of name ) will be shouted on the DEBUG_CHANNEL . This is because until a notecard is saved for the first time, it does not exist as an asset only as an inventory placeholder. If the notecard is full-perms you can check for this with llGetInventoryKey which will return NULL_KEY in this case. However if notecard is not full-perms , there is no way to avoid the error message.",
+    "If the notecard is full-perms you can check for this with llGetInventoryKey which will return NULL_KEY in this case. However if notecard is not full-perms , there is no way to avoid the error message.",
+    "If notecard contains embedded inventory items (such as textures and landmarks), EOF will be returned, regardless of the line requested.",
+    "If the requested line is longer than 1024 bytes ( not characters), dataserver will only return the first 1024 bytes of the line. To check that the returned line has not been truncated, use the example snippet on llStringToBase64 to check the number of bytes returned in the dataserver event. If the string is exactly 1024 bytes, it may have been truncated. Do not use llStringLength for this, because strings in LSL support multi-byte characters (UTF-8 for LSL-2, UTF-16 for Mono). The maximum bytes returned by this function was increased from 255 bytes to 1024 bytes with server version 2021-10-25.565008 .",
+    "To check that the returned line has not been truncated, use the example snippet on llStringToBase64 to check the number of bytes returned in the dataserver event. If the string is exactly 1024 bytes, it may have been truncated. Do not use llStringLength for this, because strings in LSL support multi-byte characters (UTF-8 for LSL-2, UTF-16 for Mono).",
+    "Do not use llStringLength for this, because strings in LSL support multi-byte characters (UTF-8 for LSL-2, UTF-16 for Mono).",
+    "The maximum bytes returned by this function was increased from 255 bytes to 1024 bytes with server version 2021-10-25.565008 ."
+  ],
+  "examples": [
+    "key\nnotecardQueryId\n;\n//Identifier for the dataserver event\nstring\nnotecardName\n=\n\"MyNotecard\"\n;\n//Name of a notecard in the object's inventory. Needs to be Full Perm for key checking for changed contents to work\ninteger\nnotecardLine\n;\n//Initialize the counter value at 0\nkey\nnotecardKey\n;\n//Store the notecard's key, so we don't read it again by accident.\nlist\nnotecardData\n;\n//List to store data read from the notecard.\nReadNotecard\n()\n{\nif\n(\nllGetInventoryKey\n(\nnotecardName\n)\n==\nNULL_KEY\n)\n{\n//Check if the notecard exists in inventory, and is has been saved since it's creation (newly created notecards that are yet to be saved are assigned NULL_KEY).\nllOwnerSay\n(\n\"Notecard '\"\n+\nnotecardName\n+\n\"' is missing, unwritten, or not full permission.\"\n);\n//Notify user.\nreturn\n;\n//Don't do anything else.\n}\nelse\nif\n(\nllGetInventoryKey\n(\nnotecardName\n)\n==\nnotecardKey\n)\nreturn\n;\n//This notecard has already been read - call to read was made in error, so don't do anything. (Notecards are assigned a new key each time they are saved.)\nllOwnerSay\n(\n\"Began reading notecard: \"\n+\nnotecardName\n);\n//Notify user that read has started.\nnotecardData\n=\n[];\n//Clear the memory of the previous notecard.\nnotecardKey\n=\nllGetInventoryKey\n(\nnotecardName\n);\n//Remember the key of this iteration of the notecard, so we don't read it again by accident.\nnotecardQueryId\n=\nllGetNotecardLine\n(\nnotecardName\n,\nnotecardLine\n);\n}\ndefault\n{\nstate_entry\n()\n{\nReadNotecard\n();\n//Pass off to the read function.\n}\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_INVENTORY\n)\n{\n//The object's inventory just changed - the notecard could have been modified!\nReadNotecard\n();\n}\n}\ndataserver\n(\nkey\nquery_id\n,\nstring\ndata\n)\n{\nif\n(\nquery_id\n==\nnotecardQueryId\n)\n{\nif\n(\ndata\n==\nEOF\n)\n//Reached end of notecard (End Of File).\n{\nllOwnerSay\n(\n\"Done reading notecard, read \"\n+\n(\nstring\n)\nnotecardLine\n+\n\" notecard lines.\"\n);\n//Notify user.\nllSay\n(\nDEBUG_CHANNEL\n,\n\"=== READ FROM NOTECARD: \"\n+\nnotecardName\n+\n\" ===\n\\n\n\"\n+\nllDumpList2String\n(\nnotecardData\n,\n\"\n\\n\n\"\n));\n//Dump the contents of the notecard (for testing purposes).\n}\nelse\n{\nnotecardData\n+=\ndata\n;\n//Add the line being read to a new entry on the list.\n++\nnotecardLine\n;\n//Increment line number (read next line).\nnotecardQueryId\n=\nllGetNotecardLine\n(\nnotecardName\n,\nnotecardLine\n);\n//Query the dataserver for the next notecard line.\n}\n}\n}\n}"
+  ],
+  "related": [
+    "llGetNumberOfNotecardLines",
+    "llGetNotecardLineSync"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

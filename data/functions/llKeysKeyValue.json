@@ -1,0 +1,30 @@
+{
+  "name": "llKeysKeyValue",
+  "signature": "key llKeysKeyValue( integer first, integer count )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If you recompile a script that was previously associated with an Experience but do so with a client that lacks the ability to compile scripts into an experience the script will lose the associated Experience.",
+    "It is recommended that keys do not contain commas due to this function returning keys in CSV format."
+  ],
+  "examples": [
+    "key\ntrans\n;\ndefault\n{\nstate_entry\n()\n{\n// retrieve the first 10 keys\ntrans\n=\nllKeysKeyValue\n(\n0\n,\n10\n);\n}\ndataserver\n(\nkey\nt\n,\nstring\nvalue\n)\n{\nif\n(\nt\n==\ntrans\n)\n{\n// our llKeysKeyValue transaction is done\nlist\nresult\n=\nllCSV2List\n(\nvalue\n);\nif\n(\nllList2Integer\n(\nresult\n,\n0\n)\n==\n1\n)\n{\nllSay\n(\n0\n,\n\"Keys retrieved: \"\n+\n(\nstring\n)\nllGetSubString\n(\nvalue\n,\n2\n,\n-\n1\n));\n}\nelse\nif\n(\nllList2Integer\n(\nresult\n,\n1\n)\n==\nXP_ERROR_KEY_NOT_FOUND\n)\n{\n// no more keys\nllSay\n(\n0\n,\n\"No more keys\"\n);\n}\nelse\n{\n// keys request failed\nllSay\n(\n0\n,\n\"Key-value failed to request keys: \"\n+\nllGetExperienceErrorMessage\n(\nllList2Integer\n(\nresult\n,\n1\n))\n);\n}\n}\n}\n}"
+  ],
+  "related": [
+    "llGetExperienceErrorMessage",
+    "llCreateKeyValue",
+    "llReadKeyValue",
+    "llUpdateKeyValue",
+    "llDeleteKeyValue",
+    "llDataSizeKeyValue",
+    "llKeyCountKeyValue",
+    "llKeysKeyValue"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

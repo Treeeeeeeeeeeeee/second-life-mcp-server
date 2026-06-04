@@ -1,0 +1,28 @@
+{
+  "name": "llGetInventoryDesc",
+  "signature": "string llGetInventoryDesc( string item )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If item is missing from the prim's inventory then an error is shouted on DEBUG_CHANNEL .",
+    "If item has no description an empty string is returned."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\ninteger\ncount\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\ninteger\nindex\n;\nfor\n(\nindex\n=\n0\n;\nindex\n<\ncount\n;\n++\nindex\n)\n{\nstring\nname\n=\nllGetInventoryName\n(\nINVENTORY_ALL\n,\nindex\n);\nstring\ndesc\n=\nllGetInventoryDesc\n(\nname\n);\nllSay\n(\n0\n,\n\"Item:\n\\\"\n\"\n+\nname\n+\n\"\n\\\"\n--\n\\\"\n\"\n+\ndesc\n+\n\"\n\\\"\n\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryAcquireTime",
+    "llGetInventoryName",
+    "llGetInventoryType",
+    "llGetInventoryNumber",
+    "llGetInventoryPermMask",
+    "llGetInventoryKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

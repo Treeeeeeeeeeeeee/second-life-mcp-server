@@ -1,0 +1,23 @@
+{
+  "name": "llGetParcelPrimCount",
+  "signature": "integer llGetParcelPrimCount( vector pos, integer category, integer sim_wide )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Temp mesh is not included in totals for PARCEL_COUNT_TEMP"
+  ],
+  "examples": [
+    "//  gives prim usage information when touched\nstring\nprimCountThisParcel\n(\ninteger\nflag\n)\n{\nvector\ncurrentPosition\n=\nllGetPos\n();\nreturn\n(\nstring\n)\nllGetParcelPrimCount\n(\ncurrentPosition\n,\nflag\n,\nFALSE\n);\n}\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"The total land impact of objects on this parcel is \"\n+\nprimCountThisParcel\n(\nPARCEL_COUNT_TOTAL\n)\n+\n\".\"\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\nprimCountThisParcel\n(\nPARCEL_COUNT_OWNER\n)\n+\n\" LI for objects owned by the parcel owner.\"\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\nprimCountThisParcel\n(\nPARCEL_COUNT_GROUP\n)\n+\n\" LI for objects set to or owned by the parcel's group.\"\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\nprimCountThisParcel\n(\nPARCEL_COUNT_OTHER\n)\n+\n\" LI for objects not set to the parcel group or owned by the parcel owner.\"\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\nprimCountThisParcel\n(\nPARCEL_COUNT_SELECTED\n)\n+\n\" LI for selected objects.\"\n);\nllSay\n(\nPUBLIC_CHANNEL\n,\nprimCountThisParcel\n(\nPARCEL_COUNT_TEMP\n)\n+\n\" LI for temp-on-rez objects.\"\n);\n}\n}",
+    "//Sim-wide scanner to count prim use in each parcel\nlist\ngPrclID\n;\ninteger\ngTotPrims\n;\nfloat\ngX\n;\nfloat\ngY\n;\nstring\ngObjName\n;\ninteger\ngNUM\n;\ndefault\n{\nstate_entry\n()\n{\ngObjName\n=\nllGetObjectName\n();\ngPrclID\n=\n[];\ngTotPrims\n=\n0\n;\n// Begin scanning at the SW <0.0,0.0,0.0> corner of the sim\ngX\n=\n4.0\n;\ngY\n=\n4.0\n;\n}\non_rez\n(\ninteger\nstart\n)\n{\nllSetPos\n(\nllGetPos\n()\n+\n<\n0.0\n,\n0.0\n,\n0.5\n>\n);\nllSetText\n(\n\"Touch to start scan\"\n,\n<\n1.0\n,\n1.0\n,\n0.0\n>\n,\n1.0\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nllSetText\n(\n\"Scanning ....\"\n,\n<\n1.0\n,\n1.0\n,\n0.0\n>\n,\n1.0\n);\ngNUM\n=\n0\n;\nllRegionSayTo\n(\nllGetOwner\n(),\n0\n,\n\"Scan started on \"\n+\nllGetRegionName\n());\nllSetTimerEvent\n(\n0.1\n);\n}\ntimer\n()\n{\n//Grab the parcel's ID and name at position <gX, gY, 100.0>\nlist\nparcel\n=\nllGetParcelDetails\n(\n<\ngX\n,\ngY\n,\n100.0\n>\n,[\nPARCEL_DETAILS_ID\n,\nPARCEL_DETAILS_NAME\n]);\nkey\ntemp\n=\nllList2Key\n(\nparcel\n,\n0\n);\nstring\nparcel_name\n=\nllList2String\n(\nparcel\n,\n1\n);\nif\n(\nparcel_name\n==\n\"\"\n)\n{\nparcel_name\n=\n\"(no name)\"\n;\n}\nif\n(\n!~\nllListFindList\n(\ngPrclID\n,[\ntemp\n]))\n//Scan at this location if this parcel was not scanned earlier\n{\n++\ngNUM\n;\nllSetObjectName\n((\nstring\n)\ngNUM\n);\ninteger\nCount\n=\nllGetParcelPrimCount\n(\n<\ngX\n,\ngY\n,\n100\n>\n,\nPARCEL_COUNT_TOTAL\n,\nFALSE\n);\n//Do not include other parcels owned by llGetOwner()\ngTotPrims\n+=\nCount\n;\nllRegionSayTo\n(\nllGetOwner\n(),\n0\n,\n\"/me \"\n+\nparcel_name\n+\n\" @ <\"\n+\n(\nstring\n)\ngX\n+\n\",\"\n+\n(\nstring\n)\ngY\n+\n\",Z>  = \"\n+\n(\nstring\n)\nCount\n);\ngPrclID\n+=\n[\ntemp\n];\n//Add this parcel to the \"previously scanned\" list\n}\n// Increment X and Y in successive scans to look at the entire sim in 8m square blocks\nif\n(\ngX\n<\n256.0\n)\n{\ngX\n+=\n8.0\n;\n}\nif\n(\ngX\n>\n256.0\n)\n{\ngY\n+=\n8.0\n;\ngX\n=\n4.0\n;\n}\nif\n(\ngY\n>\n256.0\n)\n// Reached NE corner\n{\nllSetObjectName\n(\ngObjName\n);\nllRegionSayTo\n(\nllGetOwner\n(),\n0\n,\n\"Scan finished.  Total land impact = \"\n+\n(\nstring\n)\ngTotPrims\n+\n\" in \"\n+\n(\nstring\n)\nllGetListLength\n(\ngPrclID\n)\n+\n\" parcels (not counting temp rez prims).\"\n);\nllSetText\n(\n\"Touch to start scan\"\n,\n<\n1.0\n,\n1.0\n,\n0.0\n>\n,\n1.0\n);\nllResetScript\n();\n}\n}\n}"
+  ],
+  "related": [
+    "llGetParcelMaxPrims"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

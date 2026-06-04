@@ -1,0 +1,35 @@
+{
+  "name": "llDetectedTouchUV",
+  "signature": "vector llDetectedTouchUV( integer index )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If index is out of bounds the script continues to execute without an error message.",
+    "TOUCH_INVALID_TEXCOORD is returned when... The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace . The touch has moved off the surface of the prim. The touch happened too close to the edge of the face to determine a location. The event triggered is not a touch event.",
+    "The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "The touch has moved off the surface of the prim.",
+    "The touch happened too close to the edge of the face to determine a location.",
+    "The event triggered is not a touch event.",
+    "The vertical coordinate is flipped on a glTF mesh."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\ninteger\nface\n=\nllDetectedTouchFace\n(\n0\n);\nvector\ntouchUV\n=\nllDetectedTouchUV\n(\n0\n);\n//      ZERO_VECTOR (<0.0, 0.0, 0.0> ... the origin) is in the bottom left corner of the texture\n//      touchUV.x goes across the texture from left to right\n//      touchUV.y goes up the texture from bottom to top\nif\n(\nface\n==\nTOUCH_INVALID_FACE\n)\nllWhisper\n(\nPUBLIC_CHANNEL\n,\n\"Sorry, your viewer doesn't support touched faces.\"\n);\nelse\nif\n(\ntouchUV\n==\nTOUCH_INVALID_TEXCOORD\n)\nllWhisper\n(\nPUBLIC_CHANNEL\n,\n\"Sorry, the touch position upon the texture could not be determined.\"\n);\nelse\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"llDetectedTouchUV(\"\n+\n(\nstring\n)\ntouchUV\n+\n\")\"\n+\n\"\n\\n\ntouchUV.x = \"\n+\n(\nstring\n)\ntouchUV\n.\nx\n+\n\"\n\\n\ntouchUV.y = \"\n+\n(\nstring\n)\ntouchUV\n.\ny\n);\n}\n}",
+    "integer\nnumberOfRows\n=\n12\n;\ninteger\nnumberOfColumns\n=\n12\n;\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nvector\ntouchUV\n=\nllDetectedTouchUV\n(\n0\n);\n//      ZERO_VECTOR (<0.0, 0.0, 0.0> ... the origin) is in the bottom left corner of the texture\n//      touchUV.x goes across the texture from left to right\n//      touchUV.y goes up the texture from bottom to top\ninteger\ncolumnIndex\n=\n(\ninteger\n)\n(\ntouchUV\n.\nx\n*\nnumberOfColumns\n);\ninteger\nrowIndex\n=\n(\ninteger\n)\n(\ntouchUV\n.\ny\n*\nnumberOfRows\n);\ninteger\ncellIndex\n=\nrowIndex\n*\nnumberOfColumns\n+\ncolumnIndex\n;\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"UV grid (\"\n+\n(\nstring\n)\ncolumnIndex\n+\n\", \"\n+\n(\nstring\n)\nrowIndex\n+\n\") --> cell \"\n+\n(\nstring\n)\ncellIndex\n);\n}\n}"
+  ],
+  "related": [
+    "llDetectedLinkNumber",
+    "llDetectedTouchFace",
+    "llDetectedTouchST",
+    "llDetectedTouchPos",
+    "llDetectedTouchNormal",
+    "llDetectedTouchBinormal"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

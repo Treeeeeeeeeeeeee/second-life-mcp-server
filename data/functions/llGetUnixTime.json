@@ -1,0 +1,26 @@
+{
+  "name": "llGetUnixTime",
+  "signature": "integer llGetUnixTime(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Time codes outside 1901-12-13 20:45:52 UTC and 2038-01-19 03:14:08 UTC cannot be represented in LSL due to its use of signed 32-bit integers for Unix times. Scripts that rely on this function after January 19, 2038 may have logical errors. Consider llGetTimestamp instead, which will correctly report time through 2038. Lua scripts (not including LSL scripts compiled for the Luau VM) do not have this limitation with os.time() , since it returns a 64-bit number and will correctly represent time through the likely heat death of the universe.",
+    "Consider llGetTimestamp instead, which will correctly report time through 2038.",
+    "Lua scripts (not including LSL scripts compiled for the Luau VM) do not have this limitation with os.time() , since it returns a 64-bit number and will correctly represent time through the likely heat death of the universe."
+  ],
+  "examples": [
+    "// Reset tracker\ninteger\nBOOT_TIME\n;\ndefault\n{\nstate_entry\n()\n{\nBOOT_TIME\n=\nllGetUnixTime\n();\nllSetTimerEvent\n(\n0.1\n);\n}\ntimer\n()\n{\nllSetText\n((\nstring\n)(\nllGetUnixTime\n()\n-\nBOOT_TIME\n)\n+\n\" Seconds since boot.\n\\n\\n\n\"\n,\n<\n1\n,\n0\n,\n0\n>\n,\n1.0\n);\nllSetTimerEvent\n(\n1\n);\n}\n}"
+  ],
+  "related": [
+    "llGetTimestamp",
+    "llGetDate",
+    "llGetTime"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

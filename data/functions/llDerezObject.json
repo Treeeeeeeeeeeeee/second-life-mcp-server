@@ -1,0 +1,27 @@
+{
+  "name": "llDerezObject",
+  "signature": "integer llDerezObject( key id, integer flag )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "The targeted object's rezzer must be the same as the object hosting this script",
+    "The target must not be an attachment",
+    "The target must be copyable",
+    "The target's owner must be the same as the script's owner.",
+    "When marking an object as temporary, the object must not contribute to the navmesh.",
+    "When using DEREZ_TO_INVENTORY there are a few other restrictions: The derezzer must not be an attachment. The derezzer must be modifiable. The object in the derezzer's inventory must still exist. The object in the derezzer's inventory must not be a coalesced object.",
+    "The derezzer must not be an attachment.",
+    "The derezzer must be modifiable.",
+    "The object in the derezzer's inventory must still exist.",
+    "The object in the derezzer's inventory must not be a coalesced object."
+  ],
+  "examples": [],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

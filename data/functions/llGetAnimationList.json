@@ -1,0 +1,28 @@
+{
+  "name": "llGetAnimationList",
+  "signature": "list llGetAnimationList( key avatar )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "There is no internal mechanism to get the name of the animations playing.",
+    "Standard animations can be started and stopped by scripts, so the list returned may not accurately reflect the avatar's state. Use llGetAgentInfo and llGetAnimation when this matters.",
+    "Some motions are local to the viewer and cannot be detected by scripts.",
+    "Animations that are triggered by other animations are local to the viewer and cannot be detected by scripts."
+  ],
+  "examples": [
+    "//Simple Animation Override for Walk\nkey\nold_anim\n=\n\"6ed24bd8-91aa-4b12-ccc7-c97c857ab4e0\"\n;\nstring\nnew_anim\n=\n\"yoga_float\"\n;\ninteger\nstatus\n;\nlist\ncheck\n;\nkey\nowner\n;\ndefault\n{\nstate_entry\n()\n{\nowner\n=\nllGetOwner\n();\nllRequestPermissions\n(\nowner\n,\nPERMISSION_TRIGGER_ANIMATION\n);\ncheck\n=\n[\nold_anim\n];\n}\nrun_time_permissions\n(\ninteger\np\n)\n{\nif\n(\np\n&\nPERMISSION_TRIGGER_ANIMATION\n)\n{\nllSetTimerEvent\n(\n0.2\n);\n}\n}\ntimer\n()\n{\nif\n(\nllGetAgentInfo\n(\nowner\n)\n&\nAGENT_WALKING\n)\n{\nlist\nanims\n=\nllGetAnimationList\n(\nowner\n);\nif\n(\n~\nllListFindList\n(\nanims\n,\ncheck\n))\n{\nstatus\n=\n1\n;\nllStartAnimation\n(\nnew_anim\n);\nllStopAnimation\n(\nold_anim\n);\n}\n}\nelse\nif\n(\nstatus\n)\n{\nllStopAnimation\n(\nnew_anim\n);\nstatus\n=\n0\n;\n}\n}\non_rez\n(\ninteger\np\n)\n{\nllResetScript\n();\n}\n}"
+  ],
+  "related": [
+    "llGetAgentInfo",
+    "llGetAnimation",
+    "llStartAnimation",
+    "llStopAnimation"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

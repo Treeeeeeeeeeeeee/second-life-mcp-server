@@ -1,0 +1,23 @@
+{
+  "name": "llGetTextureScale",
+  "signature": "vector llGetTextureScale( integer face )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If face indicates a face that does not exist the return is <1.0, 1.0, 0.0>",
+    "ALL_SIDES seems to return the scale of the *first* face, not an average or other function of all the faces. It acts much like if it were called with face=0 ."
+  ],
+  "examples": [
+    "//Script by Basil Wijaya, 2009 August 08\n//Sets texture scale on face 0.\n//Corresponds to the object edit window, Texture tab, Repeats per Face: Horiontal U and Vertical V\nfloat\nU_repeats\n=\n1.0\n;\nfloat\nV_repeats\n=\n1.0\n;\ninteger\nface\n=\n0\n;\ndefault\n{\nstate_entry\n()\n{\nllScaleTexture\n(\nU_repeats\n,\nV_repeats\n,\nALL_SIDES\n);\n}\ntouch_start\n(\ninteger\nnum\n)\n{\nU_repeats\n=\nU_repeats\n+\n.2\n;\nV_repeats\n=\nV_repeats\n+\n.5\n;\n//set texture scale on a face\nllScaleTexture\n(\nU_repeats\n,\nV_repeats\n,\nface\n);\nllOwnerSay\n(\n\"Scale has been set to \"\n+\n(\nstring\n)\nU_repeats\n+\n\" and \"\n+\n(\nstring\n)\nV_repeats\n);\n//get texture scale of a face\nvector\nscale_vector\n=\nllGetTextureScale\n(\nface\n);\nllOwnerSay\n(\n\"llGetTextureScale(0) gives a vector\u00a0:  \"\n+\n(\nstring\n)\nscale_vector\n);\n//You can see that the first 2 values of the vector contain the U_repeats and V_repeats values we have setted.\n//The object edit window, in the Texture tab, shows the changes of the U and V values, but only for face 0.\n//Other faces changes are done but do not show in the edit window.\n}\n}"
+  ],
+  "related": [
+    "llScaleTexture"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

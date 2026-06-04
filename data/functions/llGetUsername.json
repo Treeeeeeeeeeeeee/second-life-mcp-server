@@ -1,0 +1,26 @@
+{
+  "name": "llGetUsername",
+  "signature": "string llGetUsername( key id )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "To get around the \"avatar must be present\" limitation, you can use the llRequestUsername function and the dataserver event to obtain the avatar's username from a key.",
+    "There is no opposite function ( llUsername2Key ) available. For Name2Key services see llKey2Name .",
+    "\"\" can be returned if the region is unable to resolve the username. This can happen even if the avatar is present and display names are enabled on the region. Do not rely on this function to verify avatar presence.",
+    "If you merely wish to show the agent username in the viewer window, it may be more straightforward to use Viewer URI Name Space , e.g.: llSay ( 0 , \"secondlife:///app/agent/\" + ( string ) id + \"/username\" );"
+  ],
+  "examples": [
+    "// Best viewed in Chat History (ctrl-h)\ndefault\n{\ncollision_start\n(\ninteger\na\n)\n//Announce who collided\n{\nllSay\n(\n0\n,\n\"llGetDisplayName: \"\n+\nllGetDisplayName\n(\nllDetectedKey\n(\n0\n))\n+\n\"\n\\n\nllGetUsername: \"\n+\nllGetUsername\n(\nllDetectedKey\n(\n0\n)));\n}\ntouch_start\n(\ninteger\na\n)\n{\nllSay\n(\n0\n,\n\"llGetDisplayName: \"\n+\nllGetDisplayName\n(\nllDetectedKey\n(\n0\n))\n+\n\"\n\\n\nllGetUsername: \"\n+\nllGetUsername\n(\nllDetectedKey\n(\n0\n)));\n}\n}"
+  ],
+  "related": [
+    "llGetDisplayName",
+    "llRequestUsername"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

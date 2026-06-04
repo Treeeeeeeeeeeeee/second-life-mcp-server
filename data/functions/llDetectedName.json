@@ -1,0 +1,23 @@
+{
+  "name": "llDetectedName",
+  "signature": "string llDetectedName( integer item )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If item is out of bounds this function returns NULL_KEY and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nstring\nname\n=\nllDetectedName\n(\n0\n);\nllOwnerSay\n(\n\"Touched by \"\n+\nname\n);\n// name is the legacy name, as in \"John Doe\", or \"John Resident\" if the avatar has the default last name.\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

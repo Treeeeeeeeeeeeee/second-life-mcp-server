@@ -1,0 +1,29 @@
+{
+  "name": "llGetOwner",
+  "signature": "key llGetOwner(  )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "When the owner of an object changes, code that depends on this function's return value will not automatically update for the new owner or be automatically re-evaluated. This requires the reregistration of listens and requesting of permissions from the new owner as needed. This is not limited to listens and permissions but anything that caches the return value, it is up to the programmer to work around this limitation. Detection of owner change can be achieved with the changed event in conjunction with the CHANGED_OWNER flag (see the second example) or by storing the old value and periodically (e.g. in on_rez ) checking if it has changed. Both techniques are valid though the latter will not detect the sale of the object if it is sold with \"sell original\" in-world and not picked up.",
+    "This requires the reregistration of listens and requesting of permissions from the new owner as needed. This is not limited to listens and permissions but anything that caches the return value, it is up to the programmer to work around this limitation.",
+    "This is not limited to listens and permissions but anything that caches the return value, it is up to the programmer to work around this limitation.",
+    "Detection of owner change can be achieved with the changed event in conjunction with the CHANGED_OWNER flag (see the second example) or by storing the old value and periodically (e.g. in on_rez ) checking if it has changed. Both techniques are valid though the latter will not detect the sale of the object if it is sold with \"sell original\" in-world and not picked up.",
+    "When the object is deeded to a group, the UUID returned is that of the group."
+  ],
+  "examples": [
+    "llOwnerSay\n(\n(\nstring\n)\nllGetOwner\n());\n// speaks in chat the \"key\" (UUID code) of the avatar.\nllOwnerSay\n(\nllKey2Name\n(\nllGetOwner\n()));\n// speaks in chat the name of the owner if in the sim.",
+    "default\n{\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_OWNER\n)\nllResetScript\n();\n}\nstate_entry\n()\n{\nkey\nowner\n=\nllGetOwner\n();\nllInstantMessage\n(\nowner\n,\n\"Only you can hear me. Isn't that eerie.\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetCreator",
+    "llGetOwnerKey",
+    "llDetectedOwner"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

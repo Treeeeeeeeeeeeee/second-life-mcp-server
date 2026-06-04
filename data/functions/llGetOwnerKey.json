@@ -1,0 +1,28 @@
+{
+  "name": "llGetOwnerKey",
+  "signature": "key llGetOwnerKey( key id )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Returns id if id is not found in the region or is not a prim. Owner information becomes unavailable immediately on derez or detach. For example, if a prim chats at derez or detach time, id can be returned even inside listen events of nearby objects. SVC-5095",
+    "Owner information becomes unavailable immediately on derez or detach. For example, if a prim chats at derez or detach time, id can be returned even inside listen events of nearby objects. SVC-5095",
+    "Also returns id for avatars, use llGetAgentSize instead to distinguish them from prims that do not exist.",
+    "Returns NULL_KEY if the id passed in is not a valid key"
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\n//  listen to anything talking on channel 1\nllListen\n(\n1\n,\n\"\"\n,\nNULL_KEY\n,\n\"\"\n);\n//  Type \"/1 \" + message (such as \"/1 poke\") to chat 'message' on channel 1.\n}\nlisten\n(\ninteger\nchannel\n,\nstring\nname\n,\nkey\nid\n,\nstring\nmessage\n)\n{\nkey\nownerOfThisObject\n=\nllGetOwner\n();\nkey\nownerOfSpeaker\n=\nllGetOwnerKey\n(\nid\n);\n//  if whoever is talking is the owner of this object\n//  or if the owner of the object talking is the owner of this object\nif\n(\nownerOfSpeaker\n==\nownerOfThisObject\n)\n{\nllOwnerSay\n(\n\"'\"\n+\nname\n+\n\"' has the same owner as me ^_^\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llKey2Name",
+    "llRequestAgentData",
+    "llGetObjectDetails",
+    "llGetOwner"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

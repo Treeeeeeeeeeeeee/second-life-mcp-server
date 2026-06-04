@@ -1,0 +1,26 @@
+{
+  "name": "llDeleteSubList",
+  "signature": "list llDeleteSubList( list src, integer start, integer end )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If either start or end are out of bounds the script continues to execute without an error message.",
+    "start & end will form an exclusion range when start is past end (Approximately: start > end )."
+  ],
+  "examples": [
+    "src\n=\nllDeleteSubList\n(\nsrc\n,\nstart\n,\nend\n)",
+    "default\n{\nstate_entry\n()\n{\n// Create a list of names\nlist\nnames\n=\n[\n\"Anthony\"\n,\n\"Bob\"\n,\n\"Charlie\"\n,\n\"Diane\"\n,\n\"Edgar\"\n,\n\"Gabriela\"\n];\n// Now let's remove values at position 1 through 2.\nnames\n=\nllDeleteSubList\n(\nnames\n,\n1\n,\n2\n);\n// Result:\n// list names = [\"Anthony\", \"Diane\", \"Edgar\", \"Gabriela\"];\n// Now let's use an start number higher then our end number\nnames\n=\nllDeleteSubList\n(\nnames\n,\n3\n,\n1\n);\n// Result:\n// list names = [\"Edgar\"];\n// If start number higher then our end number, then we should imagine that the start and the end are missing before start and end.\n// Imagine it should be FROM_THE_LISTSTART_CUT: start, AND_FROM_THE_LISTEND_CUT: end ... more or less\u00a0:))\n// names = llDeleteSubList(names, 3 -> , <- 1);\n}\n}"
+  ],
+  "related": [
+    "llListInsertList",
+    "llListReplaceList",
+    "llList2List"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,22 @@
+{
+  "name": "llGetPhysicsMaterial",
+  "signature": "list llGetPhysicsMaterial(  )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "A collision between two objects with restitution 1.0 will still not be perfectly elastic due to damping in the physics engine."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nlist\nparams\n=\nllGetPhysicsMaterial\n();\nllOwnerSay\n(\n\"\n\\n\nGravity multiplier: \"\n+\n(\nstring\n)\nllList2Float\n(\nparams\n,\n0\n)\n+\n\"\n\\n\nRestitution: \"\n+\n(\nstring\n)\nllList2Float\n(\nparams\n,\n1\n)\n+\n\"\n\\n\nFriction: \"\n+\n(\nstring\n)\nllList2Float\n(\nparams\n,\n2\n)\n+\n\"\n\\n\nDensity: \"\n+\n(\nstring\n)\nllList2Float\n(\nparams\n,\n3\n)\n+\n\"kg/m^3\"\n);\n}\n}"
+  ],
+  "related": [
+    "llSetPhysicsMaterial"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

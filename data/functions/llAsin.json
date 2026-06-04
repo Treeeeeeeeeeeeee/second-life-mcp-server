@@ -1,0 +1,26 @@
+{
+  "name": "llAsin",
+  "signature": "float llAsin( float val )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Triggers a Math Error for complex results if not compiled in Mono."
+  ],
+  "examples": [
+    "// Touch the object with this script in it to see the arcsine of random numbers!\ndefault\n{\ntouch_start\n(\ninteger\nnum\n)\n{\nfloat\nr\n=\nllFrand\n(\n2\n)\n-\n1.0\n;\nllOwnerSay\n(\n\"The arcsine of \"\n+\n(\nstring\n)\nr\n+\n\" is \"\n+\n(\nstring\n)\nllAsin\n(\nr\n));\n}\n}"
+  ],
+  "related": [
+    "llSin",
+    "llCos",
+    "llAcos",
+    "llTan",
+    "llAtan2"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,24 @@
+{
+  "name": "llGetLinkNumber",
+  "signature": "integer llGetLinkNumber(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "By design may equal llGetNumberOfPrims , e.g. , when prim is last, object contains multiple prims, and no sitting avatars"
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllOwnerSay\n((\nstring\n)\nllGetLinkNumber\n());\nllOwnerSay\n((\nstring\n)\nllGetNumberOfPrims\n());\n}\n}",
+    "default\n{\nstate_entry\n()\n{\ninteger\nrootLinkNum\n=\n!!\nllGetLinkNumber\n();\n// returns 0 in an unlinked prim, 1 in a linkset\ninteger\nisFullBright\n=\nllList2Integer\n(\nllGetLinkPrimitiveParams\n(\nrootLinkNum\n,[\nPRIM_FULLBRIGHT\n,\nALL_SIDES\n]),\n0\n);\n// TRUE if all sides of an unlinked prim or the root of a linkset are set to full bright, FALSE otherwise\n}\n}"
+  ],
+  "related": [
+    "llGetKey",
+    "llGetNumberOfPrims"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

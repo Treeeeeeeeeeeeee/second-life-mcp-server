@@ -1,0 +1,32 @@
+{
+  "name": "llGetDayLength",
+  "signature": "integer llGetDayLength(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "// print the apparent time of day as HH:MM (%), just like the environment window in the viewer.\n// Time of day is a fraction between 0 and 1, 0 is midnight, 0.5 is noon\nstring\nprintTimeOfDay\n(\nfloat\ndayFraction\n)\n{\ninteger\nhours\n=\n(\ninteger\n)(\ndayFraction\n*\n24\n);\ninteger\nminutes\n=\n(\ninteger\n)(\ndayFraction\n*\n24\n*\n60\n)\n%\n60\n;\ninteger\npercent\n=\n(\ninteger\n)(\ndayFraction\n*\n100\n);\nreturn\n(\nstring\n)\nhours\n+\n\":\"\n+\nllGetSubString\n((\nstring\n)(\n100\n+\nminutes\n),\n1\n,\n2\n)\n+\n\" (\"\n+\n(\nstring\n)\npercent\n+\n\"%)\"\n;\n}\ndefault\n{\nstate_entry\n()\n{\nllSetTimerEvent\n(\n5\n);\n}\ntimer\n()\n{\nfloat\ntimeOfDay\n=\n(\nllGetUnixTime\n()\n+\nllGetDayOffset\n())\n%\nllGetDayLength\n()\n*\n1.0\n/\nllGetDayLength\n();\nllSetText\n(\nprintTimeOfDay\n(\ntimeOfDay\n),\n<\n1\n,\n1\n,\n0\n>\n,\n1\n);\n}\n}"
+  ],
+  "related": [
+    "llGetEnvironment",
+    "llGetDayLength",
+    "llGetDayOffset",
+    "llGetMoonDirection",
+    "llGetMoonRotation",
+    "llGetSunDirection",
+    "llGetSunRotation",
+    "llGetRegionDayLength",
+    "llGetRegionDayOffset",
+    "llGetRegionMoonDirection",
+    "llGetRegionMoonRotation",
+    "llGetRegionSunDirection",
+    "llGetRegionSunRotation"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

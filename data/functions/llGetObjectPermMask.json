@@ -1,0 +1,22 @@
+{
+  "name": "llGetObjectPermMask",
+  "signature": "integer llGetObjectPermMask( integer category )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "if\n((\npermsYouHave\n&\npermsYouWant\n)\n==\npermsYouWant\n)\nllSay\n(\n0\n,\n\"You have the perms you want.\"\n);\nelse\nllSay\n(\n0\n,\n\"You don't have the perms you want.\"\n);",
+    "integer\nownerPerms\n=\nllGetObjectPermMask\n(\nMASK_OWNER\n);\ninteger\ncopyAndModPerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n;\nif\n((\nownerPerms\n&\ncopyAndModPerms\n)\n==\ncopyAndModPerms\n)\nllSay\n(\n0\n,\n\"Owner has copy & modify perms.\"\n);\nelse\nllSay\n(\n0\n,\n\"Owner does not have copy & modify perms.\"\n);",
+    "string\ngetPermsAsReadableString\n(\ninteger\nperm\n)\n{\ninteger\nallPerms\n=\nPERM_ALL\n;\ninteger\nfullPerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n|\nPERM_TRANSFER\n;\ninteger\ncopyModMovePerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n|\nPERM_MOVE\n;\ninteger\ncopyModPerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n;\ninteger\ncopyTransMovePerms\n=\nPERM_COPY\n|\nPERM_TRANSFER\n|\nPERM_MOVE\n;\ninteger\ncopyTransPerms\n=\nPERM_COPY\n|\nPERM_TRANSFER\n;\ninteger\nmodTransMovePerms\n=\nPERM_MODIFY\n|\nPERM_TRANSFER\n|\nPERM_MOVE\n;\ninteger\nmodTransPerms\n=\nPERM_MODIFY\n|\nPERM_TRANSFER\n;\ninteger\ncopyMovePerms\n=\nPERM_COPY\n|\nPERM_MOVE\n;\ninteger\ntransMovePerms\n=\nPERM_TRANSFER\n|\nPERM_MOVE\n;\nstring\noutput\n=\n\" perms: \"\n;\nif\n((\nperm\n&\nallPerms\n)\n==\nallPerms\n)\noutput\n+=\n\"full and move\"\n;\nelse\nif\n((\nperm\n&\nfullPerms\n)\n==\nfullPerms\n)\noutput\n+=\n\"full\"\n;\nelse\nif\n((\nperm\n&\ncopyModMovePerms\n)\n==\ncopyModMovePerms\n)\noutput\n+=\n\"copy & modify & move\"\n;\nelse\nif\n((\nperm\n&\ncopyModPerms\n)\n==\ncopyModPerms\n)\noutput\n+=\n\"copy & modify\"\n;\nelse\nif\n((\nperm\n&\ncopyTransMovePerms\n)\n==\ncopyTransMovePerms\n)\noutput\n+=\n\"copy & transfer & move\"\n;\nelse\nif\n((\nperm\n&\ncopyTransPerms\n)\n==\ncopyTransPerms\n)\noutput\n+=\n\"copy & transfer\"\n;\nelse\nif\n((\nperm\n&\nmodTransMovePerms\n)\n==\nmodTransMovePerms\n)\noutput\n+=\n\"modify & transfer & move\"\n;\nelse\nif\n((\nperm\n&\nmodTransPerms\n)\n==\nmodTransPerms\n)\noutput\n+=\n\"modify & transfer\"\n;\nelse\nif\n((\nperm\n&\ncopyMovePerms\n)\n==\ncopyMovePerms\n)\noutput\n+=\n\"copy & move\"\n;\nelse\nif\n((\nperm\n&\nPERM_COPY\n)\n==\nPERM_COPY\n)\noutput\n+=\n\"copy\"\n;\nelse\nif\n((\nperm\n&\ntransMovePerms\n)\n==\ntransMovePerms\n)\noutput\n+=\n\"transfer & move\"\n;\nelse\nif\n((\nperm\n&\nPERM_TRANSFER\n)\n==\nPERM_TRANSFER\n)\noutput\n+=\n\"transfer\"\n;\nelse\nif\n((\nperm\n&\nPERM_MOVE\n)\n==\nPERM_MOVE\n)\noutput\n+=\n\"move\"\n;\nelse\noutput\n+=\n\"none\"\n;\n//  Remember, items in Second Life must have either\n//  PERM_COPY or PERM_TRANSFER when \"talking about\"\n//  owner perms or perms for next owner.\nreturn\noutput\n;\n}\ndefault\n{\nstate_entry\n()\n{\ninteger\nbasePerms\n=\nllGetObjectPermMask\n(\nMASK_BASE\n);\ninteger\nownerPerms\n=\nllGetObjectPermMask\n(\nMASK_OWNER\n);\ninteger\nnextOwnerPerms\n=\nllGetObjectPermMask\n(\nMASK_NEXT\n);\ninteger\ngroupPerms\n=\nllGetObjectPermMask\n(\nMASK_GROUP\n);\ninteger\neveryonePerms\n=\nllGetObjectPermMask\n(\nMASK_EVERYONE\n);\nllSay\n(\n0\n,\n\"base\"\n+\ngetPermsAsReadableString\n(\nbasePerms\n));\nllSay\n(\n0\n,\n\"owner\"\n+\ngetPermsAsReadableString\n(\nownerPerms\n));\nllSay\n(\n0\n,\n\"next owner\"\n+\ngetPermsAsReadableString\n(\nnextOwnerPerms\n));\nllSay\n(\n0\n,\n\"group\"\n+\ngetPermsAsReadableString\n(\ngroupPerms\n));\nllSay\n(\n0\n,\n\"everyone\"\n+\ngetPermsAsReadableString\n(\neveryonePerms\n));\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryPermMask"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

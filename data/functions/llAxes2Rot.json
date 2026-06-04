@@ -1,0 +1,19 @@
+{
+  "name": "llAxes2Rot",
+  "signature": "rotation llAxes2Rot( vector fwd, vector left, vector up )",
+  "return_type": "rotation",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nvector\ni\n=\n<\n1.0\n,\n0.0\n,\n0.0\n>\n;\nvector\nj\n=\n<\n0.0\n,\n1.0\n,\n0.0\n>\n;\nvector\nk\n=\n<\n0.0\n,\n0.0\n,\n1.0\n>\n;\nrotation\nrot\n=\nllAxes2Rot\n(\nj\n,\n-\ni\n,\nk\n);\nllSay\n(\n0\n,\n(\nstring\n)\n(\nllRot2Euler\n(\nrot\n)\n*\nRAD_TO_DEG\n)\n);\n}\n}",
+    "Object: <-0.00000, 0.00000, 90.00000>"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,31 @@
+{
+  "name": "llGetCameraPos",
+  "signature": "vector llGetCameraPos(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_TRACK_CAMERA , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "Once the PERMISSION_TRACK_CAMERA permission is granted there is no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or the script is reset or deleted.",
+    "Seems to act weird when the camera gets too far from the agent."
+  ],
+  "examples": [
+    "//Camera Follower Script\n//llGetCameraPos & llGetCameraRot Example\n//By Nika Rugani\ninteger\nperm_track\n=\n0x400\n;\nfloat\nsecond_check\n=\n0.1\n;\nvector\nobject_offset\n=\n<\n2\n,\n0\n,\n0\n>\n;\n//Offset of the cameras position where the object will set itself\ninteger\ndie_channel\n=\n0\n;\nstring\ndie_command\n=\n\"/die\"\n;\nquickPosRot\n(\nvector\npos\n,\nrotation\nrot\n)\n{\n//This way you don't have the 0.2 second sleeps from llSetPos and llSetRot\nllSetLinkPrimitiveParamsFast\n(\nLINK_THIS\n,\n[\nPRIM_POSITION\n,\npos\n,\nPRIM_ROTATION\n,\nrot\n]);\n}\ndefault\n{\non_rez\n(\ninteger\na\n)\n{\nllResetScript\n();\n}\nstate_entry\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nperm_track\n);\n}\nrun_time_permissions\n(\ninteger\npermission\n)\n{\nif\n(\npermission\n==\nperm_track\n)\n{\nllSetTimerEvent\n(\nsecond_check\n);\nllListen\n(\ndie_channel\n,\n\"\"\n,\nllGetOwner\n(),\n\"\"\n);\n}\nelse\n{\n//llResetScript(); //Remove comment to loop the process of requesting permissions if user deny's permission\n//llDie(); //Remove comment to kill the object if user deny's it\n}\n}\nlisten\n(\ninteger\nchannel\n,\nstring\nname\n,\nkey\nid\n,\nstring\nstr\n)\n{\nstr\n=\nllToLower\n(\nstr\n);\nif\n(\nstr\n==\ndie_command\n)\n{\nllDie\n();\n}\n}\ntimer\n()\n{\nvector\nc_pos\n=\nllGetCameraPos\n();\n//Get Users Camera Position\nrotation\nc_rot\n=\nllGetCameraRot\n();\n//Get Users Camera Rotation\nc_pos\n=\n(\nc_pos\n+\nobject_offset\n*\nc_rot\n);\n//Apply the offset to the position\nquickPosRot\n(\nc_pos\n,\nc_rot\n);\n//EXECUTE ORDER!\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llGetCameraRot",
+    "llSetCameraParams",
+    "llSetCameraAtOffset",
+    "llSetCameraEyeOffset"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

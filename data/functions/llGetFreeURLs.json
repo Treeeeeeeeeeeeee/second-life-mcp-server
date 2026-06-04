@@ -1,0 +1,27 @@
+{
+  "name": "llGetFreeURLs",
+  "signature": "integer llGetFreeURLs(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If called from an attachment, there is no way to get the number of free URLs in the region; it will always return the URL count remaining for the agent."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\ninteger\nnumberOfFreeURLs\n=\nllGetFreeURLs\n();\nif\n(\nnumberOfFreeURLs\n)\n{\nllSay\n(\n0\n,\n\"There are \"\n+\n(\nstring\n)\nnumberOfFreeURLs\n+\n\" available HTTP-In URLs left in this region.\"\n);\n}\nelse\n{\nllSay\n(\n0\n,\n\"WARNING: There are no HTTP-In URLs available anymore.\"\n);\n}\n}\n}",
+    "// WARNING:\n//\n//      This script is only for proof-of-concept (demo purposes).\n//      DO NOT use it if you don't have the sim owners and/or\n//      estate managers OK to test this script.\n//      This script can possibly block HTTP communication from and to the sim.\n//      ...bringing down all networked vendors and/or similar machines.\n//\n//      This script allocates all available URLs.\n//      Deleting the script and/or derezzing the object containing the script,\n//      will release all previously taken URLs.\ndefault\n{\nstate_entry\n()\n{\nllRequestURL\n();\n}\nhttp_request\n(\nkey\nrequest_id\n,\nstring\nmethod\n,\nstring\nbody\n)\n{\nif\n(\nmethod\n==\nURL_REQUEST_DENIED\n)\n{\nllSetText\n(\n\"No free URLs!\"\n,\n<\n1.0\n,\n0.0\n,\n0.0\n>\n,\n1.0\n);\n}\nelse\nif\n(\nmethod\n==\nURL_REQUEST_GRANTED\n)\n{\nllSetText\n((\nstring\n)\nllGetFreeURLs\n()\n+\n\" URLs left\n\\n\n\"\n+\nbody\n,\n<\n1.0\n,\n1.0\n,\n1.0\n>\n,\n1.0\n);\nllRequestURL\n();\n}\nelse\nif\n(\nmethod\n==\n\"GET\"\n)\n{\nllHTTPResponse\n(\nid\n,\n200\n,\n\"Hello there!\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llRequestURL",
+    "llRequestSecureURL",
+    "llReleaseURL",
+    "llHTTPResponse",
+    "llGetHTTPHeader"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,27 @@
+{
+  "name": "llClearLinkMedia",
+  "signature": "integer llClearLinkMedia( integer link, integer face )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 0.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "link needs to be either an actual link number or a link constants that equate to a single prim, such as LINK_ROOT and LINK_THIS . LINK_SET , LINK_ALL_CHILDREN and LINK_ALL_OTHERS will not work.",
+    "LINK_SET , LINK_ALL_CHILDREN and LINK_ALL_OTHERS will not work.",
+    "The function silently fails if its face value indicates a face that does not exist."
+  ],
+  "examples": [
+    "//  when dropping this script into an object\n//  it will remove all set media-on-a-prim\n//  on all sides of every prim and then\n//  the script will delete itself\ninteger\nGetPrimCount\n()\n{\nif\n(\nllGetAttached\n())\nreturn\nllGetNumberOfPrims\n();\nreturn\nllGetObjectPrimCount\n(\nllGetKey\n());\n}\npublish_returned_status_flag\n(\ninteger\ninputLink\n,\ninteger\ninputFace\n,\ninteger\ninputStatus\n)\n{\n/* if (inputInteger == 0) */\nstring\noutputStatus\n=\n\"STATUS_OK\"\n;\nif\n(\ninputStatus\n==\n1000\n)\noutputStatus\n=\n\"STATUS_MALFORMED_PARAMS\"\n;\nelse\nif\n(\ninputStatus\n==\n1001\n)\noutputStatus\n=\n\"STATUS_TYPE_MISMATCH\"\n;\nelse\nif\n(\ninputStatus\n==\n1002\n)\noutputStatus\n=\n\"STATUS_BOUNDS_ERROR\"\n;\nelse\nif\n(\ninputStatus\n==\n1003\n)\noutputStatus\n=\n\"STATUS_NOT_FOUND\"\n;\nelse\nif\n(\ninputStatus\n==\n1004\n)\noutputStatus\n=\n\"STATUS_NOT_SUPPORTED\"\n;\nelse\nif\n(\ninputStatus\n==\n1999\n)\noutputStatus\n=\n\"STATUS_INTERNAL_ERROR\"\n;\nelse\nif\n(\ninputStatus\n==\n2001\n)\noutputStatus\n=\n\"STATUS_WHITELIST_FAILED\"\n;\n// PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"llClearLinkMedia(link \"\n+\n(\nstring\n)\ninputLink\n+\n\", face \"\n+\n(\nstring\n)\ninputFace\n+\n\") = \"\n+\noutputStatus\n+\n\";\"\n);\n}\ndefault\n{\nstate_entry\n()\n{\ninteger\nnumOfPrims\n=\nGetPrimCount\n();\ninteger\nnumOfSides\n;\ninteger\nlink\n;\ninteger\nface\n;\nif\n(\n1\n<\nnumOfPrims\n)\nlink\n=\n1\n;\ndo\n{\nnumOfSides\n=\nllGetLinkNumberOfSides\n(\nlink\n);\nface\n=\n0\n;\ndo\n{\ninteger\nclearLinkMediaSuccessFlag\n=\nllClearLinkMedia\n(\nlink\n,\nface\n);\npublish_returned_status_flag\n(\nlink\n,\nface\n,\nclearLinkMediaSuccessFlag\n);\n++\nface\n;\n}\nwhile\n(\nface\n<\nnumOfSides\n);\nif\n(\nnumOfPrims\n==\n1\n)\njump\ncontinue\n;\n++\nlink\n;\n}\nwhile\n(\nlink\n<=\nnumOfPrims\n);\n@\ncontinue\n;\nstring\nthisScript\n=\nllGetScriptName\n();\nllRemoveInventory\n(\nthisScript\n);\n}\n}"
+  ],
+  "related": [
+    "llGetLinkNumber",
+    "llClearPrimMedia",
+    "llSetLinkMedia",
+    "llGetLinkMedia"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

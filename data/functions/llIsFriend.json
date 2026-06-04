@@ -1,0 +1,23 @@
+{
+  "name": "llIsFriend",
+  "signature": "integer llIsFriend( key agent_id )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "You are not your own friend."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllSensorRepeat\n(\n\"\"\n,\nNULL_KEY\n,\nAGENT\n,\n95\n,\nPI\n,\n10\n);\n}\nsensor\n(\ninteger\ncount\n)\n{\ninteger\nindex\n;\nfor\n(\nindex\n=\n0\n;\nindex\n<\ncount\n;\n++\nindex\n)\n{\nstring\nis_is_not\n=\n\" is NOT \"\n;\nif\n(\nllIsFriend\n(\nllDetectedKey\n(\nindex\n)))\n{\nis_is_not\n=\n\" is \"\n;\n}\nllSay\n(\n0\n,\nllDetectedName\n(\nindex\n)\n+\nis_is_not\n+\n\"a friend.\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llDetectedGroup",
+    "llSameGroup"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

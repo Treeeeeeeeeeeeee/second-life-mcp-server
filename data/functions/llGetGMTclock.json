@@ -1,0 +1,21 @@
+{
+  "name": "llGetGMTclock",
+  "signature": "float llGetGMTclock(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "//--// GMT function with local offsets in 12hr format //--//\ninteger\ngIntMinute\n=\n60\n;\n//-- 1 minute in seconds\ninteger\ngIntHour\n=\n3600\n;\n//-- 1 hour in seconds\ninteger\ngInt12Hr\n=\n43200\n;\n//-- 12hrs in seconds\ninteger\ngIntDay\n=\n86400\n;\n//-- 1 day in seconds\nstring\nfStrGMTwOffset\n(\ninteger\nvIntLocalOffset\n){\n//-- get the correct time in seconds for the given offset\ninteger\nvIntBaseTime\n=\n((\ninteger\n)\nllGetGMTclock\n()\n+\ngIntDay\n+\nvIntLocalOffset\n*\ngIntHour\n)\n%\ngIntDay\n;\nstring\nvStrReturn\n;\n//-- store morning or night and reduce to 12hour format if needed\nif\n(\nvIntBaseTime\n<\ngInt12Hr\n){\nvStrReturn\n=\n\" AM\"\n;\n}\nelse\n{\nvStrReturn\n=\n\" PM\"\n;\nvIntBaseTime\n=\nvIntBaseTime\n%\ngInt12Hr\n;\n}\n//-- get and format minutes\ninteger\nvIntMinutes\n=\n(\nvIntBaseTime\n%\ngIntHour\n)\n/\ngIntMinute\n;\nvStrReturn\n=\n(\nstring\n)\nvIntMinutes\n+\nvStrReturn\n;\nif\n(\n10\n>\nvIntMinutes\n){\nvStrReturn\n=\n\"0\"\n+\nvStrReturn\n;\n}\n//-- add in the correct hour, force 0 to 12\nif\n(\nvIntBaseTime\n<\ngIntHour\n){\nvStrReturn\n=\n\"12:\"\n+\nvStrReturn\n;\n}\nelse\n{\nvStrReturn\n=\n(\nstring\n)(\nvIntBaseTime\n/\ngIntHour\n)\n+\n\":\"\n+\nvStrReturn\n;\n}\nreturn\nvStrReturn\n;\n}\ndefault\n{\ntouch_start\n(\ninteger\nvIntTouched\n){\n//-- '-8' is california time, no adjustment for DST\nllSay\n(\n0\n,\n\"The time is now \"\n+\nfStrGMTwOffset\n(\n-\n8\n)\n);\n}\n}",
+    "// Gets the number of milliseconds since midnight UTC.\ninteger\nGetGMTmsclock\n()\n{\nstring\nstamp\n=\nllGetTimestamp\n();\nreturn\n(\ninteger\n)\nllGetSubString\n(\nstamp\n,\n11\n,\n12\n)\n*\n3600000\n+\n(\ninteger\n)\nllGetSubString\n(\nstamp\n,\n14\n,\n15\n)\n*\n60000\n+\nllRound\n((\nfloat\n)\nllGetSubString\n(\nstamp\n,\n17\n,\n-\n2\n)\n*\n1000.0\n);\n}"
+  ],
+  "related": [
+    "llGetWallclock"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

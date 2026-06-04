@@ -1,0 +1,31 @@
+{
+  "name": "llGetAnimationOverride",
+  "signature": "string llGetAnimationOverride( string anim_state )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks both the permissions PERMISSION_OVERRIDE_ANIMATIONS and PERMISSION_TRIGGER_ANIMATION , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "Once the PERMISSION_OVERRIDE_ANIMATIONS permission is granted there may be no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or if the script is reset. Furthermore even if the script loses the permission (or is derezzed), it will not reset/revert the overridable animations. For Viewer 3.6.7 and up: If the object is not attached to the permission granter but is in the same region, then Me>Movement>Stop Animating Me will revoke both PERMISSION_TRIGGER_ANIMATION and PERMISSION_OVERRIDE_ANIMATIONS (other permissions will remain). In this case, overrides are reset.",
+    "For Viewer 3.6.7 and up: If the object is not attached to the permission granter but is in the same region, then Me>Movement>Stop Animating Me will revoke both PERMISSION_TRIGGER_ANIMATION and PERMISSION_OVERRIDE_ANIMATIONS (other permissions will remain). In this case, overrides are reset.",
+    "Once the PERMISSION_TRIGGER_ANIMATION permission is granted there may be no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or if the script is reset. For Viewer 3.6.7 and up: If the object is not attached to the permission granter but is in the same region, then Me>Movement>Stop Animating Me will revoke both PERMISSION_TRIGGER_ANIMATION and PERMISSION_OVERRIDE_ANIMATIONS (other permissions will remain).",
+    "For Viewer 3.6.7 and up: If the object is not attached to the permission granter but is in the same region, then Me>Movement>Stop Animating Me will revoke both PERMISSION_TRIGGER_ANIMATION and PERMISSION_OVERRIDE_ANIMATIONS (other permissions will remain)."
+  ],
+  "examples": [
+    "//    llGetAnimationOverride Example\n//    A Script to check the animation Stats on\n//  all available overridable animations.\n//    By Kanashio Koroshi and Pedro Oval\ndefault\n{\nstate_entry\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_OVERRIDE_ANIMATIONS\n);\n}\nrun_time_permissions\n(\ninteger\npermissions\n)\n{\nif\n(\npermissions\n&\nPERMISSION_OVERRIDE_ANIMATIONS\n)\n{\nllOwnerSay\n(\n\"Listing Overridden Animations\"\n);\nllOwnerSay\n(\n\"Crouching: \"\n+\nllGetAnimationOverride\n(\n\"Crouching\"\n));\nllOwnerSay\n(\n\"CrouchWalking: \"\n+\nllGetAnimationOverride\n(\n\"CrouchWalking\"\n));\nllOwnerSay\n(\n\"Falling Down: \"\n+\nllGetAnimationOverride\n(\n\"Falling Down\"\n));\nllOwnerSay\n(\n\"Flying: \"\n+\nllGetAnimationOverride\n(\n\"Flying\"\n));\nllOwnerSay\n(\n\"FlyingSlow: \"\n+\nllGetAnimationOverride\n(\n\"FlyingSlow\"\n));\nllOwnerSay\n(\n\"Hovering: \"\n+\nllGetAnimationOverride\n(\n\"Hovering\"\n));\nllOwnerSay\n(\n\"Hovering Down: \"\n+\nllGetAnimationOverride\n(\n\"Hovering Down\"\n));\nllOwnerSay\n(\n\"Hovering Up: \"\n+\nllGetAnimationOverride\n(\n\"Hovering Up\"\n));\nllOwnerSay\n(\n\"Jumping: \"\n+\nllGetAnimationOverride\n(\n\"Jumping\"\n));\nllOwnerSay\n(\n\"Landing: \"\n+\nllGetAnimationOverride\n(\n\"Landing\"\n));\nllOwnerSay\n(\n\"PreJumping: \"\n+\nllGetAnimationOverride\n(\n\"PreJumping\"\n));\nllOwnerSay\n(\n\"Running: \"\n+\nllGetAnimationOverride\n(\n\"Running\"\n));\nllOwnerSay\n(\n\"Sitting: \"\n+\nllGetAnimationOverride\n(\n\"Sitting\"\n));\nllOwnerSay\n(\n\"Sitting on Ground: \"\n+\nllGetAnimationOverride\n(\n\"Sitting on Ground\"\n));\nllOwnerSay\n(\n\"Standing: \"\n+\nllGetAnimationOverride\n(\n\"Standing\"\n));\nllOwnerSay\n(\n\"Standing Up: \"\n+\nllGetAnimationOverride\n(\n\"Standing Up\"\n));\nllOwnerSay\n(\n\"Striding: \"\n+\nllGetAnimationOverride\n(\n\"Striding\"\n));\nllOwnerSay\n(\n\"Soft Landing: \"\n+\nllGetAnimationOverride\n(\n\"Soft Landing\"\n));\nllOwnerSay\n(\n\"Taking Off: \"\n+\nllGetAnimationOverride\n(\n\"Taking Off\"\n));\nllOwnerSay\n(\n\"Turning Left: \"\n+\nllGetAnimationOverride\n(\n\"Turning Left\"\n));\nllOwnerSay\n(\n\"Turning Right: \"\n+\nllGetAnimationOverride\n(\n\"Turning Right\"\n));\nllOwnerSay\n(\n\"Walking: \"\n+\nllGetAnimationOverride\n(\n\"Walking\"\n));\n}\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llSetAnimationOverride",
+    "llResetAnimationOverride"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,18 @@
+{
+  "name": "llGetRegionCorner",
+  "signature": "vector llGetRegionCorner(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "// Calculates your position relative to <0,0,0> of 'Da Boom' in meters when you touch it\nvector\nvecrel\n;\n//a sum of llgetpos and llgetregioncorner (and another vector). Saving time doing vector math.\ndefault\n{\nstate_entry\n()\n{\nllSetText\n(\n\"Touch me to get your position\"\n,\n<\n1.0\n,\n1.0\n,\n1.0\n>\n,\n1.0\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nvecrel\n=\nllGetRegionCorner\n()\n+\nllDetectedPos\n(\n0\n);\nllWhisper\n(\n0\n,\n\"llGetRegionCorner() is:\"\n+\n(\nstring\n)\nvecrel\n);\n//for debugging before vector addition\nvecrel\n-=\n<\n256000.0\n,\n256000.0\n,\n0.0\n>\n;\n//Da Boom's region corner is at <256000.0, 256000.0, 0.0>\nllWhisper\n(\n0\n,\n\"Position relative to <0,0,0> of 'Da Boom': \"\n+\n(\nstring\n)\nllRound\n(\nvecrel\n.\nx\n)\n+\n\", \"\n+\n(\nstring\n)\nllRound\n(\nvecrel\n.\ny\n)\n+\n\", \"\n+\n(\nstring\n)\nllRound\n(\nvecrel\n.\nz\n)\n+\n\".\"\n);\nllWhisper\n(\n0\n,\n\"Position relative to <0,0,0> of 'Da Boom':\"\n+\n(\nstring\n)\nvecrel\n);\n//faster but unformatted output\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,21 @@
+{
+  "name": "llGetPermissionsKey",
+  "signature": "key llGetPermissionsKey(  )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// 1. rez a cube\n// 2. create a new script and paste this\n// 3. save script\n// 4. right-click the prim and choose attach\n// 5. touch the prim\nannounce_permissions_key\n()\n{\nkey\npermissionsKey\n=\nllGetPermissionsKey\n();\nllSay\n(\n0\n,\n\"key llGetPermissionsKey() = '\"\n+\n(\nstring\n)\npermissionsKey\n+\n\"'\"\n);\n}\ndefault\n{\nstate_entry\n()\n{\nannounce_permissions_key\n();\nkey\nowner\n=\nllGetOwner\n();\nllRequestPermissions\n(\nowner\n,\nPERMISSION_ATTACH\n);\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nkey\nid\n=\nllDetectedKey\n(\n0\n);\nkey\nowner\n=\nllGetOwner\n();\nkey\npermissionsKey\n=\nllGetPermissionsKey\n();\nif\n(\nid\n==\nowner\n)\n{\nif\n(\npermissionsKey\n==\nowner\n)\nllDetachFromAvatar\n();\nelse\nllSay\n(\n0\n,\n\"Can't detach from you, you have not granted ATTACH perms.\"\n);\n}\nelse\nllSay\n(\n0\n,\n\"Sorry, you're not the owner!\"\n);\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\nif\n(\nperm\n&\nPERMISSION_ATTACH\n)\nannounce_permissions_key\n();\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llRequestPermissions"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

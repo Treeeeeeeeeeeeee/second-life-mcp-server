@@ -1,0 +1,21 @@
+{
+  "name": "llGetParcelFlags",
+  "signature": "integer llGetParcelFlags( vector pos )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "if\n(\n!\n(\nllGetParcelFlags\n(\nllGetPos\n())\n&\nPARCEL_FLAG_ALLOW_FLY\n))\nllSay\n(\n0\n,\n\"You are not allowed to fly here!, Sorry!.\"\n);\n// Answers TRUE if rezzing is permitted, FALSE if not.\n// Rezzing can fail even if this returns TRUE due to parcel full or server errors.\n// Rezzing will always fail if this returns FALSE\ninteger\ncanRezAt\n(\nvector\npos\n)\n{\ninteger\nparcelFlags\n=\nllGetParcelFlags\n(\npos\n);\nlist\nparcelDetails\n=\nllGetParcelDetails\n(\npos\n,\n[\nPARCEL_DETAILS_OWNER\n,\nPARCEL_DETAILS_GROUP\n]);\nkey\nparcelOwner\n=\nllList2Key\n(\nparcelDetails\n,\n0\n);\nkey\nparcelGroup\n=\nllList2Key\n(\nparcelDetails\n,\n1\n);\nif\n(\nparcelFlags\n&\nPARCEL_FLAG_ALLOW_CREATE_OBJECTS\n)\nreturn\nTRUE\n;\nif\n(\nparcelOwner\n==\nllGetOwner\n())\nreturn\nTRUE\n;\nif\n(\n!\nllSameGroup\n(\nparcelGroup\n))\nreturn\nFALSE\n;\nif\n(\nparcelFlags\n&\nPARCEL_FLAG_ALLOW_CREATE_GROUP_OBJECTS\n)\nreturn\nTRUE\n;\nreturn\nFALSE\n;\n}\n// Answers TRUE if running scripts is permitted, FALSE if not\ninteger\ncanRunScriptsAt\n(\nvector\npos\n)\n{\ninteger\nparcelFlags\n=\nllGetParcelFlags\n(\npos\n);\nlist\nparcelDetails\n=\nllGetParcelDetails\n(\npos\n,\n[\nPARCEL_DETAILS_OWNER\n,\nPARCEL_DETAILS_GROUP\n]);\nkey\nparcelOwner\n=\nllList2Key\n(\nparcelDetails\n,\n0\n);\nkey\nparcelGroup\n=\nllList2Key\n(\nparcelDetails\n,\n1\n);\nif\n(\nparcelFlags\n&\nPARCEL_FLAG_ALLOW_SCRIPTS\n)\nreturn\nTRUE\n;\nif\n(\nparcelOwner\n==\nllGetOwner\n())\nreturn\nTRUE\n;\nif\n(\n!\nllSameGroup\n(\nparcelGroup\n))\nreturn\nFALSE\n;\nif\n(\nparcelFlags\n&\nPARCEL_FLAG_ALLOW_GROUP_SCRIPTS\n)\nreturn\nTRUE\n;\nreturn\nFALSE\n;\n}"
+  ],
+  "related": [
+    "llGetParcelDetails",
+    "llGetRegionFlags"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

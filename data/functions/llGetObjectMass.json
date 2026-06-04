@@ -1,0 +1,23 @@
+{
+  "name": "llGetObjectMass",
+  "signature": "float llGetObjectMass( key id )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Returns zero if id is not found in the region.",
+    "id can be any prim in the object."
+  ],
+  "examples": [
+    "default\n{\ntouch\n(\ninteger\nn\n)\n{\nllSay\n(\n0\n,\nllDetectedName\n(\n0\n)\n+\n\" your mass is \"\n+\n(\nstring\n)\nllGetObjectMass\n(\nllDetectedKey\n(\n0\n))\n+\n\" lindogram.\"\n);\n}\n}\n//Anylyn Hax 15:02, 28 July 2007 (PDT)"
+  ],
+  "related": [
+    "llGetMass"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

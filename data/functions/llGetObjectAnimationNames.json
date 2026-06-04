@@ -1,0 +1,21 @@
+{
+  "name": "llGetObjectAnimationNames",
+  "signature": "list llGetObjectAnimationNames(  )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "stop_all_animations\n()\n{\nlist\ncurr_anims\n=\nllGetObjectAnimationNames\n();\nllSay\n(\n0\n,\n\"stopping all, curr_anims are \"\n+\n(\nstring\n)\ncurr_anims\n);\ninteger\nlength\n=\nllGetListLength\n(\ncurr_anims\n);\ninteger\nindex\n=\n0\n;\nwhile\n(\nindex\n<\nlength\n)\n{\nstring\nanim\n=\nllList2String\n(\ncurr_anims\n,\nindex\n);\nllSay\n(\n0\n,\n\"Stopping \"\n+\nanim\n);\nllStopObjectAnimation\n(\nanim\n);\n// This check isn't really needed, just included to demonstrate is_animation_running()\nif\n(\nis_animation_running\n(\nanim\n))\n{\nllSay\n(\n0\n,\n\"ERROR - failed to stop \"\n+\nanim\n+\n\"!\"\n);\n}\n++\nindex\n;\n}\n}\ninteger\nis_animation_running\n(\nstring\nanim\n)\n{\nlist\ncurr_anims\n=\nllGetObjectAnimationNames\n();\nreturn\n~\nllListFindList\n(\ncurr_anims\n,\n(\nlist\n)\nanim\n);\n}\ndefault\n{\nstate_entry\n()\n{\nllSay\n(\n0\n,\n\"Hello, Avatar!\"\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\n// Assumes there is an animation with this name in the current object.\nstring\nanim_name\n=\n\"MyFancyWalk\"\n;\nllSay\n(\n0\n,\n\"Touched.\"\n);\nllStartObjectAnimation\n(\nanim_name\n);\nif\n(\nis_animation_running\n(\nanim_name\n))\n{\nllSay\n(\n0\n,\nanim_name\n+\n\" is playing, which is good\"\n);\n}\nllSleep\n(\n5.0\n);\nstop_all_animations\n();\nif\n(\nis_animation_running\n(\nanim_name\n))\n{\nllSay\n(\n0\n,\nanim_name\n+\n\" is playing, which is an error!\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llStartObjectAnimation",
+    "llStopObjectAnimation"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

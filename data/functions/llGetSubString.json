@@ -1,0 +1,26 @@
+{
+  "name": "llGetSubString",
+  "signature": "string llGetSubString( string src, integer start, integer end )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If either start or end are out of bounds the script continues to execute without an error message.",
+    "start & end will form an exclusion range when start is past end (Approximately: start > end )."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nstring\nword\n=\n\"Hello!\"\n;\nllOwnerSay\n(\nllGetSubString\n(\nword\n,\n0\n,\n0\n));\n// Object: H\nllOwnerSay\n(\nllGetSubString\n(\nword\n,\n-\n1\n,\n-\n1\n));\n// Object:\u00a0!\nllOwnerSay\n(\nllGetSubString\n(\nword\n,\n2\n,\n3\n));\n// Object: ll\n}\n}",
+    "// display SL time using a script without an 'if'\ndefault\n{\nstate_entry\n()\n{\n// synchronise our clock to a fraction of a second\nfloat\nfnow\n=\nllGetWallclock\n();\nwhile\n(\nfnow\n==\nllGetWallclock\n()\n)\n;\n// await a change in seconds\nllSetTimerEvent\n(\n1.0\n);\n}\ntimer\n()\n{\ninteger\nseconds\n=\n(\ninteger\n)\nllGetWallclock\n();\ninteger\nminutes\n=\nseconds\n/\n60\n;\nseconds\n=\nseconds\n%\n60\n;\ninteger\nhours\n=\nminutes\n/\n60\n;\nminutes\n=\nminutes\n%\n60\n;\nstring\nstringHours\n=\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nhours\n,\n-\n2\n,\n-\n1\n);\nstring\nstringMinutes\n=\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nminutes\n,\n-\n2\n,\n-\n1\n);\nstring\nstringSeconds\n=\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nseconds\n,\n-\n2\n,\n-\n1\n);\nstring\ntime\n=\nstringHours\n+\n\":\"\n+\nstringMinutes\n+\n\":\"\n+\nstringSeconds\n;\nllSetText\n(\ntime\n,\n<\n1.0\n,\n1.0\n,\n1.0\n>\n,\n1.0\n);\n}\n}"
+  ],
+  "related": [
+    "llReplaceSubString",
+    "llDeleteSubString",
+    "llInsertString"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

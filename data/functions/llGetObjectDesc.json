@@ -1,0 +1,29 @@
+{
+  "name": "llGetObjectDesc",
+  "signature": "string llGetObjectDesc(  )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The prim description is limited to 127 bytes ; any string longer then that will be truncated. This truncation does not always happen when the attribute is set or read.",
+    "The prim description may only contain printable ASCII characters (code points 32-126), except the pipe character '|', which is not permitted for historical reasons. [1] All other characters will be replaced with one '?' character per illegal UTF-8 byte.",
+    "Note that when people have \"Hover Tips on All Objects\" selected in the viewer's \"View\" menu, they'll see the object description pop-up for any object under their mouse pointer. For that reason, it is good practice to only set human-friendly information in the description, e.g. keys and such.",
+    "When an attached object is detached, changes made by script to the name and description (of the root prim) of the attachment will be lost. While the object is attached the name and description can be changed but it will not be reflected in inventory. This caveat does not apply to child prims. Important: This function does not get the description of the object's rootprim, but the description of the prim containing the script. Please use llList2String ( llGetLinkPrimitiveParams ( LINK_ROOT , [ PRIM_DESC ]), 0); instead."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\n//  PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"This prim's description: \"\n+\nllGetObjectDesc\n()\n);\n}\n}",
+    "default\n{\nstate_entry\n()\n{\n//  PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Rootprim's description: \"\n+\nllList2String\n(\nllGetLinkPrimitiveParams\n(\nLINK_ROOT\n,\n[\nPRIM_DESC\n]),\n0\n));\n}\n}"
+  ],
+  "related": [
+    "llSetObjectDesc",
+    "llGetObjectName",
+    "llSetObjectName",
+    "llGetObjectDetails"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

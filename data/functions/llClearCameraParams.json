@@ -1,0 +1,27 @@
+{
+  "name": "llClearCameraParams",
+  "signature": "void llClearCameraParams(  )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_CONTROL_CAMERA , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "The PERMISSION_CONTROL_CAMERA permission is automatically revoked when the avatar stands up from or detaches the object, and any scripted camera parameters are automatically cleared."
+  ],
+  "examples": [
+    "integer\ngEnabled\n;\naskForPermissions\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_CONTROL_CAMERA\n);\n}\ndefault\n{\non_rez\n(\ninteger\nsp\n)\n{\nllResetScript\n();\n}\nstate_entry\n()\n{\naskForPermissions\n();\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nif\n(\nllDetectedKey\n(\n0\n)\n!=\nllGetOwner\n())\n{\nreturn\n;\n}\nelse\nif\n(\n!\nllGetPermissions\n()\n&\nPERMISSION_CONTROL_CAMERA\n)\n{\nllOwnerSay\n(\n\"I need permissions to control your camera.\"\n);\naskForPermissions\n();\nreturn\n;\n}\ngEnabled\n=\n!\ngEnabled\n;\nif\n(\ngEnabled\n)\n{\nllOwnerSay\n(\n\"Enabled.\"\n);\nllSetCameraParams\n([\nCAMERA_ACTIVE\n,\n1\n,\nCAMERA_DISTANCE\n,\n50.0\n]);\n}\nelse\n{\nllOwnerSay\n(\n\"Disabled.\"\n);\nllClearCameraParams\n();\n}\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llSetCameraParams"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

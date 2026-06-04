@@ -162,9 +162,10 @@ Before presenting code to the user:
 | `reserved_words` | LSL type names or keywords used as variable identifiers |
 | `nonexistent_functions` | Hallucinated function names with no LSL equivalent |
 | `unsupported_syntax` | Syntax valid in other languages but a compile error in LSL |
-| `scoping` | Global variable assumptions or state scoping errors |
+| `scoping` | Permission/access scope issues that silently block operations |
 | `type_coercion` | Implicit casting that LSL does not perform |
 | `state_behavior` | Unexpected behavior around state changes |
+| `performance` | Functions with hidden sleeps or inefficient patterns |
 
 ---
 
@@ -246,6 +247,7 @@ IDs are assigned automatically by `add_pitfall.py` based on category:
 | `scoping` | `scope` | `scope_001` |
 | `type_coercion` | `type` | `type_001` |
 | `state_behavior` | `state` | `state_001` |
+| `performance` | `perf` | `perf_001` |
 
 ---
 
@@ -253,10 +255,14 @@ IDs are assigned automatically by `add_pitfall.py` based on category:
 
 | ID | Category | Issue | Source |
 |----|----------|-------|--------|
+| `type_001` | `type_coercion` | Boolean NOT `!` does not work on strings | claude-code |
+| `state_001` | `state_behavior` | Cached owner key not updated after ownership transfer | claude-code |
 | `lang_001` | `reserved_words` | `key` used as variable name | kiro |
 | `func_001` | `nonexistent_functions` | `llStringReplace` does not exist | kiro |
-| `syn_001` | `unsupported_syntax` | Ternary operator not supported | kiro, claude-code |
-| `syn_002` | `unsupported_syntax` | Switch statements not supported | kiro, claude-code |
+| `syn_001` | `unsupported_syntax` | Ternary operator not supported | both |
+| `syn_002` | `unsupported_syntax` | Switch statements not supported | both |
+| `scope_001` | `scoping` | Transfer-only permissions silently prevent script edits | kiro |
+| `perf_001` | `state_behavior` | `llSetPrimitiveParams` has forced 0.2s sleep; use `llSetLinkPrimitiveParamsFast` | both |
 
 ---
 

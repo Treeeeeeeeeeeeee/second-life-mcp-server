@@ -1,0 +1,31 @@
+{
+  "name": "llApplyImpulse",
+  "signature": "void llApplyImpulse( vector momentum, integer local )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Only works in physics-enabled objects.",
+    "Sets an initial momentum on the object applied to the center of Mass . Momentum is the mass*velocity needed to get an initial movement of velocity if the object is not affected by other forces ( such as gravity )",
+    "The magnitude of momentum may be scaled back by the object's available energy. For heavy objects , the cap of momentum will be momentum = 20000 . ( and not 20 as told previously ). For fast objects , the velocity will be capped to 202 meters/second ( and so the momentum will reflect this cap )"
+  ],
+  "examples": [
+    "//This script will apply an impulse to reach a target velocity value, regardless of object mass.\nvector\nstart\n;\nrotation\nstartRot\n;\nfloat\nVelocity\n=\n13.0\n;\n//meters / second.\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nllSay\n(\n0\n,\n\"Launching!\"\n);\nstart\n=\nllGetPos\n();\nstartRot\n=\nllGetRot\n();\nllSetStatus\n(\nSTATUS_PHYSICS\n,\nTRUE\n);\n// Make sure prim has physics enabled\n//vector targetVelo = <0,0,Velocity>*llGetMassMKS(); //Factor object mass into velocity calculation. Kg*m/s\n//vector adjVelo = targetVelo/100; //Convert targetVelo back to Lindograms (Lg), as momentum uses Lg*m/s and not Kg*m/s. (Without this, the object will ping off at 100* the speed! llGetVel will also report that instead of having an initial velocity of ~13 m/s, it will have an initial velocity of ~113 m/s).\nvector\nadjVelo\n=\n<\n0\n,\n0\n,\nVelocity\n>*\nllGetMass\n();\n//Factor object mass (in Lindograms) into velocity calc. Lg*m/s. This replaces the above calculation.\nllApplyImpulse\n(\nadjVelo\n,\nTRUE\n);\nllSetTimerEvent\n(\n0.1\n);\n}\nland_collision_start\n(\nvector\nstart\n)\n{\nllSetLinkPrimitiveParamsFast\n(\nLINK_ROOT\n,[\nPRIM_PHYSICS\n,\nFALSE\n,\nPRIM_POSITION\n,\nstart\n,\nPRIM_ROTATION\n,\nstartRot\n]);\nllSetTimerEvent\n(\n0\n);\n}\ntimer\n()\n{\nllOwnerSay\n((\nstring\n)\nllGetVel\n());\n//Report velocity value back to owner.\n}\n}\n//Jenna Huntsman",
+    "//  Rez an object, and drop this script in it.\n//  This will launch it at the owner.\ndefault\n{\nstate_entry\n()\n{\nkey\nownerKey\n=\nllGetOwner\n();\nvector\nownerPosition\n=\nllList2Vector\n(\nllGetObjectDetails\n(\nownerKey\n,\n[\nOBJECT_POS\n]),\n0\n);\n//  if the owner is not in the sim, stop fooling around\nif\n(\nllGetAgentSize\n(\nownerKey\n)\n==\nZERO_VECTOR\n)\nreturn\n;\n//  else\nllSetStatus\n(\nSTATUS_PHYSICS\n,\nTRUE\n);\nvector\nobjectPosition\n=\nllGetPos\n();\nvector\ndirection\n=\nllVecNorm\n(\nownerPosition\n-\nobjectPosition\n);\nllApplyImpulse\n(\ndirection\n*\nllGetMass\n(),\n0\n);\n}\n}",
+    "vector\ngHome\n;\ninteger\ngHit\n;\ndefault\n{\ncollision_start\n(\ninteger\nnum\n)\n{\nif\n(\n!\ngHit\n)\n{\nllSetTimerEvent\n(\n15.0\n);\ngHome\n=\nllGetPos\n();\ngHit\n=\nTRUE\n;\n}\nllSetStatus\n(\nSTATUS_PHYSICS\n,\nTRUE\n);\nllTriggerSound\n(\n\"b90ed62a-2737-b911-bb53-6b9228bbc933\"\n,\n1.0\n);\nllApplyImpulse\n(\nllGetMass\n()\n*<\n0\n,\n0\n,\n5.0\n>\n,\nTRUE\n);\nllApplyRotationalImpulse\n(\nllGetMass\n()\n*<\nllFrand\n(\n1.0\n),\nllFrand\n(\n1.0\n),\nllFrand\n(\n1.0\n)\n>\n,\nTRUE\n);\nllResetTime\n();\n}\nland_collision\n(\nvector\nwhere\n)\n{\nif\n(\nllGetTime\n()\n<\n0.5\n)\n{\nllResetTime\n();\nllApplyImpulse\n(\nllGetMass\n()\n*<\n0\n,\n0\n,\nllFrand\n(\n1.0\n)\n>\n,\nTRUE\n);\nllApplyRotationalImpulse\n(\nllGetMass\n()\n*<\nllFrand\n(\n1.0\n),\nllFrand\n(\n1.0\n),\nllFrand\n(\n1.0\n)\n>\n,\nTRUE\n);\n}\n}\ntimer\n()\n{\nllSetStatus\n(\nSTATUS_PHYSICS\n,\nFALSE\n);\ngHit\n=\nFALSE\n;\nllSetRegionPos\n(\ngHome\n);\n// Send the can home, even if more than 10m away\nllSetRot\n(\nZERO_ROTATION\n);\nllSetTimerEvent\n(\n0.0\n);\n}\n}"
+  ],
+  "related": [
+    "llApplyRotationalImpulse",
+    "llSetForce",
+    "llSetVelocity",
+    "llApplyImpulse",
+    "llGetMass",
+    "llGetMassMKS"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,23 @@
+{
+  "name": "llGetRegionName",
+  "signature": "string llGetRegionName(  )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "// Say what would be said by \"Copy SLURL to clipboard\" in the Map of the standard client\nstring\nwwGetSLUrl\n()\n{\nstring\nglobe\n=\n\"http://maps.secondlife.com/secondlife\"\n;\nstring\nregion\n=\nllGetRegionName\n();\nvector\npos\n=\nllGetPos\n();\nstring\nposx\n=\n(\nstring\n)\nllRound\n(\npos\n.\nx\n);\nstring\nposy\n=\n(\nstring\n)\nllRound\n(\npos\n.\ny\n);\nstring\nposz\n=\n(\nstring\n)\nllRound\n(\npos\n.\nz\n);\nreturn\n(\nglobe\n+\n\"/\"\n+\nllEscapeURL\n(\nregion\n)\n+\n\"/\"\n+\nposx\n+\n\"/\"\n+\nposy\n+\n\"/\"\n+\nposz\n);\n}\ndefault\n{\nstate_entry\n()\n{\nllOwnerSay\n(\nwwGetSLUrl\n()\n);\n}\n}"
+  ],
+  "related": [
+    "llRequestSimulatorData",
+    "llGetSimulatorHostname",
+    "llGetParcelDetails",
+    "llEscapeURL"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

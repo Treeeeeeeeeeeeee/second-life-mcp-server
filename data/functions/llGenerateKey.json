@@ -1,0 +1,21 @@
+{
+  "name": "llGenerateKey",
+  "signature": "key llGenerateKey(  )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The specific UUID version is an implementation detail that has changed in the past and may change again in the future. Do not depend upon the UUID that is returned to be Version 5.",
+    "As the UUID produced is versioned, it should never return a value of NULL_KEY ."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\n// avatar touching\nkey\navatarKey\n=\nllDetectedKey\n(\n0\n);\nstring\navatarName\n=\nllKey2Name\n(\navatarKey\n);\n// key of the owner\nkey\nowner\n=\nllGetOwner\n();\n// generated random key\nkey\nrandom\n=\nllGenerateKey\n();\n// number of objects inside the same prim\ninteger\nnumberOfObjects\n=\nllGetInventoryNumber\n(\nINVENTORY_OBJECT\n);\nif\n(\nnumberOfObjects\n)\n{\n// name of first object sorted by name inside the prim's inventory\nstring\nitemName\n=\nllGetInventoryName\n(\nINVENTORY_OBJECT\n,\n0\n);\nllGiveInventory\n(\navatarKey\n,\nitemName\n);\nllInstantMessage\n(\navatarKey\n,\n\"Your transaction key is '\"\n+\n(\nstring\n)\nrandom\n+\n\"'.\"\n);\nllInstantMessage\n(\nowner\n,\n\"Transaction record:\n\\n\n\"\n+\n\"receiver: \"\n+\navatarName\n+\n\" (\"\n+\n(\nstring\n)\navatarKey\n+\n\")\n\\n\n\"\n+\n\"item: \"\n+\nitemName\n+\n\"\n\\n\n\"\n+\n\"transaction key: \"\n+\n(\nstring\n)\nrandom\n);\n}\nelse\n{\n// PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"No items to give away, sorry!\"\n);\n}\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

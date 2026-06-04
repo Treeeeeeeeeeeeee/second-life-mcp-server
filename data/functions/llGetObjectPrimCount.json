@@ -1,0 +1,24 @@
+{
+  "name": "llGetObjectPrimCount",
+  "signature": "integer llGetObjectPrimCount( key prim )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "This cannot be used to detect if an avatar is seated (by checking for a non-zero return), use llGetAgentInfo instead.",
+    "The prim count for attachments are not returned [2] . If possible use llGetNumberOfPrims instead."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum\n)\n{\ninteger\nprims\n=\nllGetObjectPrimCount\n(\nllGetKey\n());\nif\n(\nprims\n==\n0\n)\n{\n// llGetObjectPrimCount returns zero for attachments.\nprims\n=\nllGetNumberOfPrims\n();\n// Avatars can't sit on attachments so this is ok.\n}\nllOwnerSay\n(\n\"This object has \"\n+\n(\nstring\n)\nprims\n+\n\" prims and \"\n+\n(\nstring\n)(\nllGetNumberOfPrims\n()\n-\nprims\n)\n+\n\" avatars.\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetNumberOfPrims",
+    "llGetObjectLinkKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

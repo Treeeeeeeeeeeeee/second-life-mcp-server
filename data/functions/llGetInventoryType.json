@@ -1,0 +1,25 @@
+{
+  "name": "llGetInventoryType",
+  "signature": "integer llGetInventoryType( string name )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "string\nget_type_info\n(\ninteger\ninputInteger\n)\n{\nif\n(\ninputInteger\n==\nINVENTORY_TEXTURE\n)\nreturn\n\"INVENTORY_TEXTURE\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_SOUND\n)\nreturn\n\"INVENTORY_SOUND\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_LANDMARK\n)\nreturn\n\"INVENTORY_LANDMARK\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_CLOTHING\n)\nreturn\n\"INVENTORY_CLOTHING\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_OBJECT\n)\nreturn\n\"INVENTORY_OBJECT\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_NOTECARD\n)\nreturn\n\"INVENTORY_NOTECARD\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_SCRIPT\n)\nreturn\n\"INVENTORY_SCRIPT\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_BODYPART\n)\nreturn\n\"INVENTORY_BODYPART\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_ANIMATION\n)\nreturn\n\"INVENTORY_ANIMATION\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_GESTURE\n)\nreturn\n\"INVENTORY_GESTURE\"\n;\nelse\nif\n(\ninputInteger\n==\nINVENTORY_SETTING\n)\nreturn\n\"INVENTORY_SETTING\"\n;\nelse\nreturn\n\"inventory type unknown\"\n;\n}\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\ninteger\ntotalItems\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\ninteger\nindex\n;\nwhile\n(\nindex\n<\ntotalItems\n)\n{\nstring\nitemName\n=\nllGetInventoryName\n(\nINVENTORY_ALL\n,\nindex\n);\ninteger\ntype\n=\nllGetInventoryType\n(\nitemName\n);\n// PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"'\"\n+\nitemName\n+\n\"' (\"\n+\nget_type_info\n(\ntype\n)\n+\n\")\"\n);\n++\nindex\n;\n}\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryAcquireTime",
+    "llGetInventoryName",
+    "llGetInventoryNumber",
+    "llGetInventoryCreator",
+    "llGetInventoryPermMask",
+    "llGetInventoryKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

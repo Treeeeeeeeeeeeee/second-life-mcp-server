@@ -1,0 +1,30 @@
+{
+  "name": "llGetAccel",
+  "signature": "vector llGetAccel(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Returns ZERO_VECTOR in attachments regardless of the avatar's acceleration.",
+    "Returns ZERO_VECTOR in child prims regardless of the linkset's acceleration."
+  ],
+  "examples": [
+    "//A very simple (and not very effective) way of keeping a physical object in place.\n//If the object is moving when the script is put in the object, then the object will continue to move, so long as it doesn't accelerate.\n//If you ever want to actually stop an object, use llMoveToTarget(llGetPos(), .1)\ndefault\n{\nmoving_start\n(){\nvector\nac\n;\n// Go forever\nwhile\n(\nllVecMag\n(\nac\n=\nllGetAccel\n())\n>\n.001\n)\n{\n//We're accelerating...\nllApplyImpulse\n(\n-\nac\n,\n0\n);\n//Slow us down.\n}\n}\n}"
+  ],
+  "related": [
+    "llGetOmega",
+    "llGetVel",
+    "llGetTorque",
+    "llGetMass",
+    "llGetForce",
+    "llSetForce",
+    "llSetTorque",
+    "llSetForceAndTorque"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

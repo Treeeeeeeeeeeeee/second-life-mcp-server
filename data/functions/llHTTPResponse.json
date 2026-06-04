@@ -1,0 +1,30 @@
+{
+  "name": "llHTTPResponse",
+  "signature": "void llHTTPResponse( key request_id, integer status, string body )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "This call must be made by the script containing the http_request event where the request_id was received.",
+    "There is no limit, other than script size, to the amount of data that can be sent by this function. llHTTPRequest can truncate the response length in receiving scripts. Be aware when using them together for prim-to-prim communications.",
+    "llHTTPRequest can truncate the response length in receiving scripts. Be aware when using them together for prim-to-prim communications.",
+    "The response by default has \"content-type: text/plain\" . Use llSetContentType to optionally return a different type, like \"text/html\" ."
+  ],
+  "examples": [
+    "string\nurl\n;\ndefault\n{\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\n(\nCHANGED_REGION_START\n|\nCHANGED_REGION\n|\nCHANGED_TELEPORT\n))\nllResetScript\n();\n}\nstate_entry\n()\n{\nllRequestURL\n();\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\n//  PUBLIC_CHANNEL has the integer value 0\nif\n(\nurl\n!=\n\"\"\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"URL: \"\n+\nurl\n);\n}\nhttp_request\n(\nkey\nid\n,\nstring\nmethod\n,\nstring\nbody\n)\n{\n//  http://en.wikipedia.org/wiki/Create,_read,_update_and_delete\nlist\nCRUDmethods\n=\n[\n\"GET\"\n,\n\"POST\"\n,\n\"PUT\"\n,\n\"DELETE\"\n];\n//  it's bit-wise NOT ( ~ )\u00a0!!!\ninteger\nisAllowedMethod\n=\n~\nllListFindList\n(\nCRUDmethods\n,\n[\nmethod\n]);\nif\n(\nisAllowedMethod\n)\n{\nllHTTPResponse\n(\nid\n,\n200\n,\n\"Body of request below:\n\\n\n\"\n+\nbody\n);\n}\nelse\nif\n(\nmethod\n==\nURL_REQUEST_GRANTED\n)\n{\n//  don't forget the trailing slash\nurl\n=\nbody\n+\n\"/\"\n;\nllOwnerSay\n(\n\"URL: \"\n+\nurl\n);\n}\nelse\nif\n(\nmethod\n==\nURL_REQUEST_DENIED\n)\n{\nllOwnerSay\n(\n\"Something went wrong, no URL.\n\\n\n\"\n+\nbody\n);\n}\nelse\n{\nllOwnerSay\n(\n\"Ummm... I have no idea what SL just did. Method=\n\\\"\n\"\n+\nmethod\n+\n\"\n\\\"\\n\n\"\n+\nbody\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetFreeURLs",
+    "llRequestURL",
+    "llRequestSecureURL",
+    "llReleaseURL",
+    "llGetHTTPHeader",
+    "llSetContentType"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

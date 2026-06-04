@@ -1,0 +1,30 @@
+{
+  "name": "llGiveInventoryList",
+  "signature": "void llGiveInventoryList( key target, string folder, list inventory )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 3.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "This function causes the script to sleep for 3.0 seconds.",
+    "If target is not the owner nor shares the same owner, and inventory does not have transfer permissions, an error is shouted on DEBUG_CHANNEL .",
+    "If inventory permissions do not allow copy, the transfer fails and an error is shouted on DEBUG_CHANNEL .",
+    "If target is a prim that is not in the same region an error is shouted on DEBUG_CHANNEL .",
+    "When scripts are copied or moved between inventories, their state does not survive the transfer. Memory, event queue and execution position are all discarded.",
+    "If inventory is missing from the prim's inventory then an error is shouted on DEBUG_CHANNEL ."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nn\n)\n{\nkey\ntoucher\n=\nllDetectedKey\n(\n0\n);\nstring\nfolder\n=\n\"Item Folder\"\n;\nlist\ninventory\n=\n[\n\"item\"\n,\n\"another item\"\n];\nllGiveInventoryList\n(\ntoucher\n,\nfolder\n,\ninventory\n);\n}\n}",
+    "//  when the prim is touched, the script checks all other inventory items whether or not they're copiable\n//  copiable items are added to a list, if the list is not empty when all items have been checked\n//  the prim gives them to the touching avatar within a single folder\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nstring\nthisScript\n=\nllGetScriptName\n();\nlist\ninventoryItems\n;\ninteger\ninventoryNumber\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\ninteger\nindex\n;\nfor\n(\n;\nindex\n<\ninventoryNumber\n;\n++\nindex\n)\n{\nstring\nitemName\n=\nllGetInventoryName\n(\nINVENTORY_ALL\n,\nindex\n);\nif\n(\nitemName\n!=\nthisScript\n)\n{\nif\n(\nllGetInventoryPermMask\n(\nitemName\n,\nMASK_OWNER\n)\n&\nPERM_COPY\n)\n{\ninventoryItems\n+=\nitemName\n;\n}\nelse\n{\nllSay\n(\n0\n,\n\"Unable to copy the item named '\"\n+\nitemName\n+\n\"'.\"\n);\n}\n}\n}\nif\n(\ninventoryItems\n==\n[]\n)\n{\nllSay\n(\n0\n,\n\"No copiable items found, sorry.\"\n);\n}\nelse\n{\nllGiveInventoryList\n(\nllDetectedKey\n(\n0\n),\nllGetObjectName\n(),\ninventoryItems\n);\n// 3.0 seconds delay\n}\n}\n}",
+    "//  script gives items to owner only\n//  all copiable items are given within a single folder\n//  all no-copy items are transferred separately (only one time, right? right!)\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nkey\nowner\n=\nllGetOwner\n();\nif\n(\nllDetectedKey\n(\n0\n)\n!=\nowner\n)\nreturn\n;\nlist\ninventoryItems\n;\ninteger\ninventoryNumber\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\ninteger\nindex\n;\nfor\n(\n;\nindex\n<\ninventoryNumber\n;\n++\nindex\n)\n{\nstring\nitemName\n=\nllGetInventoryName\n(\nINVENTORY_ALL\n,\nindex\n);\nif\n(\nitemName\n!=\nllGetScriptName\n()\n)\n{\nif\n(\nllGetInventoryPermMask\n(\nitemName\n,\nMASK_OWNER\n)\n&\nPERM_COPY\n)\n{\ninventoryItems\n+=\nitemName\n;\n}\nelse\n{\nllGiveInventory\n(\nowner\n,\nitemName\n);\n// 2.0 seconds delay\n}\n}\n}\nif\n(\ninventoryItems\n!=\n[]\n)\nllGiveInventoryList\n(\nowner\n,\nllGetObjectName\n(),\ninventoryItems\n);\n// 3.0 seconds delay\n}\n}"
+  ],
+  "related": [
+    "llGiveInventory",
+    "llGiveAgentInventory"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

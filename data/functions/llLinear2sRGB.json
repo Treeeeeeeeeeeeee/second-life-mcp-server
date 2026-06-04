@@ -1,0 +1,19 @@
+{
+  "name": "llLinear2sRGB",
+  "signature": "vector llLinear2sRGB( vector color )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "The name of this function is actually a misnomer as LSL color is actually in Rec.709 space, not sRGB space. While they are very similar, the gamma value for sRGB is approx. 2.2, whereas the gamma value for Rec.709 is approx. 2.4.",
+    "Scripting for PBR-enabled viewers: If you enter color vectors manually, using the viewer's color picker, enter them as sRGB values. The color picker automatically converts them internally to Linear RGB, so someone using a PBR-enabled viewer will see them correctly. When you apply color vectors directly with a script, however, you must apply sRGB to Blinn-Phong textured faces and Linear RGB to PBR materials."
+  ],
+  "examples": [],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

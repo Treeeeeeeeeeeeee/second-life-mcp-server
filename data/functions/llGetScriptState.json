@@ -1,0 +1,24 @@
+{
+  "name": "llGetScriptState",
+  "signature": "integer llGetScriptState( string script )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If script is missing from the prim's inventory or it is not a script then an error is shouted on DEBUG_CHANNEL ."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\ninteger\nnumberOfScripts\n=\nllGetInventoryNumber\n(\nINVENTORY_SCRIPT\n);\ninteger\nindex\n;\ndo\n{\nstring\nscriptName\n=\nllGetInventoryName\n(\nINVENTORY_SCRIPT\n,\nindex\n);\ninteger\nscriptState\n=\nllGetScriptState\n(\nscriptName\n);\n//  default value\nstring\noutput\n=\n\"FALSE\"\n;\n//  else\nif\n(\nscriptState\n)\noutput\n=\n\"TRUE\"\n;\n// PUBLIC_CHANNEL has the integer value 0\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Script named '\"\n+\nscriptName\n+\n\"' has current script state '\"\n+\noutput\n+\n\"'.\"\n);\n}\nwhile\n(\n++\nindex\n<\nnumberOfScripts\n);\n}\n}",
+    "// Monitor other scripts in the object, then report, restart or both if some have crashed\n// NB: cannot distinguish a manually stopped script or restart one\ninteger\nTRY_RESTART\n=\nFALSE\n;\ninteger\nREPORT\n=\nTRUE\n;\ndefault\n{\nstate_entry\n()\n{\n// monitoring rate = once per minute\nllSetTimerEvent\n(\n60\n);\n}\ntimer\n()\n{\ninteger\ni\n=\nllGetInventoryNumber\n(\nINVENTORY_SCRIPT\n);\nstring\nscript_name\n;\nlist\nstopped\n;\nwhile\n(\n--\ni\n>=\n0\n)\n{\n// the script will also monitor itself, but there is little reason to specifically skip\nscript_name\n=\nllGetInventoryName\n(\nINVENTORY_SCRIPT\n,\ni\n);\nif\n(\n!\nllGetScriptState\n(\nscript_name\n))\n{\nif\n(\nTRY_RESTART\n)\nllResetOtherScript\n(\nscript_name\n);\nif\n(\nREPORT\n)\nstopped\n+=\nscript_name\n;\n}\n}\nif\n(\nstopped\n)\n{\nstring\nmessage\n=\n\"The following scripts were crashed/stopped: \"\n+\nllList2CSV\n(\nstopped\n)\n+\n\".\"\n;\nif\n(\nTRY_RESTART\n)\nmessage\n+=\n\" A restart was attempted.\"\n;\nllInstantMessage\n(\nllGetOwner\n(),\nmessage\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llSetScriptState",
+    "llResetOtherScript"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

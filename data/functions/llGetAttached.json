@@ -1,0 +1,25 @@
+{
+  "name": "llGetAttached",
+  "signature": "integer llGetAttached(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "default\n{\nattach\n(\nkey\nid\n)\n{\nif\n(\nid\n)\n//it's attached\n{\nif\n(\nllGetAttached\n()\n!=\nATTACH_LHAND\n)\n{\nllOwnerSay\n(\n\"Please attach me only to the left hand\"\n);\nllRequestPermissions\n(\nid\n,\nPERMISSION_ATTACH\n);\n}\n}\n}\nrun_time_permissions\n(\ninteger\na\n)\n{\nif\n(\na\n&\nPERMISSION_ATTACH\n)\nllDetachFromAvatar\n();\n}\n}",
+    "on_rez\n(\ninteger\np\n)\n{\n// !llGetAttached() has the value 0 when attached, and 1 when unattached\nllSetAlpha\n(\n!\nllGetAttached\n(),\nALL_SIDES\n);\n}"
+  ],
+  "related": [
+    "llAttachToAvatar",
+    "llDetachFromAvatar",
+    "llGetAttachedList",
+    "llGetAttachedListFiltered",
+    "llGetObjectDetails"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

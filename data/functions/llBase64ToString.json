@@ -1,0 +1,27 @@
+{
+  "name": "llBase64ToString",
+  "signature": "string llBase64ToString( string str )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If the conversion creates any unprintable characters, they are converted to spaces.",
+    "Converts invalid characters into question marks ('?')."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nstring\ntest\n=\nllBase64ToString\n(\n\"U2VjcmV0Ok9wZW4=\"\n);\nllSay\n(\n0\n,\ntest\n);\n}\n}",
+    "GET / HTTP/1.1\nUser-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.2)\nHost: www.example.com\nAuthorization: Basic U2VjcmV0Ok9wZW4=",
+    "llBase64ToString\n(\n\"U2VjcmV0Ok9wZW4=\"\n);\n//will return the string \"Secret:Open\""
+  ],
+  "related": [
+    "llXorBase64",
+    "llStringToBase64",
+    "llBase64ToInteger"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,25 @@
+{
+  "name": "llGetStatus",
+  "signature": "integer llGetStatus( integer status )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Status is an object attribute; all prims in an object share the same status. STATUS_BLOCK_GRAB only really deals with the root prim. Try STATUS_BLOCK_GRAB_OBJECT instead.",
+    "STATUS_BLOCK_GRAB only really deals with the root prim. Try STATUS_BLOCK_GRAB_OBJECT instead.",
+    "Querying for STATUS_CAST_SHADOWS always returns FALSE regardless of the setting.",
+    "Only one flag should be specified at a time. As of Second Life Server 2022-09-09.574921, if more than one flag is specified, STATUS_DIE_AT_NO_ENTRY takes priority, followed by STATUS_BLOCK_GRAB_OBJECT, STATUS_DIE_AT_EDGE, STATUS_RETURN_AT_EDGE, STATUS_BLOCK_GRAB, STATUS_SANDBOX, STATUS_ROTATE_Z, STATUS_ROTATE_Y, STATUS_ROTATE_X, STATUS_PHANTOM, and STATUS_PHYSICS."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nif\n(\nllGetStatus\n(\nSTATUS_PHYSICS\n))\n{\nllSay\n(\n0\n,\n\"This object is physical\"\n);\n}\nelse\n{\nllSay\n(\n0\n,\n\"This object is not physical\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llSetStatus"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

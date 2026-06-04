@@ -1,0 +1,21 @@
+{
+  "name": "llHash",
+  "signature": "integer llHash( string val )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "integer\npickIDForObject\n()\n{\n/* Generate an arbitrary integer ID for the combination of the\n* object name and the ower's key.  This value could be used\n* for selecting a chat/listen channel.\n*/\nstring\nobj_name\n=\nllGetObjectName\n();\nkey\nobj_owner\n=\nllGetOwner\n();\ninteger\nhash\n=\nllHash\n(\nobj_name\n+\n(\nstring\n)\nobj_owner\n);\nreturn\nhash\n;\n}"
+  ],
+  "related": [
+    "llOrd",
+    "llChar"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

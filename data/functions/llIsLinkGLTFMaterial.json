@@ -1,0 +1,23 @@
+{
+  "name": "llIsLinkGLTFMaterial",
+  "signature": "integer llIsLinkGLTFMaterial( integer link, integer face )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Returns FALSE if link does not exist or refers to a multi-link target (such as LINK_SET ).",
+    "Returns FALSE if face does not exist."
+  ],
+  "examples": [
+    "//Tells (on chat) if the materials are PBR\ndefault\n{\nstate_entry\n()\n{\ninteger\nlink\n=\nLINK_THIS\n;\ninteger\ni\n;\nfor\n(;\ni\n<\nllGetLinkNumberOfSides\n(\nlink\n);\n++\ni\n)\n{\nstring\nmessage\n=\n\"Side \"\n+\n(\nstring\n)\ni\n+\n\" material is \"\n;\nif\n(\nllIsLinkGLTFMaterial\n(\nlink\n,\ni\n))\nmessage\n+=\n\"glTF/PBR\"\n;\nelse\nmessage\n+=\n\"Blinn-Phong\"\n;\nllSay\n(\n0\n,\nmessage\n);\n}\nif\n(\nllIsLinkGLTFMaterial\n(\nlink\n,\nALL_SIDES\n))\nllSay\n(\n0\n,\n\"All sides are PBR.\"\n);\nelse\nllSay\n(\n0\n,\n\"Some sides are Blinn-Phong (not PBR).\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetNumberOfSides"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

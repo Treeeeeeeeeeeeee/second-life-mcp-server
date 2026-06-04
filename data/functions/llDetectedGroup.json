@@ -1,0 +1,26 @@
+{
+  "name": "llDetectedGroup",
+  "signature": "integer llDetectedGroup( integer number )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If number is out of bounds this function returns FALSE and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]",
+    "There is no way to detect if the prim is in the same group as one of the agent's inactive groups."
+  ],
+  "examples": [
+    "//Gives inventory only to agents with the same active group\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nif\n(\nllDetectedGroup\n(\n0\n)\n)\n//same as llSameGroup(llDetectedKey(0) ) (with llSameGroup, detected must be in the sim)\nllGiveInventory\n(\nllDetectedKey\n(\n0\n),\nllGetInventoryName\n(\nINVENTORY_OBJECT\n,\n0\n)\n);\nelse\nllSay\n(\n0\n,\n\"Wrong active group!\"\n);\n}\n}"
+  ],
+  "related": [
+    "llSameGroup"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

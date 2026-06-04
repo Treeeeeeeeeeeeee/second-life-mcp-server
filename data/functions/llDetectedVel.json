@@ -1,0 +1,23 @@
+{
+  "name": "llDetectedVel",
+  "signature": "vector llDetectedVel( integer number )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If number is out of bounds this function returns <0.0, 0.0, 0.0> and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "//Tells the name and velocity of all near-by avatars.\ndefault\n{\nstate_entry\n()\n{\n// Scan once for avatars within a 96 metre radius sphere\nllSensor\n(\n\"\"\n,\n\"\"\n,\nAGENT\n,\n96\n,\nPI\n);\n}\nsensor\n(\ninteger\nnum\n)\n{\n// num will initially be 1 or more. When num is 1, the index of the detected avatar will be zero\nwhile\n(\nnum\n--\n)\n{\nllOwnerSay\n(\nllDetectedName\n(\nnum\n)\n+\n\" is moving at \"\n+\n(\nstring\n)\nllVecMag\n(\nllDetectedVel\n(\nnum\n))\n+\n\" m/s.\"\n);\n}\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

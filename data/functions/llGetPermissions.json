@@ -1,0 +1,21 @@
+{
+  "name": "llGetPermissions",
+  "signature": "integer llGetPermissions(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\n//Comment out any of the following lines for fun\nPERMISSION_DEBIT\n|\nPERMISSION_TAKE_CONTROLS\n|\nPERMISSION_TRIGGER_ANIMATION\n|\nPERMISSION_ATTACH\n|\nPERMISSION_CHANGE_LINKS\n|\nPERMISSION_TRACK_CAMERA\n|\nPERMISSION_CONTROL_CAMERA\n|\n0\n);\n}\ntouch_start\n(\ninteger\na\n)\n{\ninteger\nperm\n=\nllGetPermissions\n();\nif\n(\nperm\n&\nPERMISSION_DEBIT\n)\nllOwnerSay\n(\n\"Can use llGiveMoney\"\n);\nif\n(\nperm\n&\nPERMISSION_TAKE_CONTROLS\n)\nllOwnerSay\n(\n\"Can use llTakeControls\"\n);\nif\n(\nperm\n&\nPERMISSION_TRIGGER_ANIMATION\n)\nllOwnerSay\n(\n\"Can use llStartAnimation\"\n);\nif\n(\nperm\n&\nPERMISSION_ATTACH\n)\nllOwnerSay\n(\n\"Can use llAttachToAvatar\"\n);\nif\n(\nperm\n&\nPERMISSION_CHANGE_LINKS\n)\nllOwnerSay\n(\n\"Can use llCreateLink\"\n);\nif\n(\nperm\n&\nPERMISSION_TRACK_CAMERA\n)\nllOwnerSay\n(\n\"Can use llGetCameraPos\"\n);\nif\n(\nperm\n&\nPERMISSION_CONTROL_CAMERA\n)\nllOwnerSay\n(\n\"Can use llSetCameraParams\"\n);\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\nif\n(\nperm\n&\nPERMISSION_DEBIT\n)\nllOwnerSay\n(\n\"Can use llGiveMoney\"\n);\nif\n(\nperm\n&\nPERMISSION_TAKE_CONTROLS\n)\nllOwnerSay\n(\n\"Can use llTakeControlls\"\n);\nif\n(\nperm\n&\nPERMISSION_TRIGGER_ANIMATION\n)\nllOwnerSay\n(\n\"Can use llStartAnimation\"\n);\nif\n(\nperm\n&\nPERMISSION_ATTACH\n)\nllOwnerSay\n(\n\"Can use llAttachToAvatar\"\n);\nif\n(\nperm\n&\nPERMISSION_CHANGE_LINKS\n)\nllOwnerSay\n(\n\"Can use llCreateLink\"\n);\nif\n(\nperm\n&\nPERMISSION_TRACK_CAMERA\n)\nllOwnerSay\n(\n\"Can use llGetCameraPos\"\n);\nif\n(\nperm\n&\nPERMISSION_CONTROL_CAMERA\n)\nllOwnerSay\n(\n\"Can use llSetCameraParams\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetPermissionsKey",
+    "llRequestPermissions"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

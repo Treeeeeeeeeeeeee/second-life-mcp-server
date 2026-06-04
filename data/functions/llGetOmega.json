@@ -1,0 +1,27 @@
+{
+  "name": "llGetOmega",
+  "signature": "vector llGetOmega(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Returns the omega of the root if called in a child prim."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllTargetOmega\n(\n<\n0\n,\n0\n,\n0.5\n>\n,\n1\n,\n1\n);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nvector\nomega\n=\nllGetOmega\n();\nllSay\n(\n0\n,\n(\nstring\n)\nomega\n);\n}\n}"
+  ],
+  "related": [
+    "llGetAccel",
+    "llGetVel",
+    "llGetForce",
+    "llGetTorque",
+    "llGetMass",
+    "llTargetOmega"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

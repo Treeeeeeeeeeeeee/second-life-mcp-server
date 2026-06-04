@@ -1,0 +1,23 @@
+{
+  "name": "llGetSPMaxMemory",
+  "signature": "integer llGetSPMaxMemory(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// need to run something for the profile to register...\nScriptRotate\n()\n{\nllTargetOmega\n(\n<\n0.5\n,\n0.7\n,\n0.2\n>\n,\n0.75\n,\n0.75\n);\n}\ndefault\n{\nstate_entry\n()\n{\nllSetMemoryLimit\n(\n5000\n);\n// set the memory limit\n// call up the profiler, execute a method, stop profiler\nllScriptProfiler\n(\nPROFILE_SCRIPT_MEMORY\n);\nScriptRotate\n();\nllScriptProfiler\n(\nPROFILE_NONE\n);\n// display memory usage...\nllSay\n(\n0\n,\n\"Memory used: \"\n+\n(\nstring\n)\nllGetSPMaxMemory\n()\n+\n\" bytes, total memory: \"\n+\n(\nstring\n)\nllGetMemoryLimit\n()\n+\n\" bytes.\"\n);\n}\n}\n// outputs\n// Object: Memory used: 4448 bytes, total memory: 5000 bytes."
+  ],
+  "related": [
+    "llGetFreeMemory",
+    "llGetUsedMemory",
+    "llGetMemoryLimit",
+    "llSetMemoryLimit"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

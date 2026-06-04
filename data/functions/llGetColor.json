@@ -1,0 +1,27 @@
+{
+  "name": "llGetColor",
+  "signature": "vector llGetColor( integer face )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If face indicates a face that does not exist the return is <0.0, 0.0, 0.0>"
+  ],
+  "examples": [
+    "// Tells the owner the color on all sides\ndefault\n{\nstate_entry\n()\n{\ninteger\ni\n=\n0\n;\ninteger\nmax\n=\nllGetNumberOfSides\n();\nwhile\n(\ni\n<\nmax\n)\n{\nllOwnerSay\n(\n\"Face \"\n+\n(\nstring\n)\ni\n+\n\" color is \"\n+\n(\nstring\n)\nllGetColor\n(\ni\n));\n++\ni\n;\n}\n}\n}"
+  ],
+  "related": [
+    "llGetAlpha",
+    "llSetAlpha",
+    "llSetColor",
+    "llSetLinkColor",
+    "llSetLinkAlpha",
+    "llGetNumberOfSides"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

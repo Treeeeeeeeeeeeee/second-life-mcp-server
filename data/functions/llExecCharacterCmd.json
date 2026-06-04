@@ -1,0 +1,32 @@
+{
+  "name": "llExecCharacterCmd",
+  "signature": "void llExecCharacterCmd( integer command, list options )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If another script in the same object issues CHARACTER_CMD_STOP then pathing in all scripts is cancelled."
+  ],
+  "examples": [
+    "vector\npatrol\n;\ndefault\n{\nstate_entry\n()\n{\npatrol\n=\nllGetPos\n();\nllCreateCharacter\n([\nCHARACTER_MAX_SPEED\n,\n25\n,\nCHARACTER_DESIRED_SPEED\n,\n15.0\n]);\nstate awake\n;\n}\n}\nstate awake\n{\nstate_entry\n()\n{\nllSay\n(\n0\n,\n\"I am guarding now\"\n);\nlist\npoints\n=\n[\npatrol\n+\n<\n5\n,\n0\n,\n0\n>\n,\npatrol\n-\n<\n5\n,\n0\n,\n0\n>\n];\nllPatrolPoints\n(\npoints\n,\n[]);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nstate sleep\n;\n}\n}\nstate sleep\n{\nstate_entry\n()\n{\nllSay\n(\n0\n,\n\"Going to sleep\"\n);\nllExecCharacterCmd\n(\nCHARACTER_CMD_SMOOTH_STOP\n,\n[]);\n}\ntouch_start\n(\ninteger\ntotal_number\n)\n{\npatrol\n=\nllGetPos\n();\n//Jump to attention!\nllExecCharacterCmd\n(\nCHARACTER_CMD_JUMP\n,\n[\n0.5\n]);\nstate awake\n;\n}\n}"
+  ],
+  "related": [
+    "llCreateCharacter",
+    "llDeleteCharacter",
+    "llEvade",
+    "llExecCharacterCmd",
+    "llGetClosestNavPoint",
+    "llFleeFrom",
+    "llNavigateTo",
+    "llPatrolPoints",
+    "llPursue",
+    "llUpdateCharacter",
+    "llWanderWithin"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

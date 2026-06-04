@@ -1,0 +1,31 @@
+{
+  "name": "llGetInventoryPermMask",
+  "signature": "integer llGetInventoryPermMask( string item, integer category )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If item is missing from the prim's inventory then an error is shouted on DEBUG_CHANNEL .",
+    "Note that including the MASK_COMBINED bit does not impact the output of this function, as the combined permissions are the only accessible permissions for inventory items."
+  ],
+  "examples": [
+    "if\n((\npermsYouHave\n&\npermsYouWant\n)\n==\npermsYouWant\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"You have the perms you want.\"\n);\nelse\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"You don't have the perms you want.\"\n);",
+    "integer\nownerPerms\n=\nllGetInventoryPermMask\n(\n\"inventory item name goes here\"\n,\nMASK_OWNER\n);\ninteger\ncopyAndModPerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n;\nif\n((\nownerPerms\n&\ncopyAndModPerms\n)\n==\ncopyAndModPerms\n)\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Owner has copy & modify perms.\"\n);\nelse\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Owner does not have copy & modify perms.\"\n);",
+    "string\ngetPermsAsReadableString\n(\ninteger\nperm\n)\n{\ninteger\nfullPerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n|\nPERM_TRANSFER\n;\ninteger\ncopyModPerms\n=\nPERM_COPY\n|\nPERM_MODIFY\n;\ninteger\ncopyTransPerms\n=\nPERM_COPY\n|\nPERM_TRANSFER\n;\ninteger\nmodTransPerms\n=\nPERM_MODIFY\n|\nPERM_TRANSFER\n;\nstring\noutput\n=\n\" perms: \"\n;\nif\n((\nperm\n&\nfullPerms\n)\n==\nfullPerms\n)\noutput\n+=\n\"full\"\n;\nelse\nif\n((\nperm\n&\ncopyModPerms\n)\n==\ncopyModPerms\n)\noutput\n+=\n\"copy & modify\"\n;\nelse\nif\n((\nperm\n&\ncopyTransPerms\n)\n==\ncopyTransPerms\n)\noutput\n+=\n\"copy & transfer\"\n;\nelse\nif\n((\nperm\n&\nmodTransPerms\n)\n==\nmodTransPerms\n)\noutput\n+=\n\"modify & transfer\"\n;\nelse\nif\n((\nperm\n&\nPERM_COPY\n)\n==\nPERM_COPY\n)\noutput\n+=\n\"copy\"\n;\nelse\nif\n((\nperm\n&\nPERM_TRANSFER\n)\n==\nPERM_TRANSFER\n)\noutput\n+=\n\"transfer\"\n;\nelse\noutput\n+=\n\"none\"\n;\n//  Remember, items in Second Life must have either\n//  PERM_COPY or PERM_TRANSFER when \"talking about\"\n//  owner perms or perms for next owner.\nreturn\noutput\n;\n}\ndefault\n{\nstate_entry\n()\n{\nstring\ninventoryItemName\n=\n\"inventory item name goes here\"\n;\ninteger\nbasePerms\n=\nllGetInventoryPermMask\n(\ninventoryItemName\n,\nMASK_BASE\n);\ninteger\nownerPerms\n=\nllGetInventoryPermMask\n(\ninventoryItemName\n,\nMASK_OWNER\n);\ninteger\nnextOwnerPerms\n=\nllGetInventoryPermMask\n(\ninventoryItemName\n,\nMASK_NEXT\n);\ninteger\ngroupPerms\n=\nllGetInventoryPermMask\n(\ninventoryItemName\n,\nMASK_GROUP\n);\ninteger\neveryonePerms\n=\nllGetInventoryPermMask\n(\ninventoryItemName\n,\nMASK_EVERYONE\n);\nllSay\n(\n0\n,\n\"/me [\"\n+\ninventoryItemName\n+\n\"]: base\"\n+\ngetPermsAsReadableString\n(\nbasePerms\n));\nllSay\n(\n0\n,\n\"/me [\"\n+\ninventoryItemName\n+\n\"]: owner\"\n+\ngetPermsAsReadableString\n(\nownerPerms\n));\nllSay\n(\n0\n,\n\"/me [\"\n+\ninventoryItemName\n+\n\"]: next owner\"\n+\ngetPermsAsReadableString\n(\nnextOwnerPerms\n));\nllSay\n(\n0\n,\n\"/me [\"\n+\ninventoryItemName\n+\n\"]: group\"\n+\ngetPermsAsReadableString\n(\ngroupPerms\n));\nllSay\n(\n0\n,\n\"/me [\"\n+\ninventoryItemName\n+\n\"]: everyone\"\n+\ngetPermsAsReadableString\n(\neveryonePerms\n));\n}\n}"
+  ],
+  "related": [
+    "llGetObjectPermMask",
+    "llGetInventoryAcquireTime",
+    "llGetInventoryName",
+    "llGetInventoryType",
+    "llGetInventoryNumber",
+    "llGetInventoryKey",
+    "llGetInventoryCreator"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

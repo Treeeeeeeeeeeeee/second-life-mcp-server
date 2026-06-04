@@ -1,0 +1,29 @@
+{
+  "name": "llForceMouselook",
+  "signature": "void llForceMouselook( integer mouselook )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "This function has no effect on avatars already seated.",
+    "The user may exit mouselook mode at any time. This can be detected by polling llGetAgentInfo .",
+    "This can be detected by polling llGetAgentInfo .",
+    "There is nothing stopping someone from modifying or making a client that ignores this."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllForceMouselook\n(\nTRUE\n);\n// Forces sitting avatars into mouselook.\nllForceMouselook\n(\nFALSE\n);\n// Reverts the setting to the default...\n// ...as with a newly created prim.\n}\n}"
+  ],
+  "related": [
+    "llAvatarOnSitTarget",
+    "llGetAgentInfo",
+    "llGetCameraRot",
+    "llSetCameraAtOffset",
+    "llSetCameraEyeOffset"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

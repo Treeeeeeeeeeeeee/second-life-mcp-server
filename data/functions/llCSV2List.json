@@ -1,0 +1,28 @@
+{
+  "name": "llCSV2List",
+  "signature": "list llCSV2List( string src )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If a \"<\" does not have a matching \">\", the remainder of the string will be a single value, even if the \"<\" is in the middle of the value, see Vectors & Rotations for further details.",
+    "All items in the returned list are strings.",
+    "If an empty string is parsed, the result will a list containing an empty string: [\"\"] (not an empty list).",
+    "When used with lists that are generated based off assets in inventory, llCSV2List should not be used, as inventory assets can contain commas as part of their names."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nstring\ncsv\n=\n\"first,second,third\"\n;\nlist\nmy_list\n=\nllCSV2List\n(\ncsv\n);\nllOwnerSay\n(\n\"CSV: \"\n+\ncsv\n);\ninteger\ni\n;\ninteger\nnum_list\n=\nllGetListLength\n(\nmy_list\n);\nfor\n(\ni\n=\n0\n;\ni\n<\nnum_list\n;\n++\ni\n)\n{\nllOwnerSay\n(\n\"my_list[\"\n+\n(\nstring\n)\ni\n+\n\"]: \"\n+\nllList2String\n(\nmy_list\n,\ni\n));\n}\n}\n}"
+  ],
+  "related": [
+    "llList2CSV",
+    "llDumpList2String",
+    "llParseString2List",
+    "llParseStringKeepNulls"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

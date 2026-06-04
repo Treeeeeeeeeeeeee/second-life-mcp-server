@@ -1,0 +1,24 @@
+{
+  "name": "llGetAnimation",
+  "signature": "string llGetAnimation( key id )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "This function can return an empty string while the avatar is logging out.",
+    "New return values could conceivably be added at any time and this list may not in-fact be complete. Scripts should be written under the assumption that they may receive a value they won't recognize."
+  ],
+  "examples": [
+    "// A simple animation override example.\n// Make the avatar run in mid-air when jumping.\nkey\ngOwner\n;\n// the wearer's key\nstring\ngLastAnimation\n;\n// last llGetAnimation value seen\n// User functions\nInitialize\n(\nkey\nid\n)\n{\nif\n(\nid\n==\nNULL_KEY\n)\n{\n// detaching\nllSetTimerEvent\n(\n0.0\n);\n// stop the timer\n}\nelse\n{\n// attached, or reset while worn\nllRequestPermissions\n(\nid\n,\nPERMISSION_TRIGGER_ANIMATION\n);\ngOwner\n=\nid\n;\n}\n}\n// Event handlers\ndefault\n{\nstate_entry\n()\n{\n// in case the script was reset while already attached\nif\n(\nllGetAttached\n()\n!=\n0\n)\n{\nInitialize\n(\nllGetOwner\n());\n}\n}\nattach\n(\nkey\nid\n)\n{\nInitialize\n(\nid\n);\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\nif\n(\nperm\n&\nPERMISSION_TRIGGER_ANIMATION\n)\n{\nllSetTimerEvent\n(\n0.25\n);\n// start polling\n}\n}\ntimer\n()\n{\nstring\nnewAnimation\n=\nllGetAnimation\n(\ngOwner\n);\nif\n(\ngLastAnimation\n!=\nnewAnimation\n)\n{\n// any change?\nif\n(\nnewAnimation\n==\n\"Jumping\"\n)\n{\n// You can stop the built-in animation if you like, if\n// it might interfere with your own. Be aware that an\n// avatar can become stuck, and some llGetAgentInfo results\n// can be inaccurate, if you stop built-ins indiscriminately.\n// Always test.\n//\n// llStopAnimation(\"jump\");\nllStartAnimation\n(\n\"run\"\n);\n}\nelse\nif\n(\ngLastAnimation\n==\n\"Jumping\"\n)\n{\n// just finished jumping\n// \"run\" is looped, so we have to stop it when we are done.\nllStopAnimation\n(\n\"run\"\n);\n}\ngLastAnimation\n=\nnewAnimation\n;\n// store away for  next time\n}\n}\n}"
+  ],
+  "related": [
+    "llGetAgentInfo",
+    "llGetAnimationList"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

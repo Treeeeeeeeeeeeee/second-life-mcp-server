@@ -1,0 +1,27 @@
+{
+  "name": "llGetAlpha",
+  "signature": "float llGetAlpha( integer face )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If face indicates a face that does not exist the return is 1.0"
+  ],
+  "examples": [
+    "//Tells the owner the alpha on all sides\ndefault\n{\nstate_entry\n()\n{\ninteger\ni\n=\n0\n;\ninteger\nmax\n=\nllGetNumberOfSides\n();\nwhile\n(\ni\n<\nmax\n)\n{\nllSay\n(\n0\n,\n\"Face \"\n+\n(\nstring\n)\ni\n+\n\" alpha is \"\n+\n(\nstring\n)\nllGetAlpha\n(\ni\n));\n++\ni\n;\n}\n}\n}"
+  ],
+  "related": [
+    "llSetAlpha",
+    "llGetColor",
+    "llSetColor",
+    "llSetLinkColor",
+    "llSetLinkAlpha",
+    "llGetNumberOfSides"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

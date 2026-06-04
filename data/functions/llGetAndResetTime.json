@@ -1,0 +1,28 @@
+{
+  "name": "llGetAndResetTime",
+  "signature": "float llGetAndResetTime(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Script time is the amount of real-world time that the script has been in a running state. It is unaffected by time dilation, but it does not count time while the script is suspended, the user is offline (when in an attachment), the object is in inventory rather than rezzed, etc.",
+    "Script time resets when... Script reset (user or llResetScript or llResetOtherScript ) Call to either llResetTime or llGetAndResetTime",
+    "Script reset (user or llResetScript or llResetOtherScript )",
+    "Call to either llResetTime or llGetAndResetTime",
+    "Due to (32 bit) floating point number limitations, the accuracy of this function is 1/32sec up to ~3 days, 1/16sec up to ~6 days, etc... doubling each time, e.g. it's only 1 second at ~194 days. Use llResetTime or llGetAndResetTime whenever practical to maintain the accuracy you require."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_touch\n)\n{\n// This is equivalent to calling llGetTime(), then llResetTime()\nfloat\ntime\n=\nllGetAndResetTime\n();\nllSay\n(\n0\n,\n(\nstring\n)\ntime\n+\n\" seconds have elapsed since the last touch or script start.\"\n);\n}\n}"
+  ],
+  "related": [
+    "llResetTime",
+    "llGetTime",
+    "llGetRegionTimeDilation"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,20 @@
+{
+  "name": "llEuler2Rot",
+  "signature": "rotation llEuler2Rot( vector v )",
+  "return_type": "rotation",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nvector\ninput\n=\n<\n73.0\n,\n-\n63.0\n,\n20.0\n>\n*\nDEG_TO_RAD\n;\nrotation\nrot\n=\nllEuler2Rot\n(\ninput\n);\nllSay\n(\n0\n,\n\"The Euler2Rot of \"\n+\n(\nstring\n)\ninput\n+\n\" is: \"\n+\n(\nstring\n)\nrot\n);\n}\n}"
+  ],
+  "related": [
+    "llRot2Euler"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

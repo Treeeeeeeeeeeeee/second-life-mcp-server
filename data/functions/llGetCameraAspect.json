@@ -1,0 +1,33 @@
+{
+  "name": "llGetCameraAspect",
+  "signature": "float llGetCameraAspect(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_TRACK_CAMERA , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "Once the PERMISSION_TRACK_CAMERA permission is granted there is no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or the script is reset or deleted."
+  ],
+  "examples": [
+    "// say the camera aspect ratio and field of view (FOV)\ninteger\nhas_perms\n=\nFALSE\n;\ndefault\n{\non_rez\n(\ninteger\na\n)\n{\nllResetScript\n();\n}\nstate_entry\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_TRACK_CAMERA\n);\n}\nrun_time_permissions\n(\ninteger\npermission\n)\n{\nhas_perms\n=\n(\npermission\n==\nPERMISSION_TRACK_CAMERA\n);\n}\ntouch_start\n(\ninteger\nnum_touches\n)\n{\nif\n(\nhas_perms\n)\n{\nfloat\naspect\n=\nllGetCameraAspect\n();\nfloat\nfov\n=\nllGetCameraFOV\n();\nllOwnerSay\n(\n\"aspect = \"\n+\n(\nstring\n)\naspect\n+\n\"  FOV = \"\n+\n(\nstring\n)\nfov\n);\n}\nelse\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_TRACK_CAMERA\n);\n}\n}\n}",
+    "// Scale an object to fit the aspect ratio of the viewer.\nfit_to_screen\n()\n{\n// The X axis from the left to  the right edge of the screen is 0.0 to width value.\n// The Y axis is always 1.\nfloat\nx\n=\nllGetCameraAspect\n();\nfloat\ny\n=\n1\n;\nllSetLinkPrimitiveParamsFast\n(\nLINK_THIS\n,\n[\nPRIM_SIZE\n,\n<\n0\n,\nx\n,\ny\n>\n]);\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llGetCameraFOV",
+    "llGetCameraPos",
+    "llGetCameraRot",
+    "llSetCameraParams",
+    "llSetCameraAtOffset",
+    "llSetCameraEyeOffset"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

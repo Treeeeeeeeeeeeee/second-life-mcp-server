@@ -1,0 +1,42 @@
+{
+  "name": "llGetObjectDetails",
+  "signature": "list llGetObjectDetails( key id, list params )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "OBJECT_ROT will return an accurate facing for Avatars seated or in mouselook, but only a rough direction otherwise.",
+    "Adjacent regions are not searched for prims which match id .",
+    "Information for avatars that can no longer be found will still be available for a short period (about 45 seconds) but it is not updated.",
+    "Items in params that are not integers are silently ignored, OBJECT_UNKNOWN_DETAIL is not returned.",
+    "This function does not return information about items in inventory.",
+    "llTargetOmega will only effect the return of OBJECT_ROT if the object is physical . If the object is not physical then the original start rotation is returned, llTargetOmega is a client side effect .",
+    "OBJECT_SCRIPT_MEMORY reports the maximum memory that all scripts in an object could use, not the actual amount of real memory currently used. In particular, Mono scripts only report the default 64K or what they chose with llSetMemoryLimit , not the current dynamic allocation that is only accessible from within the script. For LSO scripts, the 16K is real usage in all cases. In practice, this makes the number reported a worst case scenario.",
+    "OBJECT_RUNNING_SCRIPT_COUNT includes crashed scripts in its count.",
+    "OBJECT_REZZER_KEY will return NULL_KEY for objects rezzed prior to server version 16.01.16.310114",
+    "Objects copied in-world between server versions 16.01.16.310114 & 16.10.14.320687 return the object's creator key for rezzer key.",
+    "Child prims linked before server version 17.11.11.510664 return the root prim's rezzer key.",
+    "Child prims delinked before server version 17.11.11.510664 return NULL_KEY for rezzer key.",
+    "When targeting an agent with OBJECT_REZZER_KEY while they are sitting on an object, the rezzer key of the object's root prim is returned.",
+    "When targeting an attachment with OBJECT_MASS , the mass of the avatar (or that of the avatar's sat-upon object) is returned.",
+    "Since OBJECT_GROUP returns NULL_KEY for avatars, a workaround is required to acquire an avatar's active group. A common approach is to query the avatar's attachments with llGetAttachedList and if at least one is found, get the OBJECT_GROUP for that attachment as it is likely to match the avatar's group."
+  ],
+  "examples": [
+    "// Show some basic details for the colliding object/avatar. Note that group will be NULL_KEY for avatars.\ndefault\n{\ncollision_start\n(\ninteger\nnum_detected\n)\n{\nkey\nid\n=\nllDetectedKey\n(\n0\n);\nlist\ndetails\n=\nllGetObjectDetails\n(\nid\n,\n([\nOBJECT_NAME\n,\nOBJECT_DESC\n,\nOBJECT_POS\n,\nOBJECT_ROT\n,\nOBJECT_VELOCITY\n,\nOBJECT_OWNER\n,\nOBJECT_GROUP\n,\nOBJECT_CREATOR\n]));\nllShout\n(\nPUBLIC_CHANNEL\n,\n\"UUID: \"\n+\n(\nstring\n)\nid\n+\n\"\n\\n\nName: \"\n+\nllList2String\n(\ndetails\n,\n0\n)\n+\n\"\n\\n\nDescription: \"\n+\nllList2String\n(\ndetails\n,\n1\n)\n+\n\"\n\\n\nPosition: \"\n+\nllList2String\n(\ndetails\n,\n2\n)\n+\n\"\n\\n\nRotation: \"\n+\nllList2String\n(\ndetails\n,\n3\n)\n+\n\"\n\\n\nVelocity: \"\n+\nllList2String\n(\ndetails\n,\n4\n)\n+\n\"\n\\n\nOwner: \"\n+\nllList2String\n(\ndetails\n,\n5\n)\n+\n\"\n\\n\nGroup: \"\n+\nllList2String\n(\ndetails\n,\n6\n)\n+\n\"\n\\n\nCreator: \"\n+\nllList2String\n(\ndetails\n,\n7\n));\n}\n}",
+    "// group join inviter\n// gets the name of the object's active group from the online group profile\nkey\ngroupNameRequestId\n;\nkey\ngroupKey\n;\nstring\ngroupName\n;\ninit\n()\n{\n// WARNING:\n// different prims can have different active groups!!!\n// get the key of the root prim's group\ngroupKey\n=\nllList2Key\n(\nllGetObjectDetails\n(\nllGetLinkKey\n(\nLINK_ROOT\n),\n[\nOBJECT_GROUP\n]),\n0\n);\n// request the name of the root prim's group\ngroupNameRequestId\n=\nllHTTPRequest\n(\n\"http://world.secondlife.com/group/\"\n+\n(\nstring\n)\ngroupKey\n,\n[],\n\"\"\n);\n}\ndefault\n{\nstate_entry\n()\n{\ninit\n();\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nif\n(\ngroupKey\n==\nNULL_KEY\n||\ngroupName\n==\n\"\"\n)\nreturn\n;\nkey\nid\n=\nllDetectedKey\n(\n0\n);\nllInstantMessage\n(\nid\n,\n\"Click the link to join the group '\"\n+\ngroupName\n+\n\"'\n\\n\n\"\n+\n\"secondlife:///app/group/\"\n+\n(\nstring\n)\ngroupKey\n+\n\"/about\"\n);\n}\nhttp_response\n(\nkey\nrequest_id\n,\ninteger\nstatus\n,\nlist\nmetadata\n,\nstring\nbody\n)\n{\nif\n(\nrequest_id\n!=\ngroupNameRequestId\n)\nreturn\n;\nlist\nargs\n=\nllParseString2List\n(\nbody\n,\n[\n\"title\"\n],\n[]);\ngroupName\n=\nllList2String\n(\nllParseString2List\n(\nllList2String\n(\nargs\n,\n1\n),\n[\n\">\"\n,\n\"<\"\n,\n\"/\"\n],\n[]),\n0\n);\n}\n}",
+    "// aim & shoot\ndefault\n{\nstate_entry\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_TAKE_CONTROLS\n);\n}\ncontrol\n(\nkey\nid\n,\ninteger\npressed\n,\ninteger\nchange\n)\n{\nif\n(\nchange\n&\npressed\n&\nCONTROL_ML_LBUTTON\n)\nllSensor\n(\n\"\"\n,\n\"\"\n,\nAGENT\n|\nPASSIVE\n|\nACTIVE\n,\n96.0\n,\nPI\n/\n16.0\n);\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\nif\n(\nperm\n&\nPERMISSION_TAKE_CONTROLS\n)\nllTakeControls\n(\nCONTROL_ML_LBUTTON\n,\nTRUE\n,\nTRUE\n);\n}\nsensor\n(\ninteger\nn\n)\n{\nkey\nuuid\n=\nllDetectedKey\n(\n0\n);\nlist\na\n=\nllGetObjectDetails\n(\nuuid\n,\n([\nOBJECT_NAME\n,\nOBJECT_DESC\n,\nOBJECT_POS\n,\nOBJECT_ROT\n,\nOBJECT_VELOCITY\n,\nOBJECT_OWNER\n,\nOBJECT_GROUP\n,\nOBJECT_CREATOR\n]));\nllOwnerSay\n(\n\"UUID: \"\n+\n(\nstring\n)\nuuid\n+\n\"\n\\n\nName:\n\\\"\n\"\n+\nllList2String\n(\na\n,\n0\n)\n+\n\"\n\\\"\n\"\n+\n\"\n\\n\nDecription:\n\\\"\n\"\n+\nllList2String\n(\na\n,\n1\n)\n+\n\"\n\\\"\n\"\n+\n\"\n\\n\nPosition: \"\n+\nllList2String\n(\na\n,\n2\n)\n+\n\"\n\\n\nRotation: \"\n+\nllList2String\n(\na\n,\n3\n)\n+\n\"\n\\n\nVelocity: \"\n+\nllList2String\n(\na\n,\n4\n)\n+\n\"\n\\n\nOwner: \"\n+\nllList2String\n(\na\n,\n5\n)\n+\n\"\n\\n\nGroup: \"\n+\nllList2String\n(\na\n,\n6\n)\n+\n\"\n\\n\nCreator: \"\n+\nllList2String\n(\na\n,\n7\n)\n);\n}\n}"
+  ],
+  "related": [
+    "llKey2Name",
+    "llGetPrimitiveParams",
+    "llSetLinkPrimitiveParams",
+    "llSetPrimitiveParams",
+    "llGetParcelDetails"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

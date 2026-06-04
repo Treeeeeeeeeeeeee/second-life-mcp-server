@@ -1,0 +1,24 @@
+{
+  "name": "llGetRegionAgentCount",
+  "signature": "integer llGetRegionAgentCount(  )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The value returned by this function is technically the average number of agents who were in the region for the past second, rounded to the nearest integer. This means that there is a slight (<1 second) delay in agent count when an agent enters or exits a region."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\ninteger\nnumberOfAvatarsInSim\n=\nllGetRegionAgentCount\n();\nllSay\n(\n0\n,\n\"There are currently \"\n+\n(\nstring\n)\nnumberOfAvatarsInSim\n+\n\" avatars in this sim.\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetAgentList",
+    "llGetRegionFPS",
+    "llGetRegionTimeDilation"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,28 @@
+{
+  "name": "llFindNotecardTextSync",
+  "signature": "list llFindNotecardTextSync( string name, string pattern, integer start, integer count, list options )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ja Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If name is missing from the prim's inventory and it is not a UUID or it is not a notecard then an error is shouted on DEBUG_CHANNEL .",
+    "If name is a UUID then there are no new asset permissions consequences for the object. The resulting object develops no new usage restrictions that might have occurred if the asset had been placed in the prims inventory.",
+    "The resulting object develops no new usage restrictions that might have occurred if the asset had been placed in the prims inventory.",
+    "If name is a new empty notecard (never saved) then an error \"Couldn't find notecard ~NAME~\" (~NAME~ being the value of name ) will be shouted on the DEBUG_CHANNEL . This is because until a notecard is saved for the first time, it does not exist as an asset only as an inventory placeholder. If the notecard is full-perms you can check for this with llGetInventoryKey which will return NULL_KEY in this case. However if notecard is not full-perms , there is no way to avoid the error message.",
+    "If the notecard is full-perms you can check for this with llGetInventoryKey which will return NULL_KEY in this case. However if notecard is not full-perms , there is no way to avoid the error message.",
+    "If notecard contains embedded inventory items (such as textures and landmarks), an empty list will be returned, regardless of the search string.",
+    "No more than 64 matches are returned."
+  ],
+  "examples": [],
+  "related": [
+    "llGetNumberOfNotecardLines",
+    "llGetNotecardLine",
+    "llGetNotecardLineSync"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

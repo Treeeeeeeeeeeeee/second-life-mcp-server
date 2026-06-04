@@ -1,0 +1,24 @@
+{
+  "name": "llGetRegionTimeDilation",
+  "signature": "float llGetRegionTimeDilation(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Region idling lowers a region's framerate when no avatars are currently on or looking into the region. Scripts measuring time dilation with llGetRegionTimeDilation may report significant time dilation if the region is idle ."
+  ],
+  "examples": [
+    "// The beginnings of a region-info script.\nstring\nregion\n;\nstring\nsim\n;\ndefault\n{\nstate_entry\n()\n{\nllSetTimerEvent\n(\n1.0\n);\n}\ntimer\n()\n{\nstring\nhere\n=\nllGetRegionName\n();\nif\n(\nregion\n!=\nhere\n)\n{\nsim\n=\nllGetSimulatorHostname\n();\nregion\n=\nhere\n;\n}\nllSetText\n(\n\"   REGION NAME\u00a0: \"\n+\nregion\n+\n\"\n\\n\nSIM HOSTNAME\u00a0: \"\n+\nsim\n+\n\"\n\\n\nTIME DILATION\u00a0: \"\n+\n(\nstring\n)\nllGetRegionTimeDilation\n()\n+\n\"\n\\n\nREGION FPS\u00a0: \"\n+\n(\nstring\n)\nllGetRegionFPS\n(),\n<\n0\n,\n1\n,\n0\n>\n,\n1.0\n);\n}\n}"
+  ],
+  "related": [
+    "llGetRegionFPS",
+    "llGetTime",
+    "llGetAndResetTime"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

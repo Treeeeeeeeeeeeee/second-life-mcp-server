@@ -1,0 +1,28 @@
+{
+  "name": "llGetAgentInfo",
+  "signature": "integer llGetAgentInfo( key id )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "AGENT_BUSY indicates that the \"busy\" internal animation is playing, even if the user is not truly in busy mode.",
+    "On server 1.40 and below , AGENT_TYPING indicated that the \"type\" internal animation is playing, it would not be set if the user disabled PlayTypingAnim . On server 1.42 and up , it reflects typing start/stop messages from the client and does not depend on the animation. If the old behavior is desired, use llGetAnimationList and look for \"c541c47f-e0c0-058b-ad1a-d6ae3a4584d9\" \u2014 SVC-787",
+    "AGENT_ALWAYS_RUN | AGENT_WALKING indicates that the user requested to run using standard viewer controls. Use llGetAnimation to also detect running caused by physics.",
+    "This function does not return reliable information immediately after a border crossing. Use llGetAnimation instead, if you can. \u2014 SVC-3177",
+    "AGENT_AUTOMATED may unexpectedly be enabled, see its caveats for more detail."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nbuf\n)\n{\nbuf\n=\nllGetAgentInfo\n(\nllDetectedKey\n(\n0\n));\nstring\nout\n;\nif\n(\nbuf\n&\nAGENT_FLYING\n)\nout\n+=\n\"The agent is flying.\n\\n\n\"\n;\nelse\nout\n+=\n\"The agent is not flying.\n\\n\n\"\n;\nif\n(\nbuf\n&\nAGENT_ATTACHMENTS\n)\n{\nif\n(\nbuf\n&\nAGENT_SCRIPTED\n)\nout\n+=\n\"The agent has scripted attachments.\n\\n\n\"\n;\nelse\nout\n+=\n\"The agent's attachments are unscripted.\n\\n\n\"\n;\n}\nelse\nout\n+=\n\"The agent does not have attachments.\n\\n\n\"\n;\nif\n(\nbuf\n&\nAGENT_MOUSELOOK\n)\nout\n+=\n\"the agent is in mouselook.\"\n;\nelse\nout\n+=\n\"the agent is in normal camera mode.\"\n;\nllWhisper\n(\n0\n,\nout\n);\n}\n}"
+  ],
+  "related": [
+    "llRequestAgentData",
+    "llGetAnimation",
+    "llGetAnimationList"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

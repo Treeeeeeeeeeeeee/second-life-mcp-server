@@ -1,0 +1,21 @@
+{
+  "name": "llAxisAngle2Rot",
+  "signature": "rotation llAxisAngle2Rot( vector axis, float angle )",
+  "return_type": "rotation",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nvector\naxis\n=\n<\n0.0\n,\n0.0\n,\n1.0\n>\n;\nfloat\nangle\n=\n90.0\n*\nDEG_TO_RAD\n;\nrotation\nrot\n=\nllAxisAngle2Rot\n(\naxis\n,\nangle\n);\nvector\neuler\n=\nllRot2Euler\n(\nrot\n)\n*\nRAD_TO_DEG\n;\nllOwnerSay\n((\nstring\n)\neuler\n);\n//Says <0.0, 0.0, 90.0> since it is rotating 90 degrees on the Z axis caused by the 1.0 placed in the Z vector spot.\n}\n}"
+  ],
+  "related": [
+    "llRot2Angle",
+    "llRot2Axis"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

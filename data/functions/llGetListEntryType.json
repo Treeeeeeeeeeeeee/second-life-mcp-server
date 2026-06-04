@@ -1,0 +1,28 @@
+{
+  "name": "llGetListEntryType",
+  "signature": "integer llGetListEntryType( list src, integer index )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If index is out of bounds the script continues to execute without an error message.",
+    "If a vector is stored in a list as \"<7,5,0>\" (as a string type, as opposed to <7,5,0> which is a vector type), its type will be returned as TYPE_STRING , not TYPE_VECTOR . The same applies for \"1\" being returned as a string instead of an integer, etc. There is no easy way to guess what the type should be from a string value."
+  ],
+  "examples": [
+    "string\nget_list_entry_type_info\n(\ninteger\ninputInteger\n)\n{\nif\n(\ninputInteger\n==\nTYPE_INTEGER\n)\nreturn\n\"integer\"\n;\nelse\nif\n(\ninputInteger\n==\nTYPE_FLOAT\n)\nreturn\n\"float\"\n;\nelse\nif\n(\ninputInteger\n==\nTYPE_STRING\n)\nreturn\n\"string\"\n;\nelse\nif\n(\ninputInteger\n==\nTYPE_KEY\n)\nreturn\n\"key\"\n;\nelse\nif\n(\ninputInteger\n==\nTYPE_VECTOR\n)\nreturn\n\"vector\"\n;\nelse\nif\n(\ninputInteger\n==\nTYPE_ROTATION\n)\nreturn\n\"rotation\"\n;\n//  else\nreturn\n\"<!-- invalid type --!>\"\n;\n}\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nlist\nlistOfStuff\n=\n[\n<\n1.0\n,\n2.0\n,\n3.0\n,\n4.0\n>\n,\n<\n1.0\n,\n2.0\n,\n3.0\n>\n,\nllGetKey\n(),\n\"some random text\"\n,\n382.4\n,\n1\n];\ninteger\nindex\n=\n~\nllGetListLength\n(\nlistOfStuff\n);\n// start with -length and end with -1\nwhile\n(\n++\nindex\n)\n{\ninteger\ntype\n=\nllGetListEntryType\n(\nlistOfStuff\n,\nindex\n);\nstring\nentry2string\n=\nllList2String\n(\nlistOfStuff\n,\nindex\n);\nllSay\n(\n0\n,\n\"'\"\n+\nentry2string\n+\n\"' has the list-entry-type: '\"\n+\nget_list_entry_type_info\n(\ntype\n)\n+\n\"'\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llList2Float",
+    "llList2Integer",
+    "llList2Key",
+    "llList2Rot",
+    "llList2String",
+    "llList2Vector"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

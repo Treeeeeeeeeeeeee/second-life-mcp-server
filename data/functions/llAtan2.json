@@ -1,0 +1,25 @@
+{
+  "name": "llAtan2",
+  "signature": "float llAtan2( float y, float x )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nfloat\nnum1\n=\nllFrand\n(\n100.0\n);\nfloat\nnum2\n=\nllFrand\n(\n100.0\n);\nllOwnerSay\n(\n\"y = \"\n+\n(\nstring\n)\nnum1\n);\nllOwnerSay\n(\n\"x = \"\n+\n(\nstring\n)\nnum2\n);\nllOwnerSay\n(\n\"The arctangent of y divided by x is \"\n+\n(\nstring\n)\nllAtan2\n(\nnum1\n,\nnum2\n));\n}\n}",
+    "//Function with input of a vector determining the position of a target and returning\n//a string with the literal compass-direction of that target towards your position\n//by Ramana Sweetwater 2009/01, any use allowed license\u00a0:-)\n//corrected by Patrick Muggins\nstring\ncompass\n(\nvector\ntarget\n)\n{\nvector\nsource\n=\nllGetPos\n();\nlist\nDIRS\n=\n[\n\"W\"\n,\n\"NW\"\n,\n\"N\"\n,\n\"NE\"\n,\n\"E\"\n,\n\"SE\"\n,\n\"S\"\n,\n\"SW\"\n,\n\"W\"\n];\ninteger\nindex\n=\nllCeil\n(\n3.5\n-\n(\n4\n*\nllAtan2\n(\ntarget\n.\ny\n-\nsource\n.\ny\n,\ntarget\n.\nx\n-\nsource\n.\nx\n)\n/\nPI\n));\nreturn\nllList2String\n(\nDIRS\n,\nindex\n);\n}"
+  ],
+  "related": [
+    "llSin",
+    "llAsin",
+    "llCos",
+    "llAcos",
+    "llTan"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

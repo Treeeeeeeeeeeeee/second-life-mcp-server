@@ -1,0 +1,29 @@
+{
+  "name": "llKey2Name",
+  "signature": "string llKey2Name( key id )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "It is difficult to tell the difference between a prim that has a name that is an empty string and a prim that is not in the sim, or because an invalid key was specified. Use llGetObjectDetails to avoid this problem.",
+    "To get around the \"avatar must be present\" limitation, you can use the llRequestAgentData function and the dataserver event to obtain the avatar's name from a key.",
+    "The opposite function ( llName2Key ) can be used to find the user key associated with an avatar in the same region. To find the user key of an avatar anywhere on the grid, use llRequestUserKey , which triggers a dataserver event.",
+    "If an avatar is \"ghosted\" (which occasionally happens due to a longstanding server bug), an empty string is returned even though the avatar is seemingly present and shows up in llSensor and the Mini-Map . This fact can be used as the basis of a Ghost Detector script.",
+    "Unlike the related functions llGetUsername and llRequestUsername , this function returns a 'nice' name in proper case and - if applicable - with a space, e.g. \"Peter Stindberg\", instead of \"peter.stindberg\" (or \"Josh\" instead of \"josh.resident\") as returned by the other two functions."
+  ],
+  "examples": [
+    "// Best viewed in Chat History (ctrl-h)\ndefault\n{\ncollision_start\n(\ninteger\nnum_detected\n)\n{\nkey\nid\n=\nllDetectedKey\n(\n0\n);\nstring\nname\n=\nllKey2Name\n(\nid\n);\nstring\ndetectedName\n=\nllDetectedName\n(\n0\n);\nllSay\n(\n0\n,\n\"llKey2Name: \"\n+\nname\n+\n\"\n\\n\nllDetectedName: \"\n+\ndetectedName\n);\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nkey\nid\n=\nllDetectedKey\n(\n0\n);\nstring\nname\n=\nllKey2Name\n(\nid\n);\nstring\ndetectedName\n=\nllDetectedName\n(\n0\n);\nllSay\n(\n0\n,\n\"llKey2Name: \"\n+\nname\n+\n\"\n\\n\nllDetectedName: \"\n+\ndetectedName\n);\n}\n}"
+  ],
+  "related": [
+    "llGetUsername",
+    "llGetDisplayName",
+    "llGetObjectDetails",
+    "llRequestAgentData"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

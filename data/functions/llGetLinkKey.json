@@ -1,0 +1,22 @@
+{
+  "name": "llGetLinkKey",
+  "signature": "key llGetLinkKey( integer link )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// Return the name of a link num else the empty string.\nstring\ngetLinkNumName\n(\ninteger\nlink\n)\n{\nif\n(\nLINK_THIS\n==\nlink\n)\nreturn\n\"LINK_THIS\"\n;\nif\n(\nLINK_ALL_CHILDREN\n==\nlink\n)\nreturn\n\"LINK_ALL_CHILDREN\"\n;\nif\n(\nLINK_ALL_OTHERS\n==\nlink\n)\nreturn\n\"LINK_ALL_OTHERS\"\n;\nif\n(\nLINK_SET\n==\nlink\n)\nreturn\n\"LINK_SET\"\n;\nif\n(\nLINK_ROOT\n==\nlink\n)\nreturn\n\"LINK_ROOT\"\n;\nreturn\n\"\"\n;\n}\n// Say the key of each linked prim.\ndefault\n{\nstate_entry\n()\n{\ninteger\ntheLink\n=\nllGetLinkNumber\n();\nkey\ntheLinkKey\n=\nllGetKey\n();\nkey\nowner\n=\nllGetOwner\n();\nkey\ncreator\n=\nllGetCreator\n();\n// Visit each link num.\ninteger\nlink\n;\ninteger\nprimmed\n=\nllGetNumberOfPrims\n();\nfor\n(\nlink\n=\n-\n5\n;\nlink\n<=\n(\nprimmed\n+\n5\n);\n++\nlink\n)\n{\nkey\nlinkKey\n=\nllGetLinkKey\n(\nlink\n);\n// Detail the key at the link num.\nstring\nline\n=\n(\nstring\n)\nlinkKey\n;\n// large constant width\nif\n(\nlinkKey\n==\nowner\n)\nline\n+=\n\" llGetOwner\"\n;\nif\n(\nlinkKey\n==\ncreator\n)\nline\n+=\n\" llGetCreator\"\n;\nif\n(\nlinkKey\n==\ntheLinkKey\n)\nline\n+=\n\" llGetKey\"\n;\n// Detail the link num.\nline\n+=\n\" @ \"\n+\n(\nstring\n)\nlink\n;\nline\n+=\n\" \"\n+\ngetLinkNumName\n(\nlink\n);\nif\n(\nlink\n==\ntheLink\n)\nline\n+=\n\" llGetLinkNumber\"\n;\nif\n(\nlink\n==\nprimmed\n)\nline\n+=\n\" llGetNumberOfPrims\"\n;\n// Say the detail if fun.\nif\n(\nlinkKey\n!=\nNULL_KEY\n)\n{\nllOwnerSay\n(\nline\n);\n}\n}\n// Always count the linked prims.\nllOwnerSay\n((\nstring\n)\nprimmed\n+\n\" llGetNumberOfPrims\"\n);\nllOwnerSay\n(\n\"OK\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetLinkNumber",
+    "llGetKey",
+    "llGetLinkName"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

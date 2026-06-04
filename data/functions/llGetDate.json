@@ -1,0 +1,22 @@
+{
+  "name": "llGetDate",
+  "signature": "string llGetDate(  )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// Birthday surprise\ndefault\n{\nstate_entry\n()\n{\nllSetTimerEvent\n(\n0.1\n);\n}\ntimer\n()\n{\nif\n(\nllGetDate\n()\n==\n\"2009-02-15\"\n)\nllSetText\n(\n\"HAPPY BIRTHDAY!\"\n,\n<\n0\n,\n1\n,\n0\n>\n,\n1.0\n);\nelse\nllSetText\n(\n\"A surprise is coming...\"\n,\n<\n0\n,\n1\n,\n0\n>\n,\n1.0\n);\nllSetTimerEvent\n(\n3600.0\n);\n// check every hour.\n}\n}",
+    "// Function to calculate the numeric day of year\ninteger\ndayOfYear\n(\ninteger\nyear\n,\ninteger\nmonth\n,\ninteger\nday\n)\n{\nreturn\nday\n+\n(\nmonth\n-\n1\n)\n*\n30\n+\n(((\nmonth\n>\n8\n)\n+\nmonth\n)\n/\n2\n)\n-\n((\n1\n+\n(((\n!\n(\nyear\n%\n4\n))\n^\n(\n!\n(\nyear\n%\n100\n))\n^\n(\n!\n(\nyear\n%\n400\n)))\n|\n(\nyear\n<=\n1582\n)))\n&&\n(\nmonth\n>\n2\n));\n}\ndefault\n{\ntouch_end\n(\ninteger\ncount\n)\n{\nlist\ndateComponents\n=\nllParseString2List\n(\nllGetDate\n(),\n[\n\"-\"\n],\n[]);\ninteger\nyear\n=\n(\ninteger\n)\nllList2String\n(\ndateComponents\n,\n0\n);\ninteger\nmonth\n=\n(\ninteger\n)\nllList2String\n(\ndateComponents\n,\n1\n);\ninteger\nday\n=\n(\ninteger\n)\nllList2String\n(\ndateComponents\n,\n2\n);\nllSay\n(\n0\n,\n\"The current day of the year is \"\n+\n(\nstring\n)\ndayOfYear\n(\nyear\n,\nmonth\n,\nday\n));\n}\n}",
+    "// Function to calculate whether a current year is a leap year\ninteger\nis_leap_year\n(\ninteger\nyear\n)\n{\nif\n(\nyear\n%\n4\n)\nreturn\nFALSE\n;\n// Not a leap year under any circumstances\nif\n(\nyear\n<=\n1582\n)\nreturn\nTRUE\n;\n// In the Julian calender before 24 February 1582, every fourth year was a leap year\nif\n(\n!\n(\nyear\n%\n400\n))\nreturn\nTRUE\n;\n// A leap century is a leap year if divisible by 400\nif\n(\n!\n(\nyear\n%\n100\n))\nreturn\nFALSE\n;\n// Any other century is not a leap year\nreturn\nTRUE\n;\n// It is divisible by 4 and not a century and not Julian, therefore it is a leap year\n}"
+  ],
+  "related": [
+    "llGetTimestamp"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

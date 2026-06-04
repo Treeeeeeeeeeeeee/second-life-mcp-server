@@ -1,0 +1,35 @@
+{
+  "name": "llGiveMoney",
+  "signature": "integer llGiveMoney( key destination, integer amount )",
+  "return_type": "integer",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_DEBIT , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "If PERMISSION_DEBIT is granted by anyone other than the owner, then when the function is called an error will be shouted on DEBUG_CHANNEL .",
+    "Once the PERMISSION_DEBIT permission is granted there is no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or the script is reset or deleted.",
+    "An object cannot pay another object.",
+    "It is impossible for a script to tell if an llGiveMoney transaction succeeded or failed. Use llTransferLindenDollars instead.",
+    "Objects deeded to groups cannot give money (the permission cannot be granted).",
+    "Use is limited to 30 payments in a 30 second interval for all scripts owned by that resident on a region. Sustained overage will produce a script error and halt payments while the rate remains excessive. Historically, faster payments have failed intermittently.",
+    "Once a script has the PERMISSION_DEBIT permission it can empty an account of L$. Fraud & theft are both Linden Lab violations and crimes. Misuse this function and you risk being banned and legal action. In addition LL may freeze the accounts of anyone the money is transferred to and restore it to it's rightful owners. This may involve retrieving it from third party exchanges and accounts on those exchanges being frozen. The system is not designed to be friendly towards fraud.",
+    "Fraud & theft are both Linden Lab violations and crimes. Misuse this function and you risk being banned and legal action. In addition LL may freeze the accounts of anyone the money is transferred to and restore it to it's rightful owners. This may involve retrieving it from third party exchanges and accounts on those exchanges being frozen. The system is not designed to be friendly towards fraud."
+  ],
+  "examples": [
+    "// Pay 100 L$ to Fred Bloggs when he touches this prim, then die\n// Compare this example with that shown under llTransferLindenDollars\nstring\nRecipient\n=\n\"Fred Bloggs\"\n;\n// Authorised recipient\ninteger\nAmount\n=\n100\n;\n// Amount to pay Fred when he touches the prim\ninteger\nDebitPerms\n;\ndefault\n{\nstate_entry\n()\n{\n// Ask the owner for permission to debit their account\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_DEBIT\n);\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\nif\n(\nperm\n&\nPERMISSION_DEBIT\n)\nDebitPerms\n=\nTRUE\n;\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nif\n(\n!\nDebitPerms\n)\nreturn\n;\n// Cannot proceed - debit permissions not granted\nif\n(\nllDetectedName\n(\n0\n)\n!=\nRecipient\n)\nreturn\n;\n// unauthorised person is touching - ignore\nkey\nid\n=\nllDetectedKey\n(\n0\n);\n// Get toucher's (i.e. Fred's) UUID\nllGiveMoney\n(\nid\n,\nAmount\n);\n// Give him the money\nllDie\n();\n// Die so Fred can't keep taking money\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llTransferLindenDollars",
+    "llSetPayPrice"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

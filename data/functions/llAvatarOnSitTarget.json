@@ -1,0 +1,26 @@
+{
+  "name": "llAvatarOnSitTarget",
+  "signature": "key llAvatarOnSitTarget(  )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "A prim does not have a sit target unless llSitTarget has been called with a nonzero vector as the first argument.",
+    "If the prim lacks a sit target or the avatar is seated upon a different prim, the only way to determine how many and which avatars are seated upon the object is to scan the link set (for an example of this, see llGetNumberOfPrims )."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\n// set sit target, otherwise this will not work\nllSitTarget\n(\n<\n0.0\n,\n0.0\n,\n0.1\n>\n,\nZERO_ROTATION\n);\n}\nchanged\n(\ninteger\nchange\n)\n{\nif\n(\nchange\n&\nCHANGED_LINK\n)\n{\nkey\nav\n=\nllAvatarOnSitTarget\n();\nif\n(\nav\n)\n// evaluated as true if key is valid and not NULL_KEY\n{\nllSay\n(\n0\n,\n\"Hello \"\n+\nllKey2Name\n(\nav\n)\n+\n\", thank you for sitting down\"\n);\n}\n}\n}\n}"
+  ],
+  "related": [
+    "llAvatarOnLinkSitTarget",
+    "llSitTarget",
+    "llLinkSitTarget",
+    "llGetLinkKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,38 @@
+{
+  "name": "llGetEnvironment",
+  "signature": "list llGetEnvironment( vector pos, list params )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If the script can not run in the requested parcel, this function returns an empty list and issues a warning in the debug channel.",
+    "SKY_LIGHT 's param fade_color does not return a clamped value, meaning an unusually bright scene will cause it to return an out-of-bounds color. (This can be fixed by clamping the value manually, but this should really return a clamped value)."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nlist\nenvironment\n=\nllGetEnvironment\n(\nllGetPos\n(),\n[\nSKY_TRACKS\n,\nSKY_AMBIENT\n,\nSKY_CLOUDS\n]);\nllOwnerSay\n(\nllDumpList2String\n(\nenvironment\n,\n\", \"\n));\n}\n}"
+  ],
+  "related": [
+    "llReplaceAgentEnvironment",
+    "llSetAgentEnvironment",
+    "llGetSunDirection",
+    "llGetRegionSunDirection",
+    "llGetMoonDirection",
+    "llGetRegionMoonDirection",
+    "llGetSunRotation",
+    "llGetRegionSunRotation",
+    "llGetMoonRotation",
+    "llGetRegionMoonRotation",
+    "llGetDayLength",
+    "llGetRegionDayLength",
+    "llGetDayOffset",
+    "llGetRegionDayOffset",
+    "llGetTimeOfDay",
+    "llGetRegionTimeOfDay"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

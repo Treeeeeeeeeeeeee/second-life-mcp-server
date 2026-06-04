@@ -1,0 +1,27 @@
+{
+  "name": "llFrand",
+  "signature": "float llFrand( float mag )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "The random number generator is not a source of entropy. The sequence of random numbers are shared across the entire simulator process, and not independently seeded. Therefore, the pseudo random number generation is not suitable for any application which requires completely predictable or completely unpredictable results.",
+    "The sequence of random numbers are shared across the entire simulator process, and not independently seeded. Therefore, the pseudo random number generation is not suitable for any application which requires completely predictable or completely unpredictable results.",
+    "It should be remembered that when passing llFrand an integer as the mag , it will be implicitly typecast to a float .",
+    "Many integers outside the range [-2 24 , +2 24 ] can not be represented in a float (this is an inherent limitation of the float type); for example, outside that range no odd integers will appear. For that reason, when converting the resulting float to integer, it is impossible to generate more than 2 24 +1 uniformly distributed values, and it's also impossible to generate more than 9*2 23 +1 or about 75 million different integers in total. Two llFrand calls may be needed to obtain the desired integer range; see examples below."
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nfloat\nrandomFloat\n=\n10.0\n+\nllFrand\n(\n-\n5.0\n);\nllSay\n(\n0\n,\n(\nstring\n)\nrandomFloat\n);\n}\n}",
+    "default\n{\nstate_entry\n()\n{\nfloat\nrandomFloat\n=\n10.0\n-\nllFrand\n(\n5.0\n);\nllSay\n(\n0\n,\n(\nstring\n)\nrandomFloat\n);\n}\n}",
+    "//  *near* 50:50 chance of \"Heads\" vs. \"Tails\"\ninteger\ncoin_toss\n()\n{\nif\n(\nllFrand\n(\n1.0\n)\n<\n0.5\n)\nreturn\nTRUE\n;\nreturn\nFALSE\n;\n}\n//  Sometimes it is useful to get a random integer over a given range.  This is\n//  a surprisingly tricky and emotive subject and has caused endless discussion\n//  on the scripting groups. The primary cause of probability errors when\n//  employing llFrand is to have a varying bin size on the edges of the range.\n//\n//  As the bracket notation indicates, [0.0, mag), the function is inclusive of\n//  the 0.0 and exclusive of the entered value. Because an LSL floating point\n//  number is only a subset of real numbers and does not have infinite\n//  granularity, this schema will work for any float greater than float\n//  t = 1.175494351e-38; at which value the function will return only zero. At a\n//  float beyond this, a math error occurs.\n//  Random integer generator:\n//      Contributed by Mephistopheles Thalheimer,\n//      original function posted by Hg Beeks\n//  Returns a pseudo-random integer in the range of min to max inclusive.\n//  Rationale:\n//      Expands the range by 1.0 to ensure equal bin spacing on ends relative to\n//      the middle of the range and then uses an integer cast to round towards\n//      zero.\n//  Caveats:\n//      This function is not range checked and will fail if max < min\ninteger\nrandom_integer\n(\ninteger\nmin\n,\ninteger\nmax\n)\n{\nreturn\nmin\n+\n(\ninteger\n)(\nllFrand\n(\nmax\n-\nmin\n+\n1\n));\n}\nsay\n(\nstring\nmessage\n)\n{\nllSay\n(\n0\n,\nmessage\n);\n}\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\n//      *near* 50:50 chance of \"Heads\" vs. \"Tails\"\nif\n(\ncoin_toss\n())\nsay\n(\n\"Heads\"\n);\nelse\nsay\n(\n\"Tails\"\n);\ninteger\nn1\n=\nrandom_integer\n(\n2\n,\n8\n);\n// Return a random number between 2 and 8\nsay\n(\n\"I chose a \"\n+\n(\nstring\n)\nn1\n);\n}\n}"
+  ],
+  "related": [
+    "llListRandomize"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,49 @@
+{
+  "name": "llCreateCharacter",
+  "signature": "void llCreateCharacter( list options )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "You only need to use one llCreateCharacter call per object, calling multiple times has no effect.",
+    "One script can contain an llCreateCharacter call and other scripts can exploit that with other path functions that require it.",
+    "llCreateCharacter status survives state changes, script resets, and rezzing.",
+    "llCreateCharacter is always required for all pathing functions.",
+    "When an object becomes a character, its physics weight becomes fixed at 15.",
+    "If we have multiple scripts containing llCreateCharacter in the same object nothing untoward happens.",
+    "If multiple scripts use conflicting path functions in the same object (different prims or the same prim) one will take precedence randomly (apparently).",
+    "CHARACTER_MAX_SPEED - See PATHBUG-42 - In testing, we have found a desired speed of 10m/s to be plenty fast most uses and that higher speeds may produce unexpected results (particularly when navigating tight spaces or making sharp turns). March 15, 2012",
+    "CHARACTER_MAX_ANGULAR_ACCEL min = 1.5708",
+    "The character's shape is a capsule (cylinder with spherical ends) with a length (from tip to tip) and a circular cross section of some radius. These two size parameters are what is controlled by the CHARACTER_LENGTH and CHARACTER_RADIUS params respectively.",
+    "Note that the character's true \"length\" cannot be smaller than twice the radius plus 0.1m; however, you're welcome to specify a value lower than that (but more than zero) -- the script shouldn't complain.",
+    "The capsule is usually oriented vertically. Use [ CHARACTER_ORIENTATION , HORIZONTAL ] if you need your character to be horizontal. Use a vertical capsule whenever possible; horizontal capsules may become stuck more easily than vertical capsules.",
+    "Use a vertical capsule whenever possible; horizontal capsules may become stuck more easily than vertical capsules.",
+    "Removing the script from a prim will not stop pathing behavior, in the same way that particles and hover text remain. However, if the character encounters an error state, it will be unable to recover since there is no original script to get error handling from. Removing scripts from actively used characters is NOT recommended. To stop a pathing command use llExecCharacterCmd ( CHARACTER_CMD_STOP , []) .",
+    "The root prim's position determines the characters height above the surface; if your character sinks under the surface or is too high above it adjust the relative position of the root prim to the rest of the linkset (or create a new root prim, which you might texture invisible, to control your character's apparent height).",
+    "The default value of CHARACTER_STAY_WITHIN_PARCEL depends on the CHARACTER_TYPE . If CHARACTER_TYPE is set to anything other than CHARACTER_TYPE_NONE , then CHARACTER_STAY_WITHIN_PARCEL will default to TRUE , so always explicitly set CHARACTER_STAY_WITHIN_PARCEL to FALSE if you don't want the character to stop at parcel borders.",
+    "If CHARACTER_TYPE is set to anything other than CHARACTER_TYPE_NONE , then CHARACTER_STAY_WITHIN_PARCEL will default to TRUE , so always explicitly set CHARACTER_STAY_WITHIN_PARCEL to FALSE if you don't want the character to stop at parcel borders."
+  ],
+  "examples": [
+    "create_character\n()\n{\n//  Clear any previous character behaviors\nllDeleteCharacter\n();\n//  MAX_SPEED is @ 20 by default\nllCreateCharacter\n([\nCHARACTER_MAX_SPEED\n,\n25\n,\nCHARACTER_DESIRED_SPEED\n,\n15.0\n]);\n}\npatrol_around\n(\nvector\ntargetPos\n)\n{\nlist\npoints\n=\n[\ntargetPos\n+\n<\n5\n,\n0\n,\n0\n>\n,\ntargetPos\n-\n<\n5\n,\n0\n,\n0\n>\n];\nllPatrolPoints\n(\npoints\n,\n[]);\n}\ndefault\n{\non_rez\n(\ninteger\nstart_param\n)\n{\nllResetScript\n();\n}\nstate_entry\n()\n{\ncreate_character\n();\n}\ntouch_start\n(\ninteger\nnum_detected\n)\n{\npatrol_around\n(\nllGetPos\n());\n}\n}"
+  ],
+  "related": [
+    "llCreateCharacter",
+    "llDeleteCharacter",
+    "llEvade",
+    "llExecCharacterCmd",
+    "llGetClosestNavPoint",
+    "llGetStaticPath",
+    "llFleeFrom",
+    "llNavigateTo",
+    "llPatrolPoints",
+    "llPursue",
+    "llUpdateCharacter",
+    "llWanderWithin"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

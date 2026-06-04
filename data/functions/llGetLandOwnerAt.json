@@ -1,0 +1,20 @@
+{
+  "name": "llGetLandOwnerAt",
+  "signature": "key llGetLandOwnerAt( vector pos )",
+  "return_type": "key",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\n//llKey2Name does not work for groups, and it requires avatars to be on sim (owner is not known when absent tested 2019-06-10).\n//Actually printing the owner name (also for groups) is somewhat tricky - if you feel otherwise, please update this example.\nllOwnerSay\n(\n\"The land owner under this object is \"\n+\nllKey2Name\n(\nllGetLandOwnerAt\n(\nllGetPos\n()))\n+\n\".\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetParcelDetails"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

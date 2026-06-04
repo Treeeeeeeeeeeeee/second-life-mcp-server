@@ -1,0 +1,29 @@
+{
+  "name": "llGetDisplayName",
+  "signature": "string llGetDisplayName( key id )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "To get around the \"avatar must be present\" limitation, you can use the llRequestDisplayName function and the dataserver event to obtain the avatar's display name from a key (this is slower).",
+    "There is no opposite function ( llDisplayName2Key ) available since display names are non-unique.",
+    "Either of ??? or \"\" is returned if the region is unable to return display names. This can happen even if display names are enabled on the region, especially the first time a given key is checked. At least one retry may be advisable. Do not rely on this function to verify avatar presence.",
+    "It is possible for Loading... to be returned if called before the region has had a chance to resolve the agent's display name. Do not retry failed attempts indefinitely in a loop. In a few cases, a display name or username will not be returned for as long as the avatar is in the region.",
+    "Do not retry failed attempts indefinitely in a loop. In a few cases, a display name or username will not be returned for as long as the avatar is in the region.",
+    "If you merely wish to show the agent display name in the viewer window, it may be more straightforward to use Viewer URI Name Space , e.g.: llSay ( 0 , \"secondlife:///app/agent/\" + ( string ) id + \"/displayname\" );"
+  ],
+  "examples": [
+    "// Best viewed in Chat History (ctrl-h)\ndefault\n{\ncollision_start\n(\ninteger\na\n)\n//Announce who collided\n{\nllSay\n(\n0\n,\n\"llGetDisplayName: \"\n+\nllGetDisplayName\n(\nllDetectedKey\n(\n0\n))\n+\n\"\n\\n\nllDetectedName: \"\n+\nllDetectedName\n(\n0\n));\n}\ntouch_start\n(\ninteger\na\n)\n{\nllSay\n(\n0\n,\n\"llGetDisplayName: \"\n+\nllGetDisplayName\n(\nllDetectedKey\n(\n0\n))\n+\n\"\n\\n\nllDetectedName: \"\n+\nllDetectedName\n(\n0\n));\n}\n}"
+  ],
+  "related": [
+    "llRequestDisplayName",
+    "llGetUsername",
+    "llRequestUsername"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

@@ -1,0 +1,22 @@
+{
+  "name": "llGetEnv",
+  "signature": "string llGetEnv( string name )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 0.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nstring\nversion\n=\nllGetEnv\n(\n\"sim_version\"\n);\nllOwnerSay\n(\n\"Region \"\n+\nllGetRegionName\n()\n+\n\" is running \"\n+\nllGetEnv\n(\n\"sim_channel\"\n)\n+\n\" version \"\n+\nversion\n);\nlist\nver\n=\nllParseString2List\n(\nversion\n,\n[\n\".\"\n],\n[]);\nllOwnerSay\n(\n\"Build: \"\n+\nllList2String\n(\nver\n,\n3\n));\nllOwnerSay\n(\n\"Build Date: \"\n+\nllList2String\n(\nver\n,\n2\n)\n+\n\"-\"\n+\nllList2String\n(\nver\n,\n1\n)\n+\n\"-20\"\n+\nllList2String\n(\nver\n,\n0\n));\n}\n}"
+  ],
+  "related": [
+    "llRequestSimulatorData",
+    "llGetSimulatorHostname",
+    "llGetRegionFlags"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

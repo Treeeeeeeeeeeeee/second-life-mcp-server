@@ -1,0 +1,25 @@
+{
+  "name": "llGetAgentList",
+  "signature": "list llGetAgentList( integer scope, list options )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 0.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "There is no guaranteed understandable order or randomness to the list returned.",
+    "Will only return up to 100 agents.",
+    "Ghosts, agents that leave behind a corrupted presence and agents in God Mode depending on the level will have NULL_KEY returned instead of their real key with llGetAgentList (). There is also an issue with a certain type of ghosted agent still returning a key too. Perhaps check each key against llGetAgentSize () to verify if they're really in the sim or not; none of the above anomalies affect llGetAgentSize ()."
+  ],
+  "examples": [
+    "//Displays up to 100 avatar key: name pairs detected in the entire region\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nlist\navatarsInRegion\n=\nllGetAgentList\n(\nAGENT_LIST_REGION\n,\n[]);\ninteger\nnumOfAvatars\n=\nllGetListLength\n(\navatarsInRegion\n);\n// if no avatars, abort avatar listing process and give a short notice\nif\n(\n!\nnumOfAvatars\n)\n{\nllOwnerSay\n(\n\"No avatars found within the region!\"\n);\nreturn\n;\n}\ninteger\nindex\n;\nwhile\n(\nindex\n<\nnumOfAvatars\n)\n{\nkey\nid\n=\nllList2Key\n(\navatarsInRegion\n,\nindex\n);\nstring\nname\n=\nllKey2Name\n(\nid\n);\nllOwnerSay\n(\nname\n+\n\" [ \"\n+\n(\nstring\n)\nid\n+\n\" ]\"\n);\n++\nindex\n;\n}\n}\n}",
+    "//  Orders new list based on distance\n//  and returns names and distances on touch\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nlist\nkeys\n=\nllGetAgentList\n(\nAGENT_LIST_REGION\n,\n[]);\ninteger\nnumberOfKeys\n=\nllGetListLength\n(\nkeys\n);\nvector\ncurrentPos\n=\nllGetPos\n();\nlist\nnewkeys\n;\nkey\nthisAvKey\n;\ninteger\ni\n;\nfor\n(\ni\n=\n0\n;\ni\n<\nnumberOfKeys\n;\n++\ni\n)\n{\nthisAvKey\n=\nllList2Key\n(\nkeys\n,\ni\n);\nnewkeys\n+=\n[\nllRound\n(\nllVecDist\n(\ncurrentPos\n,\nllList2Vector\n(\nllGetObjectDetails\n(\nthisAvKey\n,\n[\nOBJECT_POS\n]),\n0\n))),\nthisAvKey\n];\n}\nnewkeys\n=\nllListSort\n(\nnewkeys\n,\n2\n,\nFALSE\n);\n//  sort strided list by descending distance\nfor\n(\ni\n=\n0\n;\ni\n<\n(\nnumberOfKeys\n*\n2\n);\ni\n+=\n2\n)\n{\nllOwnerSay\n(\nllGetDisplayName\n(\nllList2Key\n(\nnewkeys\n,\ni\n+\n1\n))\n+\n\" [\"\n+\n(\nstring\n)\nllList2Integer\n(\nnewkeys\n,\ni\n)\n+\n\"m]\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetRegionAgentCount"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

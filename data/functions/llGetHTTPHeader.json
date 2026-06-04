@@ -1,0 +1,38 @@
+{
+  "name": "llGetHTTPHeader",
+  "signature": "string llGetHTTPHeader( key request_id, string header )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Header information becomes inaccessible after 30 seconds or if llHTTPResponse is called.",
+    "Function returns an empty string in any context outside the http_request event. For instance, it cannot be used in the http_response event.",
+    "Custom headers are not supported, only the headers listed in the specification are supported.",
+    "LSL is not a CGI environment \"Content-Type\" is an example of a normal header name, in a CGI environment the name would be \"HTTP_CONTENT_TYPE\".",
+    "\"Content-Type\" is an example of a normal header name, in a CGI environment the name would be \"HTTP_CONTENT_TYPE\".",
+    "header must be lower case (or it will match nothing). All header names are converted to lower case when they are received.",
+    "When making a request... The path part of the URL must be prefixed with a forward slash Good: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322/foo Bad: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322foo In order to use the query string, you must include a path (even if it is just a slash) Good: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322/?arg=gra Bad: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322?arg=gra",
+    "The path part of the URL must be prefixed with a forward slash Good: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322/foo Bad: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322foo",
+    "Good: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322/foo",
+    "Bad: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322foo",
+    "In order to use the query string, you must include a path (even if it is just a slash) Good: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322/?arg=gra Bad: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322?arg=gra",
+    "Good: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322/?arg=gra",
+    "Bad: https://sim3015.aditi.lindenlab.com:12043/cap/a7717681-2c04-e4ac-35e3-1f01c9861322?arg=gra"
+  ],
+  "examples": [
+    "key\nurl_request\n;\ndefault\n{\nstate_entry\n()\n{\nurl_request\n=\nllRequestURL\n();\n}\nhttp_request\n(\nkey\nid\n,\nstring\nmethod\n,\nstring\nbody\n)\n{\nif\n(\nurl_request\n==\nid\n)\n{\n//  if you're usually not resetting the query ID\n//  now is a good time to start!\nurl_request\n=\n\"\"\n;\nif\n(\nmethod\n==\nURL_REQUEST_GRANTED\n)\n{\nllOwnerSay\n(\n\"URL: \"\n+\nbody\n);\nkey\nowner\n=\nllGetOwner\n();\nvector\nownerSize\n=\nllGetAgentSize\n(\nowner\n);\nif\n(\nownerSize\n)\n// \u00a0!= ZERO_VECTOR\nllLoadURL\n(\nowner\n,\n\"I got a new URL!\"\n,\nbody\n);\n}\nelse\nif\n(\nmethod\n==\nURL_REQUEST_DENIED\n)\nllOwnerSay\n(\n\"Something went wrong, no url:\n\\n\n\"\n+\nbody\n);\n}\nelse\n{\nlist\nheaderList\n=\n[\n\"x-script-url\"\n,\n\"x-path-info\"\n,\n\"x-query-string\"\n,\n\"x-remote-ip\"\n,\n\"user-agent\"\n];\ninteger\nindex\n=\n-\nllGetListLength\n(\nheaderList\n);\ndo\n{\nstring\nheader\n=\nllList2String\n(\nheaderList\n,\nindex\n);\nllOwnerSay\n(\nheader\n+\n\": \"\n+\nllGetHTTPHeader\n(\nid\n,\nheader\n));\n}\nwhile\n(\n++\nindex\n);\nllOwnerSay\n(\n\"body:\n\\n\n\"\n+\nbody\n);\nllHTTPResponse\n(\nid\n,\n200\n,\nbody\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetFreeURLs",
+    "llRequestURL",
+    "llRequestSecureURL",
+    "llReleaseURL",
+    "llHTTPResponse"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

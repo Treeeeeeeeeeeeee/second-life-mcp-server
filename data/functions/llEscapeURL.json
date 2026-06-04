@@ -1,0 +1,20 @@
+{
+  "name": "llEscapeURL",
+  "signature": "string llEscapeURL( string url )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [],
+  "examples": [
+    "string\nstr\n=\n\"http://wiki.secondlife.com/wiki/LSL Portal\"\n;\ndefault\n{\nstate_entry\n()\n{\nllOwnerSay\n(\n\"Plain string:\n\\n\\t\n\"\n+\nstr\n);\n// output: \"http://wiki.secondlife.com/wiki/LSL Portal\"\nllOwnerSay\n(\n\"Escaped string:\n\\n\\t\n\"\n+\nllEscapeURL\n(\nstr\n));\n// output: \"http%3A%2F%2Fwiki%2Esecondlife%2Ecom%2Fwiki%2FLSL%20Portal\"\nllOwnerSay\n(\n\"Escaped string unescaped again:\n\\n\\t\n\"\n+\nllUnescapeURL\n(\nllEscapeURL\n(\nstr\n)\n));\n// output: \"http://wiki.secondlife.com/wiki/LSL Portal\"\n// because escaping and unescaping are exact opposite\n// and unescaping an escaped string returns the original\n//  For readability's sake it would make more sense to do:\nllOwnerSay\n(\n\"For readability's sake:\n\\n\\t\n\"\n+\n\"http://wiki.secondlife.com/wiki/\"\n+\nllEscapeURL\n(\n\"LSL Portal\"\n));\n// output: \"http://wiki.secondlife.com/wiki/LSL%20Portal\"\n}\n}"
+  ],
+  "related": [
+    "llUnescapeURL"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

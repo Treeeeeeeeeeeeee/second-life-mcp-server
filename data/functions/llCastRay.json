@@ -1,0 +1,28 @@
+{
+  "name": "llCastRay",
+  "signature": "list llCastRay( vector start, vector end, list options )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Depending upon the value of flags (provided via RC_DATA_FLAGS ), the number and types of values in the strides will vary. See RC_DATA_FLAGS for details.",
+    "llGetRot will not return an avatar's exact visual rotation because the viewer doesn't update the avatar's rotation under a threshold (see VWR-1331 ). To get an avatar's exact looking direction while in mouselook, use llGetCameraRot instead.",
+    "llCastRay will not detect prims having no physics shape ( PRIM_PHYSICS_SHAPE_TYPE = PRIM_PHYSICS_SHAPE_NONE ).",
+    "llCastRay will not detect a prim if the line starts inside the prim. This makes it safe to use the prim position as the start location.",
+    "llCastRay can detect the prim the script is in, if the start location is outside the prim.",
+    "The result of this function has been noted to be unreliable when the end point is out-of-bounds (Occasionally returns status code 0 regardless of amount of objects hit). (See this forum post ) The random failures seem to happen if the ray begins or ends more than 8 meters outside of current region bounds. Changes in only the ray's angle, or only in its position, may change the result. The result does not change if the exact same ray is cast again.",
+    "The random failures seem to happen if the ray begins or ends more than 8 meters outside of current region bounds. Changes in only the ray's angle, or only in its position, may change the result. The result does not change if the exact same ray is cast again."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nvector\nstart\n=\nllGetPos\n();\nvector\nend\n=\nstart\n+\n<\n10\n,\n0\n,\n0\n>\n*\nllGetRot\n();\nlist\ndata\n=\nllCastRay\n(\nstart\n,\nend\n,\n[]);\nllOwnerSay\n(\nllList2CSV\n(\ndata\n));\n}\n}",
+    "integer\ngTargetChan\n=\n-\n9934917\n;\ndefault\n{\nattach\n(\nkey\nid\n)\n{\nif\n(\nid\n!=\nNULL_KEY\n)\n{\nllRequestPermissions\n(\nid\n,\nPERMISSION_TAKE_CONTROLS\n|\nPERMISSION_TRACK_CAMERA\n);\n}\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\nif\n(\nperm\n&\nPERMISSION_TAKE_CONTROLS\n|\nPERMISSION_TRACK_CAMERA\n)\n{\nllTakeControls\n(\nCONTROL_LBUTTON\n|\nCONTROL_ML_LBUTTON\n,\nTRUE\n,\nFALSE\n);\n}\n}\ncontrol\n(\nkey\nid\n,\ninteger\nlevel\n,\ninteger\nedge\n)\n{\n// User must be in mouselook to aim the weapon\nif\n(\nlevel\n&\nedge\n&\nCONTROL_LBUTTON\n)\n{\nllSay\n(\n0\n,\n\"You must be in Mouselook to shoot.  Type\n\\\"\nCTRL + M\n\\\"\nor type\n\\\"\nEsc\n\\\"\nand scroll your mouse wheel forward to enter Mouselook.\"\n);\n}\n// User IS in mouselook\nif\n(\nlevel\n&\nedge\n&\nCONTROL_ML_LBUTTON\n)\n{\nvector\nstart\n=\nllGetCameraPos\n();\n// Detect only a non-physical, non-phantom object. Report its root prim's UUID.\nlist\nresults\n=\nllCastRay\n(\nstart\n,\nstart\n+<\n60.0\n,\n0.0\n,\n0.0\n>*\nllGetCameraRot\n(),[\nRC_REJECT_TYPES\n,\nRC_REJECT_PHYSICAL\n|\nRC_REJECT_AGENTS\n|\nRC_REJECT_LAND\n,\nRC_DETECT_PHANTOM\n,\nFALSE\n,\nRC_DATA_FLAGS\n,\nRC_GET_ROOT_KEY\n,\nRC_MAX_HITS\n,\n1\n]);\nllTriggerSound\n(\nllGetInventoryName\n(\nINVENTORY_SOUND\n,\n0\n),\n1.0\n);\nllSleep\n(\n0.03\n);\nkey\ntarget\n=\nllList2Key\n(\nresults\n,\n0\n);\n// Tell target that it has been hit.\nllRegionSayTo\n(\ntarget\n,\ngTargetChan\n,\n\"HIT\"\n);\n// Target, scripted to listen on gTargetChan, can explode, change color, fall over .....\n}\n}\n}",
+    "vector\nGetRegionEdge\n(\nvector\nstart\n,\nvector\ndir\n)\n{\nfloat\nscaleGuess\n;\nfloat\nscaleFactor\n=\n4095.99\n;\nif\n(\ndir\n.\nx\n)\n{\nscaleFactor\n=\n((\ndir\n.\nx\n>\n0\n)\n*\n255.99\n-\nstart\n.\nx\n)\n/\ndir\n.\nx\n;\n}\nif\n(\ndir\n.\ny\n)\n{\nscaleGuess\n=\n((\ndir\n.\ny\n>\n0\n)\n*\n255.99\n-\nstart\n.\ny\n)\n/\ndir\n.\ny\n;\nif\n(\nscaleGuess\n<\nscaleFactor\n)\nscaleFactor\n=\nscaleGuess\n;\n}\nif\n(\ndir\n.\nz\n)\n{\nscaleGuess\n=\n((\ndir\n.\nz\n>\n0\n)\n*\n4095.99\n-\nstart\n.\nz\n)\n/\ndir\n.\nz\n;\nif\n(\nscaleGuess\n<\nscaleFactor\n)\nscaleFactor\n=\nscaleGuess\n;\n}\nreturn\nstart\n+\ndir\n*\nscaleFactor\n;\n}\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nvector\nstart\n=\nllGetPos\n();\nvector\ndirection\n=\n<\n1\n,\n0\n,\n0\n>\n*\nllGetRot\n();\nvector\nend\n=\nGetRegionEdge\n(\nstart\n,\ndirection\n);\nlist\ndata\n=\nllCastRay\n(\nstart\n,\nend\n,\n[]);\nllOwnerSay\n(\nllList2CSV\n(\ndata\n));\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

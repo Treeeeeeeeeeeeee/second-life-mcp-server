@@ -1,0 +1,36 @@
+{
+  "name": "llDetectedTouchST",
+  "signature": "vector llDetectedTouchST( integer index )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If index is out of bounds the script continues to execute without an error message.",
+    "TOUCH_INVALID_TEXCOORD is returned when... The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace . The touch has moved off the surface of the prim. The touch happened too close to the edge of the face to determine a location. The event triggered is not a touch event.",
+    "The avatar's viewer does not support face touch detection. To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "To check if face touch detection is supported check the return of llDetectedTouchFace .",
+    "The touch has moved off the surface of the prim.",
+    "The touch happened too close to the edge of the face to determine a location.",
+    "The event triggered is not a touch event.",
+    "The vertical coordinate is flipped on a glTF mesh."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\ninteger\ntouchFace\n=\nllDetectedTouchFace\n(\n0\n);\nvector\ntouchST\n=\nllDetectedTouchST\n(\n0\n);\n//      ZERO_VECTOR (<0.0, 0.0, 0.0> ... the origin) is in the bottom left corner of the face\n//      touchST.x goes across the face from the left to the right\n//      touchST.y goes up the face from the bottom to the top\nif\n(\ntouchFace\n==\n-\n1\n)\nllWhisper\n(\nPUBLIC_CHANNEL\n,\n\"Sorry, your viewer doesn't support touched faces.\"\n);\nelse\nif\n(\ntouchST\n==\nTOUCH_INVALID_TEXCOORD\n)\nllWhisper\n(\nPUBLIC_CHANNEL\n,\n\"Sorry, the touch position upon the face could not be determined.\"\n);\nelse\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"llDetectedTouchST(0) = \"\n+\n(\nstring\n)\ntouchST\n+\n\"\n\\n\ntouchST.x = \"\n+\n(\nstring\n)\ntouchST\n.\nx\n+\n\"\n\\n\ntouchST.y = \"\n+\n(\nstring\n)\ntouchST\n.\ny\n);\n}\n}",
+    "integer\nnumberOfRows\n=\n12\n;\ninteger\nnumberOfColumns\n=\n12\n;\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nvector\ntouchST\n=\nllDetectedTouchST\n(\n0\n);\n//      ZERO_VECTOR (<0.0, 0.0, 0.0> ... the origin) is in the bottom left corner of the face\n//      touchST.x goes across the face from the left to the right\n//      touchST.y goes up the face from the bottom to the top\ninteger\ncolumnIndex\n=\n(\ninteger\n)\n(\ntouchST\n.\nx\n*\nnumberOfColumns\n);\ninteger\nrowIndex\n=\n(\ninteger\n)\n(\ntouchST\n.\ny\n*\nnumberOfRows\n);\ninteger\ncellIndex\n=\n(\nrowIndex\n*\nnumberOfColumns\n)\n+\ncolumnIndex\n;\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"ST grid (\"\n+\n(\nstring\n)\ncolumnIndex\n+\n\", \"\n+\n(\nstring\n)\nrowIndex\n+\n\") --> cell \"\n+\n(\nstring\n)\ncellIndex\n);\n}\n}",
+    "//  with friendly permission of Supremius Maximus\n//  who made the texture used in this script\n//\n//  click & hold the mouse while dragging across\n//  the face of the prim\ndefault\n{\ntouch\n(\ninteger\nnum_detected\n)\n{\ninteger\nlink\n=\nllDetectedLinkNumber\n(\n0\n);\ninteger\nface\n=\nllDetectedTouchFace\n(\n0\n);\nvector\ntouchST\n=\nllDetectedTouchST\n(\n0\n);\n//      ZERO_VECTOR (<0.0, 0.0, 0.0> ... the origin) is in the bottom left corner of the face\n//      touchST.x goes across the face from the left to the right\n//      touchST.y goes across the face from the bottom to the top\nstring\nuuid\n=\n\"23badbe7-6d8c-639b-0131-bb321f8e9db5\"\n;\nllSetLinkPrimitiveParamsFast\n(\nlink\n,\n[\nPRIM_TEXTURE\n,\nface\n,\nuuid\n,\n<\n1.0\n,\n1.0\n,\n0.0\n>\n,\ntouchST\n,\n0\n,\nPRIM_FULLBRIGHT\n,\nALL_SIDES\n,\nTRUE\n]);\n}\n}"
+  ],
+  "related": [
+    "llDetectedLinkNumber",
+    "llDetectedTouchFace",
+    "llDetectedTouchUV",
+    "llDetectedTouchPos",
+    "llDetectedTouchNormal",
+    "llDetectedTouchBinormal"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

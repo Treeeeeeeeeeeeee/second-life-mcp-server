@@ -1,0 +1,32 @@
+{
+  "name": "llGetLinkName",
+  "signature": "string llGetLinkName( integer link )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "link needs to be either an actual link number or a link constants that equate to a single prim, such as LINK_ROOT and LINK_THIS . LINK_SET , LINK_ALL_CHILDREN and LINK_ALL_OTHERS will not work.",
+    "LINK_SET , LINK_ALL_CHILDREN and LINK_ALL_OTHERS will not work.",
+    "If link is out of bounds, NULL_KEY is returned.",
+    "The prim name attribute is limited to 63 bytes, any string longer then that will be truncated. This truncation does not always happen when the attribute is set or read.",
+    "There is no corresponding llSetLinkName , use llSetLinkPrimitiveParamsFast(link, [PRIM_NAME, name]); instead."
+  ],
+  "examples": [
+    "integer\ncheck_for_prim\n(\nstring\nname\n)\n{\ninteger\ni\n=\nllGetNumberOfPrims\n();\nfor\n(;\ni\n>=\n0\n;\n--\ni\n)\n{\nif\n(\nllGetLinkName\n(\ni\n)\n==\nname\n)\n{\nreturn\nTRUE\n;\n}\n}\nreturn\nFALSE\n;\n}\ndefault\n{\nstate_entry\n()\n{\nllListen\n(\n10\n,\n\"\"\n,\nllGetOwner\n(),\n\"\"\n);\n}\nlisten\n(\ninteger\nchan\n,\nstring\nobj\n,\nkey\nid\n,\nstring\nmsg\n)\n{\nif\n(\ncheck_for_prim\n(\nmsg\n))\n{\nllOwnerSay\n(\n\"found a linked prim named\n\\\"\n\"\n+\nmsg\n+\n\"\n\\\"\n\"\n);\n}\nelse\n{\nllOwnerSay\n(\n\"this object does not have any linked prims named\n\\\"\n\"\n+\nmsg\n+\n\"\n\\\"\n\"\n);\n}\n}\n}"
+  ],
+  "related": [
+    "llGetLinkNumber",
+    "llGetLinkKey",
+    "llGetObjectName",
+    "llSetObjectName",
+    "llGetObjectDesc",
+    "llSetObjectDesc",
+    "llGetObjectDetails"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

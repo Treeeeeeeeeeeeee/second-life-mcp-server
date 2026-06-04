@@ -1,0 +1,22 @@
+{
+  "name": "llGetWallclock",
+  "signature": "float llGetWallclock(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// Real World Sun\ninteger\nFlag\n;\ndefault\n{\nstate_entry\n()\n{\nFlag\n=\n-\n1\n;\nllSetTimerEvent\n(\n0.1\n);\n}\ntimer\n()\n{\nfloat\ntime\n=\nllGetWallclock\n();\nif\n(\nFlag\n==\n-\n1\n)\n{\nllSetTimerEvent\n(\n60.0\n);\n}\nif\n(\ntime\n<\n21600\n)\n{\nif\n(\nFlag\n)\n{\nllSetText\n(\n\"The Sun is coming!\u00a0:)\"\n,\n<\n1\n,\n1\n,\n0\n>\n,\n1.0\n);\nFlag\n=\n0\n;\n}\n}\nelse\nif\n(\ntime\n<\n64800\n)\n{\nif\n(\nFlag\n!=\n1\n)\n{\nllSetText\n(\n\"Sun has risen.\u00a0:(\"\n,\n<\n1\n,\n0\n,\n0\n>\n,\n1.0\n);\nFlag\n=\n1\n;\n}\n}\nelse\nif\n(\nFlag\n!=\n2\n)\n{\nllSetText\n(\n\"Goodbye Sun.\u00a0:(\"\n,\n<\n1\n,\n0\n,\n0\n>\n,\n1.0\n);\nFlag\n=\n2\n;\n}\n}\n}",
+    "// Convert to human-readable HH:MM:SS format\nstring\nConvertWallclockToTime\n()\n{\ninteger\nnow\n=\n(\ninteger\n)\nllGetWallclock\n();\ninteger\nseconds\n=\nnow\n%\n60\n;\ninteger\nminutes\n=\n(\nnow\n/\n60\n)\n%\n60\n;\ninteger\nhours\n=\nnow\n/\n3600\n;\nreturn\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nhours\n,\n-\n2\n,\n-\n1\n)\n+\n\":\"\n+\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nminutes\n,\n-\n2\n,\n-\n1\n)\n+\n\":\"\n+\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nseconds\n,\n-\n2\n,\n-\n1\n);\n}\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nllSay\n(\n0\n,\nConvertWallclockToTime\n());\n}\n}",
+    "// Convert to human-readable 12-hour HH:MM:SS (AM/PM) format\nstring\nConvertWallclockToTime\n()\n{\ninteger\nnow\n=\n(\ninteger\n)\nllGetWallclock\n();\ninteger\nseconds\n=\nnow\n%\n60\n;\ninteger\nminutes\n=\n(\nnow\n/\n60\n)\n%\n60\n;\ninteger\nhours\n=\nnow\n/\n3600\n;\nreturn\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)(\nhours\n%\n12\n),\n-\n2\n,\n-\n1\n)\n+\n\":\"\n+\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nminutes\n,\n-\n2\n,\n-\n1\n)\n+\n\":\"\n+\nllGetSubString\n(\n\"0\"\n+\n(\nstring\n)\nseconds\n,\n-\n2\n,\n-\n1\n)\n+\n\" \"\n+\nllList2String\n([\n\"AM\"\n,\n\"PM\"\n],\n(\nhours\n>\nhours\n%\n12\n));\n}\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nllSay\n(\n0\n,\nConvertWallclockToTime\n());\n}\n}"
+  ],
+  "related": [
+    "llGetGMTclock"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

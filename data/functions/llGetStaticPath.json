@@ -1,0 +1,20 @@
+{
+  "name": "llGetStaticPath",
+  "signature": "list llGetStaticPath( vector start, vector end, float radius, list params )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// llGetStaticPath() test script\n// Reports the static path from the object's current position to the object owner's position\n// Radius of character to test for\nfloat\ncharacter_radius\n=\n1.0\n;\n// All defined path_update codes; note that llGetStaticPath() can only return a few of these.\nlist\npath_update_codes\n=\n[\n\"PU_SLOWDOWN_DISTANCE_REACHED \"\n,\n\"PU_GOAL_REACHED\"\n,\n\"PU_FAILURE_INVALID_START\"\n,\n\"PU_FAILURE_INVALID_GOAL\"\n,\n\"PU_FAILURE_UNREACHABLE\"\n,\n\"PU_FAILURE_TARGET_GONE\"\n,\n\"PU_FAILURE_NO_VALID_DESTINATION\"\n,\n\"PU_EVADE_HIDDEN\"\n,\n\"PU_EVADE_SPOTTED\"\n,\n\"PU_FAILURE_NO_NAVMESH\"\n,\n\"PU_FAILURE_DYNAMIC_PATHFINDING_DISABLED\"\n,\n\"PU_FAILURE_PARCEL_UNREACHABLE\"\n,\n\"PU_FAILURE_OTHER\"\n];\ndefault\n{\ntouch_start\n(\ninteger\ndetected\n)\n{\nvector\nagent_pos\n=\nllList2Vector\n(\nllGetObjectDetails\n(\nllGetOwner\n(),\n[\nOBJECT_POS\n]),\n0\n);\nvector\nend_pos\n=\nllList2Vector\n(\nllGetClosestNavPoint\n(\nagent_pos\n,\n[\nGCNP_STATIC\n,\nTRUE\n]),\n0\n);\nvector\nstart_pos\n=\nllList2Vector\n(\nllGetClosestNavPoint\n(\nllGetPos\n(),\n[\nGCNP_STATIC\n,\nTRUE\n]),\n0\n);\nif\n(\nend_pos\n==\nZERO_VECTOR\n)\n{\nllOwnerSay\n(\n\"Error: end position undefined - the object owner is either offline or far away from the nav mesh.\"\n+\n\"\n\\n\nagent pos is \"\n+\n(\nstring\n)\nagent_pos\n);\n}\nelse\nif\n(\nstart_pos\n==\nZERO_VECTOR\n)\n{\nllOwnerSay\n(\n\"Error: start position undefined - this object is far away from the nav mesh.\"\n+\n\"\n\\n\nobject pos is \"\n+\n(\nstring\n)\nllGetPos\n());\n}\nelse\n{\nllOwnerSay\n(\n\"Finding path from \"\n+\n(\nstring\n)\nstart_pos\n+\n\" to \"\n+\n(\nstring\n)\nend_pos\n+\n\" for a character of radius \"\n+\n(\nstring\n)\ncharacter_radius\n);\nlist\nresult\n=\nllGetStaticPath\n(\nstart_pos\n,\nend_pos\n,\ncharacter_radius\n,\n[]);\ninteger\nresult_code\n=\nllList2Integer\n(\nresult\n,\n-\n1\n);\n//llOwnerSay(\"Raw llGetStaticPath() result: \" + llList2CSV(result));\n// the last element in the list is just the return code;\n// the preceding elements should be waypoint vectors\nif\n(\nresult_code\n==\n0\n)\n{\nllOwnerSay\n(\n\"llGetStaticPath found a path: \"\n+\nllList2CSV\n(\nllList2List\n(\nresult\n,\n0\n,\n-\n2\n)));\n}\nelse\n{\nllOwnerSay\n(\n\"llGetStaticPath failed to find a path, with code \"\n+\n(\nstring\n)\nresult_code\n+\n\" (\"\n+\nllList2String\n(\npath_update_codes\n,\nresult_code\n)\n+\n\")\"\n);\n}\n}\n}\n}"
+  ],
+  "related": [
+    "llCreateCharacter"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

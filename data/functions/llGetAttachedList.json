@@ -1,0 +1,24 @@
+{
+  "name": "llGetAttachedList",
+  "signature": "list llGetAttachedList( key avatar )",
+  "return_type": "list",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "// Touch to list all attachments\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nlist\nAttachedNames\n;\nlist\nAttachedUUIDs\n=\nllGetAttachedList\n(\nllDetectedKey\n(\n0\n));\ninteger\ni\n;\nwhile\n(\ni\n<\nllGetListLength\n(\nAttachedUUIDs\n)\n)\n{\nlist\ntemp\n=\nllGetObjectDetails\n(\nllList2Key\n(\nAttachedUUIDs\n,\ni\n),[\nOBJECT_NAME\n]);\nAttachedNames\n+=\n[\nllList2String\n(\ntemp\n,\n0\n)];\n++\ni\n;\n}\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"\n\\n\n\"\n+\nllDumpList2String\n(\nAttachedNames\n,\n\"\n\\n\n\"\n));\n}\n}"
+  ],
+  "related": [
+    "llGetAttached",
+    "llGetAttachedListFiltered",
+    "llAttachToAvatar",
+    "llDetachFromAvatar",
+    "llGetObjectDetails"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

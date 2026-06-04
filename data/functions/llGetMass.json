@@ -1,0 +1,30 @@
+{
+  "name": "llGetMass",
+  "signature": "float llGetMass(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "The mass reported by this function is in lindograms , which function the same as kilograms within the bounds of Second Life, but not elsewhere. ( See below )",
+    "Attachments do not affect an avatar's mass, only certain Appearance settings. Avatar mass is reported to either be unexpectedly low (when measured using llGetMass ) or unexpectedly high (when measured using llGetMassMKS ). This is likely due to the weight being calculated based on a fixed value, with a modifier for height. The fixed value being used is incorrect, likely due to an incorrect density value being used.",
+    "Avatar mass is reported to either be unexpectedly low (when measured using llGetMass ) or unexpectedly high (when measured using llGetMassMKS ). This is likely due to the weight being calculated based on a fixed value, with a modifier for height. The fixed value being used is incorrect, likely due to an incorrect density value being used."
+  ],
+  "examples": [
+    "//A way of making a constant force that returns the same speed visually whatever the object is\ndefault\n{\ntouch_start\n()\n{\nllApplyImpulse\n(\n<\n0.0\n,\n0.0\n,\n5.0\n>\n*\nllGetMass\n(),\nFALSE\n);\n// This fires the object up at the same m/s whatever the size (or difference!)\n}\n}\n//Written by El Taka"
+  ],
+  "related": [
+    "llGetObjectMass",
+    "llGetForce",
+    "llGetOmega",
+    "llGetVel",
+    "llGetTorque",
+    "llGetAccel",
+    "llGetMassMKS"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

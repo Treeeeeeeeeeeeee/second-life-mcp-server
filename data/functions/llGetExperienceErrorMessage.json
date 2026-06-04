@@ -1,0 +1,26 @@
+{
+  "name": "llGetExperienceErrorMessage",
+  "signature": "string llGetExperienceErrorMessage( integer error )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/fr Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": null,
+  "energy": null,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllOwnerSay\n(\nllGetExperienceErrorMessage\n(\nXP_ERROR_NONE\n));\n}\n}"
+  ],
+  "related": [
+    "llCreateKeyValue",
+    "llReadKeyValue",
+    "llUpdateKeyValue",
+    "llDeleteKeyValue",
+    "llDataSizeKeyValue",
+    "llKeyCountKeyValue",
+    "llKeysKeyValue"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

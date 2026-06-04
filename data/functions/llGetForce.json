@@ -1,0 +1,27 @@
+{
+  "name": "llGetForce",
+  "signature": "vector llGetForce(  )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllSetForce\n(\n<\n0\n,\nllFrand\n(\n10\n),\n0\n>\n,\nFALSE\n);\n//Sets the force in a frand of 10 in Y axis.\nllSetTimerEvent\n(\n1\n);\n//Resets the force every second.\n}\ntouch_start\n(\ninteger\ntotal_num\n)\n{\nllOwnerSay\n((\nstring\n)\nllGetForce\n());\n//Says the force.\n}\ntimer\n()\n{\nllResetScript\n();\n}\n}"
+  ],
+  "related": [
+    "llGetOmega",
+    "llGetVel",
+    "llGetTorque",
+    "llGetMass",
+    "llGetAccel",
+    "llSetForce",
+    "llSetTorque",
+    "llSetForceAndTorque"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

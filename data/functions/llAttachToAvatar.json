@@ -1,0 +1,35 @@
+{
+  "name": "llAttachToAvatar",
+  "signature": "void llAttachToAvatar( integer attach_point )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_ATTACH , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "If PERMISSION_ATTACH is granted by anyone other than the owner, then when the function is called an error will be shouted on DEBUG_CHANNEL .",
+    "Once the PERMISSION_ATTACH permission is granted there is no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or the script is reset or deleted.",
+    "Attach points can be occupied by multiple attachments. [1] This was not always the case, previously if attach_point was occupied, the existing object was detached and the new attachment took it's place.",
+    "This was not always the case, previously if attach_point was occupied, the existing object was detached and the new attachment took it's place.",
+    "Objects attached to the head (and any attachment position within the head) will not be visible in First Person view (aka Mouselook ) if \"show attachments in mouselook\" is disable.",
+    "If attach_point is zero but the object was never previously attached, it defaults to the right hand ( ATTACH_RHAND ).",
+    "If the object is already attached the function fails silently, regardless if the attach_point is a different attach point . -- SCR-137"
+  ],
+  "examples": [
+    "//-- rez object on ground, drop in this script, it will request permissions to attach,\n//-- and then attach to the left hand if permission is granted. if permission is denied,\n//-- then the script complains.\ndefault\n{\nstate_entry\n()\n{\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_ATTACH\n);\n}\nrun_time_permissions\n(\ninteger\nvBitPermissions\n)\n{\nif\n(\nvBitPermissions\n&\nPERMISSION_ATTACH\n)\nllAttachToAvatar\n(\nATTACH_LHAND\n);\nelse\nllOwnerSay\n(\n\"Permission to attach denied\"\n);\n}\non_rez\n(\ninteger\nrez\n)\n{\nif\n(\n!\nllGetAttached\n()\n)\n//reset the script if it's not attached.\nllResetScript\n();\n}\nattach\n(\nkey\nid\n)\n{\n// The attach event is called on both attach and detach, but 'id' is only valid on attach\nif\n(\nid\n)\nllOwnerSay\n(\n\"The object is attached to \"\n+\nllKey2Name\n(\nid\n)\n);\nelse\nllOwnerSay\n(\n\"The object is not attached\"\n);\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llAttachToAvatarTemp",
+    "llDetachFromAvatar",
+    "llGetAttached"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

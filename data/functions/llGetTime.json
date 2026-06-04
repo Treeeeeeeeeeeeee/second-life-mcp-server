@@ -1,0 +1,33 @@
+{
+  "name": "llGetTime",
+  "signature": "float llGetTime(  )",
+  "return_type": "float",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "Script time is the amount of real-world time that the script has been in a running state. It is unaffected by time dilation, but it does not count time while the script is suspended, the user is offline (when in an attachment), the object is in inventory rather than rezzed, etc.",
+    "Script time resets when... Script reset (user or llResetScript or llResetOtherScript ) Call to either llResetTime or llGetAndResetTime",
+    "Script reset (user or llResetScript or llResetOtherScript )",
+    "Call to either llResetTime or llGetAndResetTime",
+    "Due to (32 bit) floating point number limitations, the accuracy of this function is 1/ 64 sec up to ~3 days, 1/ 32 sec up to ~6 days, etc... doubling each time, e.g. it's only 1 second at ~194 days. Use llResetTime or llGetAndResetTime whenever practical to maintain the accuracy you require:",
+    "Note that this precision caveat does not apply to scripts written in SLua, only to LSL scripts. In SLua: the timer precision is 64-bit, and will maintain 1/ 64 sec precision for ~4.4million years. llResetTime and llGetAndResetTime have been removed",
+    "the timer precision is 64-bit, and will maintain 1/ 64 sec precision for ~4.4million years.",
+    "llResetTime and llGetAndResetTime have been removed"
+  ],
+  "examples": [
+    "default\n{\nstate_entry\n()\n{\nllResetTime\n();\n}\ntouch_start\n(\ninteger\nnum_touch\n)\n{\nfloat\ntime\n=\nllGetTime\n();\n//Instead getting, and then resetting the time, we could use llGetAndResetTime() to accomplish the same thing.\nllResetTime\n();\nllSay\n(\n0\n,(\nstring\n)\ntime\n+\n\" seconds have elapsed since the last touch.\"\n);\n}\n}",
+    "// Distinguish between a single click and a double click\nfloat\ngHoldTime\n;\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\nfloat\nnow\n=\nllGetTime\n();\nif\n(\nnow\n-\ngHoldTime\n<\n0.3\n)\n{\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Double clicked\"\n);\n// Trigger one sequence of actions\n}\nelse\n{\nllSetTimerEvent\n(\n0.32\n);\n}\ngHoldTime\n=\nnow\n;\n}\ntimer\n()\n{\nllSetTimerEvent\n(\n0.0\n);\nif\n(\nllGetTime\n()\n-\ngHoldTime\n>\n0.3\n)\n{\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Single clicked.\"\n);\n// Trigger a different sequence of actions\n}\n}\n}",
+    "//  To do time-dependant loops of whatever:\n//  for example move 2 meters within 5.0 seconds\nfloat\ntime\n=\n5.0\n;\nfloat\ni\n;\nllResetTime\n();\ndo\n{\ni\n=\nllGetTime\n()\n/\ntime\n;\n// move2meters*i\n}\nwhile\n(\nllGetTime\n()\n<\ntime\n);"
+  ],
+  "related": [
+    "llResetTime",
+    "llGetAndResetTime",
+    "llGetRegionTimeDilation"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

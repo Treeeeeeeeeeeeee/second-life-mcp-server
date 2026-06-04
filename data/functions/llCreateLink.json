@@ -1,0 +1,35 @@
+{
+  "name": "llCreateLink",
+  "signature": "void llCreateLink( key target, integer parent )",
+  "return_type": "void",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.1,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "This function causes the script to sleep for 0.1 seconds.",
+    "Do not depend upon the auto-grant status of permissions. Always use the run_time_permissions event.",
+    "If the script lacks the permission PERMISSION_CHANGE_LINKS , the script will shout an error on DEBUG_CHANNEL and the operation fails (but the script continues to run).",
+    "If PERMISSION_CHANGE_LINKS is granted by anyone other than the owner, then when the function is called an error will be shouted on DEBUG_CHANNEL .",
+    "Once the PERMISSION_CHANGE_LINKS permission is granted there is no way to revoke it except from inside the script (for example, with a new llRequestPermissions call) or the script is reset or deleted.",
+    "If target is not in the region, not a prim, or is attached to an avatar, an error is shouted on DEBUG_CHANNEL .",
+    "If either the object or the target are not modifiable or of different owners, then an error is shouted on DEBUG_CHANNEL .",
+    "If the the parent object and target are too far apart they will fail to link. The maximum distance is further explained here: Linkability Rules",
+    "The maximum distance is further explained here: Linkability Rules",
+    "This function silently fails if called from a script inside an attachment."
+  ],
+  "examples": [
+    "// Rez an object and link it as a child prim.\nstring\nObjectName\n=\n\"Object Name Here\"\n;\n// NOTE: must be a name of an object in this object's inventory.\ndefault\n{\ntouch_start\n(\ninteger\ncount\n)\n{\n// When the object is touched, make sure we can do this before trying.\nllRequestPermissions\n(\nllGetOwner\n(),\nPERMISSION_CHANGE_LINKS\n);\n}\nrun_time_permissions\n(\ninteger\nperm\n)\n{\n// Only bother rezzing the object if will be able to link it.\nif\n(\nperm\n&\nPERMISSION_CHANGE_LINKS\n)\nllRezObject\n(\nObjectName\n,\nllGetPos\n()\n+\n<\n0\n,\n0\n,\n0.5\n>\n,\nZERO_VECTOR\n,\nllGetRot\n(),\n0\n);\nelse\nllOwnerSay\n(\n\"Sorry, we can't link.\"\n);\n}\nobject_rez\n(\nkey\nid\n)\n{\n// NOTE: under some conditions, this could fail to work.\n// This is the parent object.  Create a link to the newly-created child.\nllCreateLink\n(\nid\n,\nTRUE\n);\n}\n}"
+  ],
+  "related": [
+    "llGetPermissions",
+    "llGetPermissionsKey",
+    "llRequestPermissions",
+    "llBreakLink",
+    "llBreakAllLinks"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

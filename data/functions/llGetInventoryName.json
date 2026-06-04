@@ -1,0 +1,27 @@
+{
+  "name": "llGetInventoryName",
+  "signature": "string llGetInventoryName( integer type, integer number )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": false,
+  "caveats": [
+    "If number is out of bounds the script continues to execute without an error message."
+  ],
+  "examples": [
+    "// Give all prim contents to anyone touching this object,\n// But don't give this script itself.\ndefault\n{\ntouch_start\n(\ninteger\nnum_detected\n)\n{\nlist\nInventoryList\n;\ninteger\ncount\n=\nllGetInventoryNumber\n(\nINVENTORY_ALL\n);\n// Count of all items in prim's contents\nstring\nItemName\n;\nwhile\n(\ncount\n--\n)\n{\nItemName\n=\nllGetInventoryName\n(\nINVENTORY_ALL\n,\ncount\n);\nif\n(\nItemName\n!=\nllGetScriptName\n()\n)\nInventoryList\n+=\nItemName\n;\n// add all contents except this script, to a list\n}\n// Give all the items to the toucher, in a folder named as per this prim's name\nllGiveInventoryList\n(\nllDetectedKey\n(\n0\n),\nllGetObjectName\n(),\nInventoryList\n);\n}\n}"
+  ],
+  "related": [
+    "llGetInventoryAcquireTime",
+    "llGetInventoryNumber",
+    "llGetInventoryType",
+    "llGetInventoryCreator",
+    "llGetInventoryPermMask",
+    "llGetInventoryKey"
+  ],
+  "common_mistakes": [],
+  "since_version": null
+}

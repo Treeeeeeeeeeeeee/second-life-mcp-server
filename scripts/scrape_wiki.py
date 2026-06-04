@@ -86,7 +86,11 @@ def get_all_function_names(session: requests.Session) -> list[str]:
 
         for m in data.get("query", {}).get("categorymembers", []):
             title = m.get("title", "")
-            if title.startswith("ll") or title.startswith("os"):
+            # MediaWiki capitalizes the first letter of page titles,
+            # so "llAbs" becomes "LlAbs". Normalize to lowercase first char.
+            if title[:2].lower() in ("ll", "os"):
+                # Restore the canonical lowercase prefix
+                title = title[0].lower() + title[1:]
                 names.append(title)
 
         if "continue" not in data:
@@ -316,7 +320,9 @@ def scrape_one(name: str, session: requests.Session, dry_run: bool, overwrite: b
         print(f"  [skip] {name} (already exists)")
         return True
 
-    url  = FUNCTION_URL.format(name=name)
+    # MediaWiki URLs use uppercase first letter (e.g. LlAbs, not llAbs)
+    wiki_name = name[0].upper() + name[1:] if name else name
+    url  = FUNCTION_URL.format(name=wiki_name)
     soup = fetch(url, session)
     if not soup:
         return False

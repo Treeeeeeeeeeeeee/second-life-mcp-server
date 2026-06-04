@@ -1,0 +1,27 @@
+{
+  "name": "llGetAgentLanguage",
+  "signature": "string llGetAgentLanguage( key avatar )",
+  "return_type": "string",
+  "description": "Template:Needs Translation/LSL/de Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If the user has \" Share language with objects \" disabled then this function returns an empty string.",
+    "During a 1-5 seconds period after which an agent is logging in, this function will return an empty string as well, until the viewer sends the data to the simulator.",
+    "Users may prefer to see the client interface in a language that is not their native language, and some may prefer to use objects in the native language of the creator, or dislike low-quality translations. Consider providing a manual language override when it is appropriate.",
+    "New language/variant values may be added later. Scripts may need to be prepared for unexpected values.",
+    "If the viewer is set to \"System Default\" the possible return may be outside the list given above. see List of ISO 639-1 codes for reference.",
+    "Viewers can specify other arbitrary language strings with the 'InstallLanguage' debug setting. For example, launching the viewer with \"--set InstallLanguage american\" results this function returning 'american' for the avatar. VWR-12222 If the viewer supplies a multiline value, the simulator will only accept the first line and ignore all others. SVC-5503",
+    "If the viewer supplies a multiline value, the simulator will only accept the first line and ignore all others. SVC-5503",
+    "Older viewers may return \"en-us\" instead of \"en\"."
+  ],
+  "examples": [
+    "default\n{\ntouch_start\n(\ninteger\nnum_detected\n){\n//-- loop through all detected touches\nfor\n(\nnum_detected\n-=\n1\n;\nnum_detected\n>\n-\n1\n;\nnum_detected\n-=\n1\n){\nkey\nagent\n=\nllDetectedKey\n(\nnum_detected\n);\nstring\nname\n=\nllGetDisplayName\n(\nagent\n);\nstring\nlanguage\n=\nllGetAgentLanguage\n(\nagent\n);\nif\n((\n\"\"\n==\nname\n)\n||\n(\n\"???\"\n==\nname\n))\nname\n=\nllDetectedName\n(\nnum_detected\n);\n//-- PUBLIC_CHANNEL is 0\nif\n(\nlanguage\n==\n\"es\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"\u00a1Hola, \"\n+\nname\n+\n\"!\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"fr\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Salut, \"\n+\nname\n+\n\"\u00a0!\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"ja\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"\u3084\u3042\u3001\u3000\"\n+\nname\n+\n\"\uff01\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"de\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Hallo, \"\n+\nname\n+\n\"!\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"en\"\n){\n//-- returned by some TPVs\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Hello, \"\n+\nname\n+\n\"!\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"pt\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Ol\u00e1!, \"\n+\nname\n+\n\"!\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"ko\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"\uc548\ub155\ud558\uc138\uc694, \"\n+\nname\n+\n\"!\"\n);\n}\nelse\nif\n(\nlanguage\n==\n\"zh\"\n){\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"\u4f60\u597d\u554a\uff0c \"\n+\nname\n+\n\"\uff01\"\n);\n}\nelse\n{\n//-- Default to 'en-us' if language is unrecognized / not provided.\nllSay\n(\nPUBLIC_CHANNEL\n,\n\"Hi there, \"\n+\nname\n+\n\"!\"\n);\n}\n}\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}

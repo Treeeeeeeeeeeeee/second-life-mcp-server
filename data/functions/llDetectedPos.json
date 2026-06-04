@@ -1,0 +1,24 @@
+{
+  "name": "llDetectedPos",
+  "signature": "vector llDetectedPos( integer number )",
+  "return_type": "vector",
+  "description": "Template:Needs Translation/LSL/es Template:Needs Translation/LSL/el Template:Needs Translation/LSL/he Template:Needs Translation/LSL/it Template:Needs Translation/LSL/ko Template:Needs Translation/LSL/nl Template:Needs Translation/LSL/hu Template:Needs Translation/LSL/no Template:Needs Translation/LSL/da Template:Needs Translation/LSL/sv Template:Needs Translation/LSL/tr Template:Needs Translation/LSL/pl Template:Needs Translation/LSL/pt Template:Needs Translation/LSL/ru Template:Needs Translation/LSL/th Template:Needs Translation/LSL/uk Template:Needs Translation/LSL/zh-Hans Template:Needs Translation/LSL/zh-Hant",
+  "parameters": [],
+  "delay": 0.0,
+  "energy": 10.0,
+  "mono_only": false,
+  "deprecated": true,
+  "caveats": [
+    "If number is out of bounds this function returns <0.0, 0.0, 0.0> and the script continues to execute without an error message.",
+    "Events that enable the llDetected* functions always return at least one detected item. Detection events are not raised if there is nothing detected. [1] The detection event's items detected parameter is initially never less than 1. [2]",
+    "Detection events are not raised if there is nothing detected. [1]",
+    "The detection event's items detected parameter is initially never less than 1. [2]"
+  ],
+  "examples": [
+    "// Get position and distance of toucher\ndefault\n{\ntouch_start\n(\ninteger\ntotal_number\n)\n{\n// get the position of the avatar touching this prim\nvector\npos\n=\nllDetectedPos\n(\n0\n);\n// compute how far away they are\nfloat\ndist\n=\nllVecDist\n(\npos\n,\nllGetPos\n()\n);\nllSay\n(\n0\n,\n\"You are \"\n+\n(\nstring\n)\ndist\n+\n\" metres from me, at coordinates \"\n+\n(\nstring\n)\npos\n);\n}\n}",
+    "// get name and sim position of Avatars within \"say\" range\ndefault\n{\nstate_entry\n()\n{\nllOwnerSay\n(\n\"Touch me to get the positions of avatars in 'Say' range\"\n);\n}\ntouch_start\n(\ninteger\nvIntTouchCount\n)\n{\n// Do a one-off sensor sweep over a 20m radius sphere for avatars\nllSensor\n(\n\"\"\n,\n\"\"\n,\nAGENT\n,\n20\n,\nPI\n);\n}\nsensor\n(\ninteger\nvIntFound\n)\n{\ninteger\nvIntCounter\n=\n0\n;\n//-- loop through all avatars found\ndo\n{\nllOwnerSay\n(\nllDetectedName\n(\nvIntCounter\n)\n// get the position of this detected avatar\n+\n(\nstring\n)\nllDetectedPos\n(\nvIntCounter\n)\n);\n}\nwhile\n(\n++\nvIntCounter\n<\nvIntFound\n);\n}\n// sensor does not detect owner if it's attached\nno_sensor\n()\n{\nllOwnerSay\n(\n\"I couldn't find anybody\"\n);\n}\n}"
+  ],
+  "related": [],
+  "common_mistakes": [],
+  "since_version": null
+}
